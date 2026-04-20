@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutor Schedule Finder – UTRGV ADA Learning Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Patua+One&display=swap" rel="stylesheet">
+<style>
+/* ── UTRGV Official Brand Tokens ── */
+:root {
+  --orange:    #F05023;  /* PMS 1655 C */
+  --gray:      #646469;  /* Cool Gray 10 */
+  --dark-gray: #3a3a3e;
+  --white:     #FFFFFF;
+  --bg:        #F4F4F5;
+  --surface:   #FFFFFF;
+  --border:    #D1D1D4;
+  --text:      #1a1a1a;
+  --muted:     #4a4a4e;
+  --font-head: 'Patua One', Georgia, serif;
+  --font-body: 'Red Hat Display', 'Helvetica Neue', Arial, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5;}
+
+/* Skip link – WCAG 2.4.1 */
+.skip{position:absolute;top:-100%;left:0;background:var(--dark-gray);color:var(--white);
+  padding:10px 18px;font-size:.9rem;font-weight:600;z-index:9999;text-decoration:none;
+  border-radius:0 0 6px 0;}
+.skip:focus{top:0;}
+
+/* Header – white-on-orange passes WCAG AA */
+header{background:var(--orange);color:var(--white);position:sticky;top:0;z-index:100;
+  box-shadow:0 3px 12px rgba(0,0,0,.22);}
+.hi{max-width:1160px;margin:0 auto;padding:18px 24px 22px;}
+.br{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap;}
+.bb{background:var(--white);color:var(--orange);font-family:var(--font-head);font-size:.95rem;
+  padding:5px 13px;border-radius:4px;white-space:nowrap;flex-shrink:0;}
+.bt{font-family:var(--font-head);font-size:1.4rem;color:var(--white);line-height:1.2;}
+.bs{font-size:.82rem;font-weight:400;color:rgba(255,255,255,.88);margin-top:2px;}
+
+/* Search */
+.sr{display:flex;gap:14px;flex-wrap:wrap;}
+.sg{position:relative;flex:1;min-width:220px;}
+.sg label{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:rgba(255,255,255,.92);margin-bottom:5px;}
+.sg input{width:100%;padding:11px 16px;border-radius:6px;border:2px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.15);color:var(--white);font-family:var(--font-body);
+  font-size:.95rem;font-weight:500;outline:none;caret-color:var(--white);}
+.sg input::placeholder{color:rgba(255,255,255,.52);font-weight:400;}
+.sg input:focus{border-color:var(--white);background:rgba(255,255,255,.24);
+  box-shadow:0 0 0 3px rgba(255,255,255,.38);}
+
+/* Dropdown */
+.dd{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--surface);
+  border:2px solid var(--orange);border-radius:6px;max-height:240px;overflow-y:auto;
+  z-index:300;box-shadow:0 6px 20px rgba(0,0,0,.14);display:none;}
+.dd.open{display:block;}
+.ddi{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;
+  cursor:pointer;font-size:.87rem;color:var(--text);border-bottom:1px solid var(--border);}
+.ddi:last-child{border-bottom:none;}
+.ddi:hover,.ddi:focus{background:#fde9e3;outline:2px solid var(--orange);outline-offset:-2px;}
+.ddc{font-size:.74rem;font-weight:700;color:var(--orange);background:#fde9e3;
+  padding:2px 7px;border-radius:3px;flex-shrink:0;margin-left:8px;}
+.ddn{flex:1;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* Main */
+main{max-width:1160px;margin:0 auto;padding:32px 24px 64px;}
+
+/* Placeholder */
+.ph{text-align:center;padding:72px 20px;color:var(--muted);}
+.phi{display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;
+  background:#f0e8e5;border-radius:50%;margin-bottom:20px;}
+.ph h2{font-family:var(--font-head);font-size:1.25rem;color:var(--dark-gray);margin-bottom:8px;}
+.ph p{font-size:.92rem;max-width:380px;margin:0 auto;}
+
+/* Results header */
+.rh{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  margin-bottom:24px;padding-bottom:12px;border-bottom:3px solid var(--orange);}
+.rht{font-family:var(--font-head);font-size:1.18rem;color:var(--dark-gray);}
+.rht .q{color:var(--orange);}
+.rhc{font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+
+/* Course section */
+.cs{margin-bottom:30px;}
+.csh{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+/* white-on-orange = WCAG AA */
+.ccb{background:var(--orange);color:var(--white);font-family:var(--font-head);font-size:.87rem;
+  padding:4px 12px;border-radius:4px;white-space:nowrap;}
+.csn{font-family:var(--font-head);font-size:1rem;color:var(--dark-gray);}
+.csc{margin-left:auto;font-size:.73rem;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.05em;}
+
+/* Tutor card */
+.tc{background:var(--surface);border:2px solid var(--border);border-left:5px solid var(--orange);
+  border-radius:8px;margin-bottom:11px;overflow:hidden;animation:up .18s ease both;}
+@keyframes up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.tch{display:flex;align-items:center;gap:12px;padding:12px 18px;
+  background:#f5f5f6;border-bottom:1px solid var(--border);}
+/* white-on-dark-gray = WCAG AAA */
+.av{width:37px;height:37px;border-radius:50%;background:var(--dark-gray);color:var(--white);
+  font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tcn{font-weight:700;font-size:.93rem;color:var(--text);}
+.rb{margin-left:auto;font-size:.68rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;padding:3px 9px;border-radius:3px;flex-shrink:0;}
+.rb.lead{background:var(--dark-gray);color:var(--white);}  /* white-on-dark-gray WCAG AAA */
+.rb.mentor{background:var(--gray);color:var(--white);}     /* white-on-gray WCAG AA */
+
+/* Schedule grid */
+.sgg{display:grid;grid-template-columns:repeat(5,1fr);}
+.dc{padding:12px 10px;border-right:1px solid var(--border);}
+.dc:last-child{border-right:none;}
+.dl{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--gray);margin-bottom:5px;}
+.tv{font-size:.78rem;color:var(--text);line-height:1.6;font-weight:500;display:block;}
+.tv.off{color:var(--muted);font-weight:400;}
+.tv.sp{color:var(--dark-gray);font-style:italic;font-size:.75rem;}
+.op{display:inline-block;background:#e8e8ea;color:var(--muted);font-size:.69rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 6px;border-radius:3px;}
+
+/* Tutor profile (tutor search view) – white-on-orange = WCAG AA */
+.tpc{background:var(--orange);border-radius:8px;padding:18px 22px;margin-bottom:18px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:up .18s ease both;}
+/* orange-on-white avatar = WCAG AA */
+.tpa{width:50px;height:50px;border-radius:50%;background:var(--white);color:var(--orange);
+  font-family:var(--font-head);font-size:1.05rem;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;}
+.tpn{font-family:var(--font-head);font-size:1.18rem;color:var(--white);}
+.tpm{font-size:.81rem;color:rgba(255,255,255,.88);margin-top:2px;}
+.tprb{margin-left:auto;font-size:.68rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;padding:4px 10px;border-radius:3px;background:var(--white);
+  color:var(--orange);flex-shrink:0;}
+
+/* Course card (tutor view) */
+.crc{background:var(--surface);border:2px solid var(--border);border-left:5px solid var(--gray);
+  border-radius:8px;margin-bottom:11px;overflow:hidden;animation:up .18s ease both;}
+.crch{display:flex;align-items:center;gap:12px;padding:12px 18px;
+  background:#f5f5f6;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.crcn{font-size:.91rem;font-weight:600;color:var(--text);}
+
+/* Misc */
+.nr{text-align:center;padding:48px 24px;color:var(--muted);font-size:.91rem;}
+.tdiv{border:none;border-top:2px solid var(--border);margin:30px 0;}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px;}
+
+@media(max-width:680px){.sgg{grid-template-columns:repeat(3,1fr);}
+  .bt{font-size:1.1rem;}.hi{padding:14px 16px 18px;}main{padding:20px 14px 48px;}}
+@media(max-width:420px){.sgg{grid-template-columns:1fr 1fr;}.bb{display:none;}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header role="banner">
+  <div class="hi">
+    <div class="br">
+      <div class="bb" aria-hidden="true">UTRGV</div>
+      <div>
+        <div class="bt">Tutor Schedule Finder</div>
+        <div class="bs">ADA Learning Center &nbsp;&middot;&nbsp; The University of Texas Rio Grande Valley</div>
+      </div>
+    </div>
+    <div class="sr" role="search">
+      <div class="sg" id="sg1">
+        <label for="i1">Search by Subject or Course Code</label>
+        <input type="search" id="i1" placeholder="e.g. MATH 2413, Biology, Calculus&hellip;"
+          autocomplete="off" aria-haspopup="listbox" aria-expanded="false" aria-controls="dd1">
+        <div id="dd1" class="dd" role="listbox" aria-label="Course suggestions"></div>
+      </div>
+      <div class="sg" id="sg2">
+        <label for="i2">Search by Tutor Name</label>
+        <input type="search" id="i2" placeholder="e.g. Matthew Chapa, Fernando&hellip;"
+          autocomplete="off" aria-haspopup="listbox" aria-expanded="false" aria-controls="dd2">
+        <div id="dd2" class="dd" role="listbox" aria-label="Tutor suggestions"></div>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+  <div id="ph" class="ph" role="status">
+    <div class="phi" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F05023" stroke-width="1.8">
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+    </div>
+    <h2>Find a Tutor or Subject</h2>
+    <p>Type a course name, code, or tutor name above to view weekly availability.</p>
+  </div>
+  <div id="res" style="display:none" aria-live="polite" aria-atomic="false"></div>
+</main>
+<script>
+const D=[["ACCT 2301","Intro to Financial Acct","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["ACCT 2301","Intro to Financial Acct","Sebastian Sanchez Reyes","11:00am-12:15pm & 2:00pm-3:45pm","9:30am-1:00pm & 1:30pm-4:15pm","11:00am-12:15pm & 2:00pm-3:30pm","9:30am-12:45pm","OFF"],["ACCT 2301","Intro to Financial Acct","Fernando Casanova","12:00pm-3:45pm","1:00pm-3:15pm","12:00pm-3:45pm","1:00pm-3:15pm","9:00am-12:00pm"],["ACCT 2301","Intro to Financial Acct","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["ACCT 2302","Intro to Managerial Acct","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["ACCT 2302","Intro to Managerial Acct","Sebastian Sanchez Reyes","11:00am-12:15pm & 2:00pm-3:30pm","9:30am-1:00pm & 1:30pm-4:15pm","11:00am-12:15pm & 2:00pm-3:30pm","9:30am-12:45pm","OFF"],["ACCT 2302","Intro to Managerial Acct","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["ACCT 3321","Intermediate Accounting I","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["ACCT 3322","Intermediate Accounting II","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["ACCT 3326","Accounting Info Systems","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["ASLI 1310","ASL I","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 1310","ASL I","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 1310","ASL I","Josue Peralta De Jesus","11:00am-12:30pm & 3:30pm-5:00pm","9:00am-12:00pm & 3:00pm-5:00pm","11:00am-1:00pm","9:00am-12:00pm & 3:00pm-5:00pm","OFF"],["ASLI 1310","ASL I","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 1320","ASL II","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 1320","ASL II","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 1320","ASL II","Josue Peralta De Jesus","11:00am-12:30pm & 3:30pm-5:00pm","9:00am-12:00pm & 3:00pm-5:00pm","11:00am-1:00pm","9:00am-12:00pm & 3:00pm-5:00pm","OFF"],["ASLI 1320","ASL II","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 2310","ASL III","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 2310","ASL III","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 2310","ASL III","Josue Peralta De Jesus","11:00am-12:30pm & 3:30pm-5:00pm","9:00am-12:00pm & 3:00pm-5:00pm","11:00am-1:00pm","9:00am-12:00pm & 3:00pm-5:00pm","OFF"],["ASLI 2310","ASL III","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 3310","ASL IV","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 3310","ASL IV","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 3310","ASL IV","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 3320","ASL V","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 3320","ASL V","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 3320","ASL V","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 3325","Interpreting I","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 3325","Interpreting I","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 3340","Intro to Classifiers","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 3340","Intro to Classifiers","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 3340","Intro to Classifiers","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 3345","Interpreting II","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 3345","Interpreting II","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["BIOL 1406","General Biology I","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BIOL 1406","General Biology I","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 1406","General Biology I","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 1406","General Biology I","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BIOL 1406","General Biology I","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BIOL 1406","General Biology I","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BIOL 1406","General Biology I","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["BIOL 1407","General Biology II","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BIOL 1407","General Biology II","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 1407","General Biology II","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 1407","General Biology II","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BIOL 1407","General Biology II","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BIOL 1407","General Biology II","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BIOL 1407","General Biology II","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["BIOL 2401","Anatomy & Physiology I","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BIOL 2401","Anatomy & Physiology I","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 2401","Anatomy & Physiology I","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BIOL 2401","Anatomy & Physiology I","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BIOL 2401","Anatomy & Physiology I","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["BIOL 2401","Anatomy & Physiology I","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["BIOL 2401","Anatomy & Physiology I","Yaeli Benavidez","OFF","OFF","10:00am-2:00pm","OFF","OFF"],["BIOL 2402","Anatomy & Physiology II","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BIOL 2402","Anatomy & Physiology II","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 2402","Anatomy & Physiology II","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BIOL 2402","Anatomy & Physiology II","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["BIOL 2402","Anatomy & Physiology II","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["BMED 1301","Intro to Biomedical Sci I","Jorge Gonzalez","OFF","12:00pm-4:00pm","OFF","OFF","OFF"],["BMED 1301","Intro to Biomedical Sci I","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BMED 1301","Intro to Biomedical Sci I","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 1301","Intro to Biomedical Sci I","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 1301","Intro to Biomedical Sci I","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 1301","Intro to Biomedical Sci I","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 1301","Intro to Biomedical Sci I","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BMED 1302","Intro to Biomedical Sci II","Jorge Gonzalez","OFF","12:00pm-4:00pm","OFF","OFF","OFF"],["BMED 1302","Intro to Biomedical Sci II","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BMED 1302","Intro to Biomedical Sci II","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 1302","Intro to Biomedical Sci II","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 1302","Intro to Biomedical Sci II","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 1302","Intro to Biomedical Sci II","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 1302","Intro to Biomedical Sci II","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BMED 2301","Integrated Body Systems I","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BMED 2301","Integrated Body Systems I","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 2301","Integrated Body Systems I","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 2301","Integrated Body Systems I","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 2301","Integrated Body Systems I","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 2301","Integrated Body Systems I","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BMED 2302","Integrated Body Systems II","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BMED 2302","Integrated Body Systems II","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 2302","Integrated Body Systems II","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 2302","Integrated Body Systems II","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 2302","Integrated Body Systems II","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 2302","Integrated Body Systems II","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BMED 4220","Medical Bioinformatics","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 4230","Medical Genetics & Genomics","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4250","Advanced Cell Biology","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4250","Advanced Cell Biology","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4250","Advanced Cell Biology","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 4260","Advanced Molecular Biology","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4260","Advanced Molecular Biology","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4260","Advanced Molecular Biology","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 4310","Medical Biochemistry","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4310","Medical Biochemistry","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4310","Medical Biochemistry","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 4310","Medical Biochemistry","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 4380","Medical Neuroscience/Neurochemistry","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4380","Medical Neuroscience/Neurochemistry","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4380","Medical Neuroscience/Neurochemistry","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 4380","Medical Neuroscience/Neurochemistry","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 4440","Medical Microbiology","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4440","Medical Microbiology","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4440","Medical Microbiology","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["CHEM 1309/1109","Chemistry for Engrs/Lab","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["CHEM 1311/1111","General Chemistry I/Lab","Miranda Villasenor","11:30am-12:15pm & 2:30pm-3:15pm","9:45am-12:45pm","11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm","10:00am-1:00pm & 3:30pm-4:30pm","10:00am-12:00pm"],["CHEM 1311/1111","General Chemistry I/Lab","Jorge Gonzalez","OFF","12:00pm-4:00pm","OFF","OFF","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["CHEM 1311/1111","General Chemistry I/Lab","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["CHEM 1312/1112","General Chemistry II/Lab","Miranda Villasenor","11:30am-12:15pm & 2:30pm-3:15pm","9:45am-12:45pm","11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm","10:00am-1:00pm & 3:30pm-4:30pm","10:00am-12:00pm"],["CHEM 1312/1112","General Chemistry II/Lab","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 1312/1112","General Chemistry II/Lab","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["CHEM 1312/1112","General Chemistry II/Lab","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["CHEM 1312/1112","General Chemistry II/Lab","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["CHEM 2323/2123","Organic Chemistry I/Lab","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["CHEM 2323/2123","Organic Chemistry I/Lab","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 2323/2123","Organic Chemistry I/Lab","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["CHEM 2323/2123","Organic Chemistry I/Lab","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["CHEM 2325/2125","Organic Chemistry II/Lab","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["CHEM 2325/2125","Organic Chemistry II/Lab","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 3303","Biochemistry I","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 4302","Advanced Biochemistry","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 4320","Nutrition & Exercise Biochemistry","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CIVE 1101","Intro to Civil Engr","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CIVE 2220","Civil Engr Measurements","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CIVE 2220","Civil Engr Measurements","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["CIVE 2350","Numerical Methods","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CIVE 3315","Fluid Mechanics","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CIVE 3321","Mechanics of Materials","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CIVE 3440","CE Materials","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CLSC 2429","Clinic Micro","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["CSCI 1101","Intro to Computer Science","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 1101","Intro to Computer Science","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["CSCI 1380","Intro to Programming Python","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 1380","Intro to Programming Python","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 1381","Intro to Programming C++","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 1381","Intro to Programming C++","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 1390","Intro to Programming II","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 1390","Intro to Programming II","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 1470","Computer Science I","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 1470","Computer Science I","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 1470","Computer Science I","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["CSCI 1470","Computer Science I","Eduardo Bello Gonzalez","11:00am-1:30pm","11:00am-1:45pm","11:00am-1:30pm","11:00am-12:15pm","OFF"],["CSCI 2344","Programming in Unix/Linux","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 2380","Computer Science II","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 2380","Computer Science II","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 2380","Computer Science II","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["CSCI 3329","Obj Oriented Prog in Python","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 3333","Algorithms & Data Structures","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 3334","Systems in Programming","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 3341","Software Engineering II","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 4325","Automata, Formal Languages & Computability","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["ECON 2301","Principles of Macroeconomics","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["ECON 2302","Principles of Microeconomics","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["EECE 1101","Intro to Elec & Comp Engr","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 2305","Electric Circuits I","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["EECE 2306/2106","Digital Systems Engr I/Lab","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 2306/2106","Digital Systems Engr I/Lab","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["EECE 2306/2106","Digital Systems Engr I/Lab","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["EECE 2306/2106","Digital Systems Engr I/Lab","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["EECE 2317","Electronic Systems","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["EECE 3331","Microcontrol & Embedded Systems","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 3340","Probability & Stats (Elec & Comp)","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 3435","Microprocessor Systems","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 4303","Digital Systems Engr II","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 4380","Computer Architecture","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["INFS 2300","Data Modeling Management Tools","Daniela Celaya (Lead Tutor)","11:00am-12:00pm","OFF","10:15am-1:15pm","10:15am-1:15pm","OFF"],["MATH 1314, 1414","College Algebra","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["MATH 1314, 1414","College Algebra","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["MATH 1314, 1414","College Algebra","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["MATH 1314, 1414","College Algebra","Eduardo Bello Gonzalez","11:00am-1:30pm","11:00am-1:45pm","11:00am-1:30pm","11:00am-12:15pm","OFF"],["MATH 1314, 1414","College Algebra","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MATH 1314, 1414","College Algebra","Paul Diaz (SI Mentor)","9:00am-10:45am & 3:30pm-5:00pm","11:00am-1:45pm & 3:30pm-4:30pm","Mentor Duties","Mentor Duties","OFF"],["MATH 1314, 1414","College Algebra","Paulina Olvera Leal","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE"],["MATH 1324","Math for Business","Sebastian Sanchez Reyes","11:00am-12:15pm & 2:00pm-3:30pm","9:30am-1:00pm & 1:30pm-4:15pm","11:00am-12:15pm & 2:00pm-3:30pm","9:30am-12:45pm","OFF"],["MATH 1342","Elementary Statistical Methods","Fernando Casanova","12:00pm-3:45pm","1:00pm-3:15pm","12:00pm-3:45pm","1:00pm-3:15pm","9:00am-12:00pm"],["MATH 1342","Elementary Statistical Methods","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["MATH 1342","Elementary Statistical Methods","Yaeli Benavidez","OFF","OFF","10:00am-2:00pm","OFF","OFF"],["MATH 1342","Elementary Statistical Methods","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["MATH 1343","Intro to Biostatistics","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["MATH 1343","Intro to Biostatistics","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["MATH 2318","Linear Algebra","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MATH 2318","Linear Algebra","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MATH 2346","Math for EE & CE","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["MATH 2412","Precalculus","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["MATH 2412","Precalculus","Eduardo Bello Gonzalez","11:00am-1:30pm","11:00am-1:45pm","11:00am-1:30pm","11:00am-12:15pm","OFF"],["MATH 2412","Precalculus","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["MATH 2412","Precalculus","Jacob Villarreal","OFF","10:45am-12:15pm","9:00am-12:30pm","10:45am-12:15pm","9:00am-10:30am"],["MATH 2412","Precalculus","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MATH 2412","Precalculus","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MATH 2413","Calculus I","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["MATH 2413","Calculus I","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["MATH 2413","Calculus I","Eduardo Bello Gonzalez","11:00am-1:30pm","11:00am-1:45pm","11:00am-1:30pm","11:00am-12:15pm","OFF"],["MATH 2413","Calculus I","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["MATH 2413","Calculus I","Miranda Villasenor","11:30am-12:15pm & 2:30pm-3:15pm","9:45am-12:45pm","11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm","10:00am-1:00pm & 3:30pm-4:30pm","10:00am-12:00pm"],["MATH 2413","Calculus I","Valeria Ramirez","OFF","OFF","5:15pm-8:00pm","3:45pm-5:00pm","OFF"],["MATH 2413","Calculus I","Jacob Villarreal","OFF","10:45am-12:15pm","9:00am-12:30pm","10:45am-12:15pm","9:00am-10:30am"],["MATH 2413","Calculus I","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MATH 2413","Calculus I","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MATH 2413","Calculus I","Ethan De Leon","9:00am-12:15pm","1:15pm-4:00pm","9:00am-12:15pm","1:15pm-4:00pm","9:00am-10:00am"],["MATH 2413","Calculus I","Paul Diaz (SI Mentor)","9:00am-10:45am & 3:30pm-5:00pm","11:00am-1:45pm & 3:30pm-4:30pm","Mentor Duties","Mentor Duties","OFF"],["MATH 2413","Calculus I","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MATH 2414","Calculus II","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["MATH 2414","Calculus II","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["MATH 2414","Calculus II","Eduardo Bello Gonzalez","11:00am-1:30pm","11:00am-1:45pm","11:00am-1:30pm","11:00am-12:15pm","OFF"],["MATH 2414","Calculus II","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["MATH 2414","Calculus II","Valeria Ramirez","OFF","OFF","5:15pm-8:00pm","3:45pm-5:00pm","OFF"],["MATH 2414","Calculus II","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MATH 2414","Calculus II","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MATH 2414","Calculus II","Paul Diaz (SI Mentor)","9:00am-10:45am & 3:30pm-5:00pm","11:00am-1:45pm & 3:30pm-4:30pm","Mentor Duties","Mentor Duties","OFF"],["MATH 2414","Calculus II","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MATH 2415","Calculus III","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MATH 2415","Calculus III","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MATH 3341","Differential Equations","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MECE 1101","Intro to Mechanical Engineering","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["MECE 2301","Statics","Valeria Ramirez","OFF","OFF","5:15pm-8:00pm","3:45pm-5:00pm","OFF"],["MECE 2301","Statics","Jacob Villarreal","OFF","10:45am-12:15pm","9:00am-12:30pm","10:45am-12:15pm","9:00am-10:30am"],["MECE 2301","Statics","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MECE 2301","Statics","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MECE 2301","Statics","Ethan De Leon","9:00am-12:15pm","1:15pm-4:00pm","9:00am-12:15pm","1:15pm-4:00pm","9:00am-10:00am"],["MECE 2302","Dynamics","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MECE 2340/2140","Engineering Materials/Lab","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["MECE 2340/2140","Engineering Materials/Lab","Valeria Ramirez","OFF","OFF","5:15pm-8:00pm","3:45pm-5:00pm","OFF"],["MECE 2340/2140","Engineering Materials/Lab","Jacob Villarreal","OFF","10:45am-12:15pm","9:00am-12:30pm","10:45am-12:15pm","9:00am-10:30am"],["MECE 3304","System Dynamics","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MECE 3335","Thermodynamics I","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MECE 3440","Mechanical Engineering Analysis","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MUSI 1116","ET & SS I","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 1117","ET & SS II","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 1211","Music Theory I","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 1212","Music Theory II","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 1301","Fundamentals of Music","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 2116","ET & SS III","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 2117","ET & SS IV","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 2211","Music Theory III","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 2212","Music Theory IV","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 3211","Musical Form & Analysis","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["Nursing","1st Semester","Francisco Nunez","OFF","OFF","OFF","12:00pm-5:00pm","OFF"],["Nursing","1st Semester","Linda Ceaser","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","1st Semester","Johnmarc Candelaria","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","2nd Semester","Francisco Nunez","OFF","OFF","OFF","12:00pm-5:00pm","OFF"],["Nursing","2nd Semester","Linda Ceaser","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","2nd Semester","Johnmarc Candelaria","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","3rd Semester","Linda Ceaser","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","3rd Semester","Johnmarc Candelaria","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","4th Semester","Linda Ceaser","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","4th Semester","Johnmarc Candelaria","Calendar","Calendar","Calendar","Calendar","Calendar"],["PHYS 1401","General Physics I","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["PHYS 1401","General Physics I","Paul Diaz (SI Mentor)","9:00am-10:45am & 3:30pm-5:00pm","11:00am-1:45pm & 3:30pm-4:30pm","Mentor Duties","Mentor Duties","OFF"],["PHYS 1401","General Physics I","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["PHYS 1402","General Physics II","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["PHYS 2425","Physics for Sci & Engr I","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["PHYS 2425","Physics for Sci & Engr I","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["PHYS 2425","Physics for Sci & Engr I","Ethan De Leon","9:00am-12:15pm","1:15pm-4:00pm","9:00am-12:15pm","1:15pm-4:00pm","9:00am-10:00am"],["PHYS 2425","Physics for Sci & Engr I","Paul Diaz (SI Mentor)","9:00am-10:45am & 3:30pm-5:00pm","11:00am-1:45pm & 3:30pm-4:30pm","Mentor Duties","Mentor Duties","OFF"],["PHYS 2425","Physics for Sci & Engr I","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["PHYS 2426","Physics for Sci & Engr II","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["PHYS 2426","Physics for Sci & Engr II","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["PHYS 2426","Physics for Sci & Engr II","Ethan De Leon","9:00am-12:15pm","1:15pm-4:00pm","9:00am-12:15pm","1:15pm-4:00pm","9:00am-10:00am"],["PHYS 2426","Physics for Sci & Engr II","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["PHYS 2327","Physics for Sci & Engr III","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["QUMT 2341","Business Statistics I","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["QUMT 2341","Business Statistics I","Fernando Casanova","12:00pm-3:45pm","1:00pm-3:15pm","12:00pm-3:45pm","1:00pm-3:15pm","9:00am-12:00pm"],["QUMT 2341","Business Statistics I","Daniela Celaya (Lead Tutor)","11:00am-12:00pm","OFF","10:15am-1:15pm","10:15am-1:15pm","OFF"],["QUMT 2398","Decision Analytics","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["QUMT 2398","Decision Analytics","Daniela Celaya (Lead Tutor)","11:00am-12:00pm","OFF","10:15am-1:15pm","10:15am-1:15pm","OFF"],["QUMT 3341","Business Statistics II","Daniela Celaya (Lead Tutor)","11:00am-12:00pm","OFF","10:15am-1:15pm","10:15am-1:15pm","OFF"],["SPAN 3313","Adv Grammar & Comp Heritage I","Paulina Olvera Leal","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE"],["SPAN 3315","Adv Grammar & Comp Heritage II","Paulina Olvera Leal","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE"]];
+
+const DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday"];
+const cMap={},tMap={},uC=[],uT=[];
+D.forEach(r=>{const[code,name,tutor]=r,ck=code+"||"+name;
+  if(!cMap[ck]){cMap[ck]=[];uC.push({code,name,ck});}cMap[ck].push(r);
+  if(!tMap[tutor]){tMap[tutor]=[];uT.push(tutor);}tMap[tutor].push(r);});
+uC.sort((a,b)=>a.code.localeCompare(b.code));uT.sort();
+
+const ini=n=>n.replace(/\s*\(.*?\)/,"").trim().split(" ").filter(w=>/^[A-Z]/i.test(w)).slice(0,2).map(w=>w[0].toUpperCase()).join("");
+const cln=n=>n.replace(/\s*\(.*?\)/,"").trim();
+const isOff=t=>!t||/^off$/i.test(t.trim());
+const isSp=t=>/brownsville|calendar|mentor duties|lead tutor duties/i.test(t);
+
+function rTime(t,d){
+  if(isOff(t))return`<span class="tv off"><span class="op" aria-label="${d}: not available">OFF</span></span>`;
+  if(isSp(t))return`<span class="tv sp" aria-label="${d}: ${t}">${t}</span>`;
+  return`<span class="tv" aria-label="${d}: ${t}">${t}</span>`;
+}
+function grid(times,lbl){
+  return`<div class="sgg" role="table" aria-label="Schedule for ${lbl}">${DAYS.map((d,i)=>`<div class="dc" role="cell"><div class="dl" aria-hidden="true">${d.slice(0,3)}</div>${rTime(times[i]||"",d)}</div>`).join("")}</div>`;
+}
+function rBadge(n){
+  if(/lead tutor/i.test(n))return`<span class="rb lead">Lead Tutor</span>`;
+  if(/si mentor/i.test(n))return`<span class="rb mentor">SI Mentor</span>`;
+  return"";
+}
+function merge(rows){
+  const m={};rows.forEach(r=>{const k=r[2];if(!m[k]){m[k]=[...r];return;}
+    for(let i=3;i<=7;i++){const e=m[k][i],v=r[i];if(!v||isOff(v))return;if(isOff(e)||!e){m[k][i]=v;return;}if(e!==v)m[k][i]=e+" & "+v;}});
+  return Object.values(m);
+}
+function renderCourse(matched,q){
+  if(!matched.length)return`<div class="nr" role="alert">No courses found for "<strong>${q}</strong>".</div>`;
+  return matched.map(({code,name,ck})=>{
+    const rows=merge(cMap[ck]),sid="s"+code.replace(/\W/g,"_");
+    return`<section class="cs" aria-labelledby="${sid}"><div class="csh"><span class="ccb" id="${sid}">${code}</span><span class="csn">${name}</span><span class="csc">${rows.length} Tutor${rows.length!==1?"s":""}</span></div>${rows.map(r=>`<article class="tc" aria-label="Schedule: ${cln(r[2])}"><div class="tch"><div class="av" aria-hidden="true">${ini(r[2])}</div><span class="tcn">${cln(r[2])}</span>${rBadge(r[2])}</div>${grid(r.slice(3),cln(r[2]))}</article>`).join("")}</section>`;
+  }).join("");
+}
+function renderTutor(tName){
+  const rows=tMap[tName],cn=cln(tName),cg={};
+  rows.forEach(r=>{const k=r[0]+"||"+r[1];if(!cg[k])cg[k]=[];cg[k].push(r);});
+  const mg=Object.entries(cg).map(([k,r])=>{const m=merge(r)[0],[code,name]=k.split("||");return{code,name,times:m.slice(3)};});
+  const tid="t"+cn.replace(/\W/g,"_");
+  return`<section aria-labelledby="${tid}"><div class="tpc"><div class="tpa" aria-hidden="true">${ini(tName)}</div><div><div class="tpn" id="${tid}">${cn}</div><div class="tpm">${mg.length} course${mg.length!==1?"s":""} covered</div></div>${/lead|mentor/i.test(tName)?`<span class="tprb">${/lead/i.test(tName)?"Lead Tutor":"SI Mentor"}</span>`:""}</div>${mg.map(({code,name,times})=>`<article class="crc" aria-label="${code}: ${name}"><div class="crch"><span class="ccb">${code}</span><span class="crcn">${name}</span></div>${grid(times,cn+" - "+code)}</article>`).join("")}</section>`;
+}
+function show(html,title,count){
+  document.getElementById("ph").style.display="none";
+  const r=document.getElementById("res");r.style.display="block";
+  r.innerHTML=`<div class="rh"><span class="rht">${title}</span><span class="rhc">${count}</span></div>${html}`;
+}
+function clr(){document.getElementById("ph").style.display="";const r=document.getElementById("res");r.style.display="none";r.innerHTML="";}
+function doC(q){if(!q.trim()){clr();return;}const ql=q.toLowerCase(),m=uC.filter(c=>c.code.toLowerCase().includes(ql)||c.name.toLowerCase().includes(ql));const tot=m.reduce((s,c)=>s+merge(cMap[c.ck]).length,0);show(renderCourse(m,q),`Results for <span class="q">\u201C${q}\u201D</span>`,`${m.length} course${m.length!==1?"s":""} \u00B7 ${tot} tutor${tot!==1?"s":""}`);}
+function doT(q){if(!q.trim()){clr();return;}const ql=q.toLowerCase(),m=uT.filter(t=>cln(t).toLowerCase().includes(ql));if(!m.length){show(`<div class="nr" role="alert">No tutors found for "<strong>${q}</strong>".</div>`,`Results for <span class="q">\u201C${q}\u201D</span>`,"0 tutors");return;}const html=m.map((t,i)=>(i>0?`<hr class="tdiv" aria-hidden="true">`:"")+ renderTutor(t)).join("");show(html,m.length===1?`Schedule for <span class="q">${cln(m[0])}</span>`:`Results for <span class="q">\u201C${q}\u201D</span>`,`${m.length} tutor${m.length!==1?"s":""}`);}
+function buildDD(val,isC){
+  const ddId=isC?"dd1":"dd2",inpId=isC?"i1":"i2";
+  const dd=document.getElementById(ddId),inp=document.getElementById(inpId);
+  if(!val.trim()){dd.classList.remove("open");inp.setAttribute("aria-expanded","false");return;}
+  const ql=val.toLowerCase();
+  const hits=isC?uC.filter(c=>c.code.toLowerCase().includes(ql)||c.name.toLowerCase().includes(ql)).slice(0,8):uT.filter(t=>cln(t).toLowerCase().includes(ql)).slice(0,8);
+  if(!hits.length){dd.classList.remove("open");inp.setAttribute("aria-expanded","false");return;}
+  dd.innerHTML=isC?hits.map(c=>`<div class="ddi" role="option" tabindex="0" data-code="${c.code}"><span class="ddn">${c.name}</span><span class="ddc">${c.code}</span></div>`).join(""):hits.map(t=>{const role=/lead tutor/i.test(t)?"Lead Tutor":/si mentor/i.test(t)?"SI Mentor":"";return`<div class="ddi" role="option" tabindex="0" data-tutor="${t}"><span class="ddn">${cln(t)}</span>${role?`<span class="ddc">${role}</span>`:""}</div>`;}).join("");
+  dd.classList.add("open");inp.setAttribute("aria-expanded","true");
+  dd.querySelectorAll(".ddi").forEach(item=>{
+    const pick=()=>{if(isC){document.getElementById("i1").value=item.dataset.code;doC(item.dataset.code);}else{document.getElementById("i2").value=cln(item.dataset.tutor);doT(cln(item.dataset.tutor));}dd.classList.remove("open");inp.setAttribute("aria-expanded","false");};
+    item.addEventListener("mousedown",e=>{e.preventDefault();pick();});
+    item.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pick();}});
+  });
+}
+const i1=document.getElementById("i1"),i2=document.getElementById("i2");
+let t1,t2;
+i1.addEventListener("input",()=>{i2.value="";document.getElementById("dd2").classList.remove("open");buildDD(i1.value,true);clearTimeout(t1);t1=setTimeout(()=>doC(i1.value),220);});
+i2.addEventListener("input",()=>{i1.value="";document.getElementById("dd1").classList.remove("open");buildDD(i2.value,false);clearTimeout(t2);t2=setTimeout(()=>doT(i2.value),220);});
+i1.addEventListener("blur",()=>setTimeout(()=>{document.getElementById("dd1").classList.remove("open");i1.setAttribute("aria-expanded","false");},180));
+i2.addEventListener("blur",()=>setTimeout(()=>{document.getElementById("dd2").classList.remove("open");i2.setAttribute("aria-expanded","false");},180));
+document.addEventListener("click",e=>{
+  if(!e.target.closest("#sg1")){document.getElementById("dd1").classList.remove("open");i1.setAttribute("aria-expanded","false");}
+  if(!e.target.closest("#sg2")){document.getElementById("dd2").classList.remove("open");i2.setAttribute("aria-expanded","false");}
+});
+</script>
+</body>
+</html>
