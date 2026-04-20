@@ -3,9 +3,10 @@
   MAIN PAGE LOGIC
   ============================================
   This file controls:
-  - search behavior
+  - course search
+  - day search
   - dropdown suggestions
-  - results shown on the page
+  - combined filtering results
 
   GOOD TO KNOW:
   - If you want to edit schedule information, go to data.js
@@ -31,16 +32,22 @@ const resultsArea = document.getElementById("results-area");
 const uniqueCourses = getUniqueCourses(TUTOR_SCHEDULE_DATA);
 const availableDays = AVAILABLE_DAYS.slice();
 
+/*
+  These two variables store the current chosen filters.
+  They update when the user clicks a suggestion,
+  presses Enter on a suggestion, or types an exact match.
+*/
+let selectedCourseFilter = null;
+let selectedDayFilter = null;
+
 /* =========================
    HELPER FUNCTIONS
    ========================= */
 
-/* Remove extra spaces and convert to lowercase for easier matching */
 function normalizeText(text) {
   return String(text || "").trim().toLowerCase();
 }
 
-/* Create a list of unique courses based on course code + course name */
 function getUniqueCourses(scheduleData) {
   const uniqueMap = new Map();
 
@@ -60,7 +67,6 @@ function getUniqueCourses(scheduleData) {
   });
 }
 
-/* Close both dropdown menus */
 function closeAllSuggestionBoxes() {
   courseSuggestionsBox.classList.remove("open");
   daySuggestionsBox.classList.remove("open");
@@ -69,18 +75,15 @@ function closeAllSuggestionBoxes() {
   daySearchInput.setAttribute("aria-expanded", "false");
 }
 
-/* Show the empty state and remove old results */
 function showEmptyState() {
   emptyStateSection.style.display = "block";
   resultsArea.innerHTML = "";
 }
 
-/* Hide the empty state when results are shown */
 function hideEmptyState() {
   emptyStateSection.style.display = "none";
 }
 
-/* Check whether a schedule value is special information instead of normal time */
 function getSpecialNote(scheduleValue) {
   const cleanedValue = String(scheduleValue || "").trim();
 
@@ -97,154 +100,226 @@ function getSpecialNote(scheduleValue) {
   return "";
 }
 
-/* Check if a tutor is actually available that day */
 function isAvailable(scheduleValue) {
   return normalizeText(scheduleValue) !== "off" && normalizeText(scheduleValue) !== "";
+}
+
+function findExactCourseMatch(searchText) {
+  const normalizedSearch = normalizeText(searchText);
+
+  if (!normalizedSearch) {
+    return null;
+  }
+
+  return uniqueCourses.find(function (course) {
+    const fullCourseLabel = `${course.courseCode} - ${course.courseName}`;
+
+    return (
+      normalizeText(course.courseCode) === normalizedSearch ||
+      normalizeText(course.courseName) === normalizedSearch ||
+      normalizeText(fullCourseLabel) === normalizedSearch
+    );
+  }) || null;
+}
+
+function findExactDayMatch(searchText) {
+  const normalizedSearch = normalizeText(searchText);
+
+  if (!normalizedSearch) {
+    return null;
+  }
+
+  return availableDays.find(function (dayName) {
+    return normalizeText(dayName) === normalizedSearch;
+  }) || null;
+}
+
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 /* =========================
    RENDERING FUNCTIONS
    ========================= */
 
-/* Build a small HTML card for one tutor result */
-function createTutorCard(entry, selectedDay) {
-  const scheduleForThatDay = entry.days[selectedDay];
-  const specialNote = getSpecialNote(scheduleForThatDay);
+function createScheduleBoxesForAllDays(entry) {
+  return AVAILABLE_DAYS.map(function (dayName) {
+    const dayValue = entry.days[dayName];
+    const specialNote = getSpecialNote(dayValue);
+    const badgeHtml = specialNote
+      ? `<div class="status-badge">${escapeHtml(specialNote)}</div>`
+      : "";
 
-  const availabilityText = isAvailable(scheduleForThatDay)
-    ? scheduleForThatDay
-    : "OFF";
+    return `
+      <div class="info-box">
+        <span class="info-label">${escapeHtml(dayName)}</span>
+        <div class="info-value">${escapeHtml(dayValue)}</div>
+        ${badgeHtml}
+      </div>
+    `;
+  }).join("");
+}
 
-  const badgeHtml = specialNote
-    ? `<div class="status-badge">${specialNote}</div>`
-    : "";
+function createTutorCard(entry, options) {
+  const showSingleDay = Boolean(options && options.selectedDay);
+  const selectedDay = showSingleDay ? options.selectedDay : null;
+
+  let detailsHtml = "";
+
+  if (showSingleDay) {
+    const scheduleForThatDay = entry.days[selectedDay];
+    const specialNote = getSpecialNote(scheduleForThatDay);
+    const availabilityText = isAvailable(scheduleForThatDay) ? scheduleForThatDay : "OFF";
+    const badgeHtml = specialNote
+      ? `<div class="status-badge">${escapeHtml(specialNote)}</div>`
+      : "";
+
+    detailsHtml = `
+      <div class="info-grid">
+        <div class="info-box">
+          <span class="info-label">Day</span>
+          <div class="info-value">${escapeHtml(selectedDay)}</div>
+        </div>
+        <div class="info-box">
+          <span class="info-label">Availability</span>
+          <div class="info-value">${escapeHtml(availabilityText)}</div>
+          ${badgeHtml}
+        </div>
+        <div class="info-box">
+          <span class="info-label">Tutor</span>
+          <div class="info-value">${escapeHtml(entry.tutorName)}</div>
+        </div>
+        <div class="info-box">
+          <span class="info-label">Course</span>
+          <div class="info-value">${escapeHtml(entry.courseCode)} - ${escapeHtml(entry.courseName)}</div>
+        </div>
+      </div>
+    `;
+  } else {
+    detailsHtml = `
+      <div class="info-grid">
+        ${createScheduleBoxesForAllDays(entry)}
+      </div>
+    `;
+  }
 
   return `
     <article class="card">
       <div class="card-header">
-        <h3>${entry.tutorName}</h3>
-        <p class="card-subtitle">${entry.courseCode} · ${entry.courseName}</p>
+        <h3>${escapeHtml(entry.tutorName)}</h3>
+        <p class="card-subtitle">${escapeHtml(entry.courseCode)} · ${escapeHtml(entry.courseName)}</p>
       </div>
       <div class="card-body">
-        <div class="info-grid">
-          <div class="info-box">
-            <span class="info-label">Day</span>
-            <div class="info-value">${selectedDay}</div>
-          </div>
-          <div class="info-box">
-            <span class="info-label">Availability</span>
-            <div class="info-value">${availabilityText}</div>
-            ${badgeHtml}
-          </div>
-          <div class="info-box">
-            <span class="info-label">Tutor</span>
-            <div class="info-value">${entry.tutorName}</div>
-          </div>
-          <div class="info-box">
-            <span class="info-label">Course</span>
-            <div class="info-value">${entry.courseCode} - ${entry.courseName}</div>
-          </div>
-        </div>
+        ${detailsHtml}
       </div>
     </article>
   `;
 }
 
-/* Show a list of tutor results for one day */
-function renderDayResults(selectedDay) {
-  closeAllSuggestionBoxes();
+function renderNoResults(messageTitle, messageText) {
   hideEmptyState();
-
-  const matchingEntries = TUTOR_SCHEDULE_DATA
-    .filter(function (entry) {
-      return isAvailable(entry.days[selectedDay]);
-    })
-    .sort(function (a, b) {
-      return a.tutorName.localeCompare(b.tutorName);
-    });
-
-  if (matchingEntries.length === 0) {
-    resultsArea.innerHTML = `
-      <section class="no-results">
-        <h2>No results for ${selectedDay}</h2>
-        <p>No tutors were listed as available for that day.</p>
-      </section>
-    `;
-    return;
-  }
-
-  const cardsHtml = matchingEntries
-    .map(function (entry) {
-      return createTutorCard(entry, selectedDay);
-    })
-    .join("");
-
   resultsArea.innerHTML = `
-    <section>
-      <div class="results-header">
-        <h2>Tutors Available on ${selectedDay}</h2>
-        <div class="results-count">${matchingEntries.length} result(s)</div>
-      </div>
-      ${cardsHtml}
+    <section class="no-results">
+      <h2>${escapeHtml(messageTitle)}</h2>
+      <p>${escapeHtml(messageText)}</p>
     </section>
   `;
 }
 
-/* Show all tutors attached to one course across the week */
-function renderCourseResults(selectedCourse) {
+function renderResultsFromCurrentFilters() {
   closeAllSuggestionBoxes();
-  hideEmptyState();
 
-  const matchingEntries = TUTOR_SCHEDULE_DATA.filter(function (entry) {
-    return (
-      entry.courseCode === selectedCourse.courseCode &&
-      entry.courseName === selectedCourse.courseName
-    );
-  });
+  const hasCourseFilter = Boolean(selectedCourseFilter);
+  const hasDayFilter = Boolean(selectedDayFilter);
 
-  if (matchingEntries.length === 0) {
-    resultsArea.innerHTML = `
-      <section class="no-results">
-        <h2>No results found</h2>
-        <p>That course is not currently listed.</p>
-      </section>
-    `;
+  if (!hasCourseFilter && !hasDayFilter) {
+    showEmptyState();
     return;
   }
 
-  const courseCardsHtml = matchingEntries
-    .map(function (entry) {
-      return `
-        <article class="card">
-          <div class="card-header">
-            <h3>${entry.tutorName}</h3>
-            <p class="card-subtitle">${entry.courseCode} · ${entry.courseName}</p>
-          </div>
-          <div class="card-body">
-            <div class="info-grid">
-              ${AVAILABLE_DAYS.map(function (dayName) {
-                const dayValue = entry.days[dayName];
-                return `
-                  <div class="info-box">
-                    <span class="info-label">${dayName}</span>
-                    <div class="info-value">${dayValue}</div>
-                  </div>
-                `;
-              }).join("")}
-            </div>
-          </div>
-        </article>
-      `;
-    })
-    .join("");
+  hideEmptyState();
+
+  let matchingEntries = TUTOR_SCHEDULE_DATA.slice();
+
+  if (hasCourseFilter) {
+    matchingEntries = matchingEntries.filter(function (entry) {
+      return (
+        entry.courseCode === selectedCourseFilter.courseCode &&
+        entry.courseName === selectedCourseFilter.courseName
+      );
+    });
+  }
+
+  if (hasDayFilter) {
+    matchingEntries = matchingEntries.filter(function (entry) {
+      return isAvailable(entry.days[selectedDayFilter]);
+    });
+  }
+
+  matchingEntries.sort(function (a, b) {
+    const courseCompare = a.courseCode.localeCompare(b.courseCode);
+    if (courseCompare !== 0) {
+      return courseCompare;
+    }
+    return a.tutorName.localeCompare(b.tutorName);
+  });
+
+  if (matchingEntries.length === 0) {
+    const titleParts = [];
+
+    if (hasCourseFilter) {
+      titleParts.push(`${selectedCourseFilter.courseCode}`);
+    }
+
+    if (hasDayFilter) {
+      titleParts.push(`${selectedDayFilter}`);
+    }
+
+    const titleText = titleParts.length > 0
+      ? `No results for ${titleParts.join(" + ")}`
+      : "No results found";
+
+    renderNoResults(titleText, "No tutors matched the current search filters.");
+    return;
+  }
+
+  let headerTitle = "Filtered Schedule Results";
+  let helperText = "Showing tutors that match the current search filters.";
+
+  if (hasCourseFilter && hasDayFilter) {
+    headerTitle = `${selectedCourseFilter.courseCode} - ${selectedCourseFilter.courseName} on ${selectedDayFilter}`;
+    helperText = "Showing tutors for the selected course on the selected day.";
+  } else if (hasCourseFilter) {
+    headerTitle = `${selectedCourseFilter.courseCode} - ${selectedCourseFilter.courseName}`;
+    helperText = "Showing all tutors and weekly times for the selected course.";
+  } else if (hasDayFilter) {
+    headerTitle = `Tutors Available on ${selectedDayFilter}`;
+    helperText = "Showing tutors available on the selected day.";
+  }
+
+  const cardsHtml = matchingEntries.map(function (entry) {
+    if (hasDayFilter) {
+      return createTutorCard(entry, { selectedDay: selectedDayFilter });
+    }
+
+    return createTutorCard(entry, {});
+  }).join("");
 
   resultsArea.innerHTML = `
     <section>
       <div class="results-header">
-        <h2>${selectedCourse.courseCode} - ${selectedCourse.courseName}</h2>
-        <div class="results-count">${matchingEntries.length} tutor(s)</div>
+        <div>
+          <h2>${escapeHtml(headerTitle)}</h2>
+          <p class="card-subtitle">${escapeHtml(helperText)}</p>
+        </div>
+        <div class="results-count">${matchingEntries.length} result(s)</div>
       </div>
-      ${courseCardsHtml}
+      ${cardsHtml}
     </section>
   `;
 }
@@ -276,11 +351,11 @@ function renderCourseSuggestions(searchText) {
         class="suggestion-item"
         role="option"
         aria-selected="${index === 0 ? "true" : "false"}"
-        data-course-code="${course.courseCode}"
-        data-course-name="${course.courseName}"
+        data-course-code="${escapeHtml(course.courseCode)}"
+        data-course-name="${escapeHtml(course.courseName)}"
         tabindex="0"
       >
-        <span class="suggestion-main">${course.courseCode} - ${course.courseName}</span>
+        <span class="suggestion-main">${escapeHtml(course.courseCode)} - ${escapeHtml(course.courseName)}</span>
         <span class="suggestion-tag">Course</span>
       </div>
     `;
@@ -290,14 +365,12 @@ function renderCourseSuggestions(searchText) {
   courseSearchInput.setAttribute("aria-expanded", "true");
 
   Array.from(courseSuggestionsBox.querySelectorAll(".suggestion-item")).forEach(function (item) {
-    item.addEventListener("click", function () {
-      const selectedCourse = {
+    item.addEventListener("mousedown", function (event) {
+      event.preventDefault();
+      chooseCourseFilter({
         courseCode: item.dataset.courseCode,
         courseName: item.dataset.courseName
-      };
-
-      courseSearchInput.value = `${selectedCourse.courseCode} - ${selectedCourse.courseName}`;
-      renderCourseResults(selectedCourse);
+      });
     });
   });
 }
@@ -322,10 +395,10 @@ function renderDaySuggestions(searchText) {
         class="suggestion-item"
         role="option"
         aria-selected="${index === 0 ? "true" : "false"}"
-        data-day-name="${dayName}"
+        data-day-name="${escapeHtml(dayName)}"
         tabindex="0"
       >
-        <span class="suggestion-main">${dayName}</span>
+        <span class="suggestion-main">${escapeHtml(dayName)}</span>
         <span class="suggestion-tag">Day</span>
       </div>
     `;
@@ -335,12 +408,55 @@ function renderDaySuggestions(searchText) {
   daySearchInput.setAttribute("aria-expanded", "true");
 
   Array.from(daySuggestionsBox.querySelectorAll(".suggestion-item")).forEach(function (item) {
-    item.addEventListener("click", function () {
-      const selectedDay = item.dataset.dayName;
-      daySearchInput.value = selectedDay;
-      renderDayResults(selectedDay);
+    item.addEventListener("mousedown", function (event) {
+      event.preventDefault();
+      chooseDayFilter(item.dataset.dayName);
     });
   });
+}
+
+/* =========================
+   FILTER SELECTION HELPERS
+   ========================= */
+
+function chooseCourseFilter(course) {
+  selectedCourseFilter = course;
+  courseSearchInput.value = `${course.courseCode} - ${course.courseName}`;
+  renderResultsFromCurrentFilters();
+}
+
+function chooseDayFilter(dayName) {
+  selectedDayFilter = dayName;
+  daySearchInput.value = dayName;
+  renderResultsFromCurrentFilters();
+}
+
+function syncCourseFilterFromTypedText() {
+  const exactCourseMatch = findExactCourseMatch(courseSearchInput.value);
+
+  if (exactCourseMatch) {
+    selectedCourseFilter = exactCourseMatch;
+    courseSearchInput.value = `${exactCourseMatch.courseCode} - ${exactCourseMatch.courseName}`;
+    return;
+  }
+
+  if (normalizeText(courseSearchInput.value) === "") {
+    selectedCourseFilter = null;
+  }
+}
+
+function syncDayFilterFromTypedText() {
+  const exactDayMatch = findExactDayMatch(daySearchInput.value);
+
+  if (exactDayMatch) {
+    selectedDayFilter = exactDayMatch;
+    daySearchInput.value = exactDayMatch;
+    return;
+  }
+
+  if (normalizeText(daySearchInput.value) === "") {
+    selectedDayFilter = null;
+  }
 }
 
 /* =========================
@@ -350,6 +466,19 @@ function renderDaySuggestions(searchText) {
 function attachKeyboardSupport(inputElement, suggestionBox, onChooseSuggestion) {
   inputElement.addEventListener("keydown", function (event) {
     const suggestionItems = Array.from(suggestionBox.querySelectorAll(".suggestion-item"));
+
+    if (event.key === "Enter" && suggestionItems.length === 0) {
+      if (inputElement === courseSearchInput) {
+        syncCourseFilterFromTypedText();
+      }
+
+      if (inputElement === daySearchInput) {
+        syncDayFilterFromTypedText();
+      }
+
+      renderResultsFromCurrentFilters();
+      return;
+    }
 
     if (suggestionItems.length === 0) {
       return;
@@ -400,30 +529,48 @@ function updateSelectedSuggestion(suggestionItems, activeIndex) {
    ========================= */
 
 courseSearchInput.addEventListener("input", function () {
+  if (normalizeText(courseSearchInput.value) === "") {
+    selectedCourseFilter = null;
+    renderResultsFromCurrentFilters();
+  }
+
   renderCourseSuggestions(courseSearchInput.value);
 });
 
+courseSearchInput.addEventListener("blur", function () {
+  setTimeout(function () {
+    syncCourseFilterFromTypedText();
+    renderResultsFromCurrentFilters();
+  }, 150);
+});
+
 daySearchInput.addEventListener("input", function () {
+  if (normalizeText(daySearchInput.value) === "") {
+    selectedDayFilter = null;
+    renderResultsFromCurrentFilters();
+  }
+
   renderDaySuggestions(daySearchInput.value);
 });
 
+daySearchInput.addEventListener("blur", function () {
+  setTimeout(function () {
+    syncDayFilterFromTypedText();
+    renderResultsFromCurrentFilters();
+  }, 150);
+});
+
 attachKeyboardSupport(courseSearchInput, courseSuggestionsBox, function (chosenItem) {
-  const selectedCourse = {
+  chooseCourseFilter({
     courseCode: chosenItem.dataset.courseCode,
     courseName: chosenItem.dataset.courseName
-  };
-
-  courseSearchInput.value = `${selectedCourse.courseCode} - ${selectedCourse.courseName}`;
-  renderCourseResults(selectedCourse);
+  });
 });
 
 attachKeyboardSupport(daySearchInput, daySuggestionsBox, function (chosenItem) {
-  const selectedDay = chosenItem.dataset.dayName;
-  daySearchInput.value = selectedDay;
-  renderDayResults(selectedDay);
+  chooseDayFilter(chosenItem.dataset.dayName);
 });
 
-/* Close dropdowns if the user clicks somewhere else */
 document.addEventListener("click", function (event) {
   const clickedInsideCourseArea = event.target.closest(".search-group") === courseSearchInput.closest(".search-group");
   const clickedInsideDayArea = event.target.closest(".search-group") === daySearchInput.closest(".search-group");
@@ -433,5 +580,4 @@ document.addEventListener("click", function (event) {
   }
 });
 
-/* Start with the empty state visible */
 showEmptyState();
