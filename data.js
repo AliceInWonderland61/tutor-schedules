@@ -2,45 +2,34 @@
   ============================================
   TUTOR SCHEDULE DATA
   ============================================
-  This is the main data file.
+  This file was rebuilt directly from the Excel file:
+  Tutor_Schedules_ADA.xlsm
 
   HOW TO EDIT THIS FILE:
-  - Each item below represents one tutor entry.
-  - You can change course names, tutor names, or day schedules.
-  - Keep the same structure:
-      courseCode
-      courseName
-      tutorName
-      days: { Monday, Tuesday, Wednesday, Thursday, Friday }
+  - Each item below represents one row from the Excel sheet.
+  - If the Excel sheet has two separate rows for the same tutor/course,
+    keep them as two separate entries here too.
+  - Days must stay exactly like this:
+      Monday, Tuesday, Wednesday, Thursday, Friday
 
-  EXAMPLE:
-  {
-    courseCode: "CSCI 1101",
-    courseName: "Intro to Computer Science",
-    tutorName: "Jane Doe",
-    days: {
-      Monday: "1:00pm-3:00pm",
-      Tuesday: "OFF",
-      Wednesday: "1:00pm-3:00pm",
-      Thursday: "OFF",
-      Friday: "OFF"
-    }
-  }
+  TIP:
+  - If you want the website to match the spreadsheet exactly,
+    update the Excel sheet first, then update this file from it.
 */
 
 const AVAILABLE_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-const TUTOR_SCHEDULE_DATA = 
+const TUTOR_SCHEDULE_DATA =
 [
   {
     "courseCode": "ACCT 2301",
     "courseName": "Intro to Financial Acct",
     "tutorName": "Cristian Gonzalez (Lead Tutor)",
     "days": {
-      "Monday": "2:30pm-5:00pm",
-      "Tuesday": "3:30pm-5:00pm",
+      "Monday": "2:30pm - 5:00pm",
+      "Tuesday": "3:30pm - 5:00pm",
       "Wednesday": "Brownsville",
-      "Thursday": "3:30pm-5:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "Lead Tutor Duties"
     }
   },
@@ -49,10 +38,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Financial Acct",
     "tutorName": "Sebastian Sanchez Reyes",
     "days": {
-      "Monday": "11:00am-12:15pm & 2:00pm-3:45pm",
-      "Tuesday": "9:30am-1:00pm & 1:30pm-4:15pm",
-      "Wednesday": "11:00am-12:15pm & 2:00pm-3:30pm",
-      "Thursday": "9:30am-12:45pm",
+      "Monday": "11:00am - 12:15pm & 2:00-3:45pm",
+      "Tuesday": "9:30am - 1:00pm & 1:30pm - 4:15pm",
+      "Wednesday": "11:00am - 12:15pm & 2:00-3:30pm",
+      "Thursday": "9:30am - 12:45pm",
       "Friday": "OFF"
     }
   },
@@ -61,11 +50,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Financial Acct",
     "tutorName": "Fernando Casanova",
     "days": {
-      "Monday": "12:00pm-3:45pm",
-      "Tuesday": "1:00pm-3:15pm",
-      "Wednesday": "12:00pm-3:45pm",
-      "Thursday": "1:00pm-3:15pm",
-      "Friday": "9:00am-12:00pm"
+      "Monday": "12:00pm - 3:45pm",
+      "Tuesday": "1:00pm - 3:15pm",
+      "Wednesday": "12:00pm - 3:45pm",
+      "Thursday": "1:00pm - 3:15pm",
+      "Friday": "9:00am - 12:00pm"
     }
   },
   {
@@ -73,10 +62,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Financial Acct",
     "tutorName": "Alexis Aguilar",
     "days": {
-      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
-      "Tuesday": "11:00am-12:15pm",
-      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
-      "Thursday": "11:00am-12:15pm",
+      "Monday": "11:00am - 2:00pm & 2:30pm - 5:00pm",
+      "Tuesday": "11:00am - 12:15pm",
+      "Wednesday": "11:00am - 1:45pm & 3:45pm - 8:00pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "OFF"
     }
   },
@@ -85,10 +74,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Managerial Acct",
     "tutorName": "Cristian Gonzalez (Lead Tutor)",
     "days": {
-      "Monday": "2:30pm-5:00pm",
-      "Tuesday": "3:30pm-5:00pm",
+      "Monday": "2:30pm - 5:00pm",
+      "Tuesday": "3:30pm - 5:00pm",
       "Wednesday": "Brownsville",
-      "Thursday": "3:30pm-5:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "Lead Tutor Duties"
     }
   },
@@ -97,11 +86,23 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Managerial Acct",
     "tutorName": "Sebastian Sanchez Reyes",
     "days": {
-      "Monday": "11:00am-12:15pm & 2:00pm-3:30pm",
-      "Tuesday": "9:30am-1:00pm & 1:30pm-4:15pm",
-      "Wednesday": "11:00am-12:15pm & 2:00pm-3:30pm",
-      "Thursday": "9:30am-12:45pm",
+      "Monday": "11:00am - 12:15pm",
+      "Tuesday": "9:30am - 1:00pm",
+      "Wednesday": "11:00am - 12:15pm",
+      "Thursday": "9:30am - 12:45pm",
       "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ACCT 2302",
+    "courseName": "Intro to Managerial Acct",
+    "tutorName": "Sebastian Sanchez Reyes",
+    "days": {
+      "Monday": "2:00pm - 3:30pm",
+      "Tuesday": "1:30pm - 4:15pm",
+      "Wednesday": "2:00pm - 3:30pm",
+      "Thursday": "-",
+      "Friday": "-"
     }
   },
   {
@@ -109,34 +110,34 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Managerial Acct",
     "tutorName": "Alexis Aguilar",
     "days": {
-      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
-      "Tuesday": "11:00am-12:15pm",
-      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
-      "Thursday": "11:00am-12:15pm",
+      "Monday": "11:00am - 2:00pm & 2:30pm - 5:00pm",
+      "Tuesday": "11:00am - 12:15pm",
+      "Wednesday": "11:00am - 1:45pm & 3:45pm - 8:00pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "OFF"
     }
   },
   {
     "courseCode": "ACCT 3321",
-    "courseName": "Intermediate Accounting I",
+    "courseName": "Intermediate Accouting",
     "tutorName": "Cristian Gonzalez (Lead Tutor)",
     "days": {
-      "Monday": "2:30pm-5:00pm",
-      "Tuesday": "3:30pm-5:00pm",
+      "Monday": "2:30pm - 5:00pm",
+      "Tuesday": "3:30pm - 5:00pm",
       "Wednesday": "Brownsville",
-      "Thursday": "3:30pm-5:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "Lead Tutor Duties"
     }
   },
   {
     "courseCode": "ACCT 3322",
-    "courseName": "Intermediate Accounting II",
+    "courseName": "Intermediate Accouting II",
     "tutorName": "Cristian Gonzalez (Lead Tutor)",
     "days": {
-      "Monday": "2:30pm-5:00pm",
-      "Tuesday": "3:30pm-5:00pm",
+      "Monday": "2:30pm - 5:00pm",
+      "Tuesday": "3:30pm - 5:00pm",
       "Wednesday": "Brownsville",
-      "Thursday": "3:30pm-5:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "Lead Tutor Duties"
     }
   },
@@ -145,10 +146,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Accounting Info Systems",
     "tutorName": "Cristian Gonzalez (Lead Tutor)",
     "days": {
-      "Monday": "2:30pm-5:00pm",
-      "Tuesday": "3:30pm-5:00pm",
+      "Monday": "2:30pm - 5:00pm",
+      "Tuesday": "3:30pm - 5:00pm",
       "Wednesday": "Brownsville",
-      "Thursday": "3:30pm-5:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "Lead Tutor Duties"
     }
   },
@@ -157,11 +158,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL I",
     "tutorName": "Gabrielle Houston",
     "days": {
-      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Monday": "12:30pm - 3:00pm & 4:00pm - 6:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "4:00pm-6:00pm",
-      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
-      "Friday": "12:30pm-3:00pm"
+      "Wednesday": "4:00pm - 6:00pm",
+      "Thursday": "12:00pm - 3:00pm & 4:00pm - 6:00pm",
+      "Friday": "12:30pm - 3:00pm"
     }
   },
   {
@@ -170,10 +171,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ruby Mendieta",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-3:00pm",
-      "Wednesday": "4:00pm-8:00pm",
-      "Thursday": "9:00am-3:00pm",
-      "Friday": "9:00am-11:00am"
+      "Tuesday": "9:00am - 3:00pm",
+      "Wednesday": "4:00pm - 8:00pm",
+      "Thursday": "9:00am - 3:00pm",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -181,10 +182,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL I",
     "tutorName": "Josue Peralta De Jesus",
     "days": {
-      "Monday": "11:00am-12:30pm & 3:30pm-5:00pm",
-      "Tuesday": "9:00am-12:00pm & 3:00pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm",
-      "Thursday": "9:00am-12:00pm & 3:00pm-5:00pm",
+      "Monday": "11:00am - 12:30pm & 3:30pm - 5:00pm",
+      "Tuesday": "9:00am - 12:00pm & 3:00pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm",
+      "Thursday": "9:00am - 12:00pm & 3:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -193,10 +194,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL I",
     "tutorName": "Mario Salinas",
     "days": {
-      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
-      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Monday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
+      "Wednesday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -205,11 +206,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL II",
     "tutorName": "Gabrielle Houston",
     "days": {
-      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Monday": "12:30pm - 3:00pm & 4:00pm - 6:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "4:00pm-6:00pm",
-      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
-      "Friday": "12:30pm-3:00pm"
+      "Wednesday": "4:00pm - 6:00pm",
+      "Thursday": "12:00pm - 3:00pm & 4:00pm - 6:00pm",
+      "Friday": "12:30pm - 3:00pm"
     }
   },
   {
@@ -218,10 +219,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ruby Mendieta",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-3:00pm",
-      "Wednesday": "4:00pm-8:00pm",
-      "Thursday": "9:00am-3:00pm",
-      "Friday": "9:00am-11:00am"
+      "Tuesday": "9:00am - 3:00pm",
+      "Wednesday": "4:00pm - 8:00pm",
+      "Thursday": "9:00am - 3:00pm",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -229,10 +230,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL II",
     "tutorName": "Josue Peralta De Jesus",
     "days": {
-      "Monday": "11:00am-12:30pm & 3:30pm-5:00pm",
-      "Tuesday": "9:00am-12:00pm & 3:00pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm",
-      "Thursday": "9:00am-12:00pm & 3:00pm-5:00pm",
+      "Monday": "11:00am - 12:30pm & 3:30pm - 5:00pm",
+      "Tuesday": "9:00am - 12:00pm & 3:00pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm",
+      "Thursday": "9:00am - 12:00pm & 3:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -241,10 +242,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL II",
     "tutorName": "Mario Salinas",
     "days": {
-      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
-      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Monday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
+      "Wednesday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -253,11 +254,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL III",
     "tutorName": "Gabrielle Houston",
     "days": {
-      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Monday": "12:30pm - 3:00pm & 4:00pm - 6:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "4:00pm-6:00pm",
-      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
-      "Friday": "12:30pm-3:00pm"
+      "Wednesday": "4:00pm - 6:00pm",
+      "Thursday": "12:00pm - 3:00pm & 4:00pm - 6:00pm",
+      "Friday": "12:30pm - 3:00pm"
     }
   },
   {
@@ -266,10 +267,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ruby Mendieta",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-3:00pm",
-      "Wednesday": "4:00pm-8:00pm",
-      "Thursday": "9:00am-3:00pm",
-      "Friday": "9:00am-11:00am"
+      "Tuesday": "9:00am - 3:00pm",
+      "Wednesday": "4:00pm - 8:00pm",
+      "Thursday": "9:00am - 3:00pm",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -277,10 +278,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL III",
     "tutorName": "Josue Peralta De Jesus",
     "days": {
-      "Monday": "11:00am-12:30pm & 3:30pm-5:00pm",
-      "Tuesday": "9:00am-12:00pm & 3:00pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm",
-      "Thursday": "9:00am-12:00pm & 3:00pm-5:00pm",
+      "Monday": "11:00am - 12:30pm & 3:30pm - 5:00pm",
+      "Tuesday": "9:00am - 12:00pm & 3:00pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm",
+      "Thursday": "9:00am - 12:00pm & 3:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -289,10 +290,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL III",
     "tutorName": "Mario Salinas",
     "days": {
-      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
-      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Monday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
+      "Wednesday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -301,11 +302,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL IV",
     "tutorName": "Gabrielle Houston",
     "days": {
-      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Monday": "12:30pm - 3:00pm & 4:00pm - 6:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "4:00pm-6:00pm",
-      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
-      "Friday": "12:30pm-3:00pm"
+      "Wednesday": "4:00pm - 6:00pm",
+      "Thursday": "12:00pm - 3:00pm & 4:00pm - 6:00pm",
+      "Friday": "12:30pm - 3:00pm"
     }
   },
   {
@@ -314,10 +315,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ruby Mendieta",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-3:00pm",
-      "Wednesday": "4:00pm-8:00pm",
-      "Thursday": "9:00am-3:00pm",
-      "Friday": "9:00am-11:00am"
+      "Tuesday": "9:00am - 3:00pm",
+      "Wednesday": "4:00pm - 8:00pm",
+      "Thursday": "9:00am - 3:00pm",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -325,10 +326,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL IV",
     "tutorName": "Mario Salinas",
     "days": {
-      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
-      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Monday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
+      "Wednesday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -337,11 +338,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL V",
     "tutorName": "Gabrielle Houston",
     "days": {
-      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Monday": "12:30pm - 3:00pm & 4:00pm - 6:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "4:00pm-6:00pm",
-      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
-      "Friday": "12:30pm-3:00pm"
+      "Wednesday": "4:00pm - 6:00pm",
+      "Thursday": "12:00pm - 3:00pm & 4:00pm - 6:00pm",
+      "Friday": "12:30pm - 3:00pm"
     }
   },
   {
@@ -350,10 +351,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ruby Mendieta",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-3:00pm",
-      "Wednesday": "4:00pm-8:00pm",
-      "Thursday": "9:00am-3:00pm",
-      "Friday": "9:00am-11:00am"
+      "Tuesday": "9:00am - 3:00pm",
+      "Wednesday": "4:00pm - 8:00pm",
+      "Thursday": "9:00am - 3:00pm",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -361,10 +362,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "ASL V",
     "tutorName": "Mario Salinas",
     "days": {
-      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
-      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Monday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
+      "Wednesday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -373,11 +374,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Interpreting I",
     "tutorName": "Gabrielle Houston",
     "days": {
-      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Monday": "12:30pm - 3:00pm & 4:00pm - 6:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "4:00pm-6:00pm",
-      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
-      "Friday": "12:30pm-3:00pm"
+      "Wednesday": "4:00pm - 6:00pm",
+      "Thursday": "12:00pm - 3:00pm & 4:00pm - 6:00pm",
+      "Friday": "12:30pm - 3:00pm"
     }
   },
   {
@@ -386,10 +387,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ruby Mendieta",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-3:00pm",
-      "Wednesday": "4:00pm-8:00pm",
-      "Thursday": "9:00am-3:00pm",
-      "Friday": "9:00am-11:00am"
+      "Tuesday": "9:00am - 3:00pm",
+      "Wednesday": "4:00pm - 8:00pm",
+      "Thursday": "9:00am - 3:00pm",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -397,11 +398,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Classifiers",
     "tutorName": "Gabrielle Houston",
     "days": {
-      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Monday": "12:30pm - 3:00pm & 4:00pm - 6:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "4:00pm-6:00pm",
-      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
-      "Friday": "12:30pm-3:00pm"
+      "Wednesday": "4:00pm - 6:00pm",
+      "Thursday": "12:00pm - 3:00pm & 4:00pm - 6:00pm",
+      "Friday": "12:30pm - 3:00pm"
     }
   },
   {
@@ -410,10 +411,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ruby Mendieta",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-3:00pm",
-      "Wednesday": "4:00pm-8:00pm",
-      "Thursday": "9:00am-3:00pm",
-      "Friday": "9:00am-11:00am"
+      "Tuesday": "9:00am - 3:00pm",
+      "Wednesday": "4:00pm - 8:00pm",
+      "Thursday": "9:00am - 3:00pm",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -421,10 +422,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Classifiers",
     "tutorName": "Mario Salinas",
     "days": {
-      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
-      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Monday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
+      "Wednesday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -433,11 +434,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Interpreting II",
     "tutorName": "Gabrielle Houston",
     "days": {
-      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Monday": "12:30pm - 3:00pm & 4:00pm - 6:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "4:00pm-6:00pm",
-      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
-      "Friday": "12:30pm-3:00pm"
+      "Wednesday": "4:00pm - 6:00pm",
+      "Thursday": "12:00pm - 3:00pm & 4:00pm - 6:00pm",
+      "Friday": "12:30pm - 3:00pm"
     }
   },
   {
@@ -446,10 +447,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ruby Mendieta",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-3:00pm",
-      "Wednesday": "4:00pm-8:00pm",
-      "Thursday": "9:00am-3:00pm",
-      "Friday": "9:00am-11:00am"
+      "Tuesday": "9:00am - 3:00pm",
+      "Wednesday": "4:00pm - 8:00pm",
+      "Thursday": "9:00am - 3:00pm",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -458,7 +459,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ilyssa Castillo",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:15am-1:15pm",
+      "Tuesday": "11:15am - 1:15pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -469,7 +470,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Biology I",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -481,7 +482,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Biology I",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -494,9 +495,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -506,9 +507,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -517,10 +518,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Biology I",
     "tutorName": "Samuel Marshall",
     "days": {
-      "Monday": "10:45am-12:45pm",
-      "Tuesday": "9:00am-10:45am",
-      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
-      "Thursday": "9:00am-12:30pm",
+      "Monday": "10:45am - 12:45pm",
+      "Tuesday": "9:00am - 10:45am",
+      "Wednesday": "9:00am - 10:45am & 7:00pm - 8:00pm",
+      "Thursday": "9:00am - 12:30pm",
       "Friday": "OFF"
     }
   },
@@ -529,11 +530,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Biology I",
     "tutorName": "Srinidhi Sompalli",
     "days": {
-      "Monday": "2:45pm-4:45pm",
-      "Tuesday": "11:00am-1:30pm",
-      "Wednesday": "2:45pm-6:45pm",
-      "Thursday": "2:45pm-5:00pm",
-      "Friday": "9:45am-12:00pm"
+      "Monday": "2:45pm - 4:45pm",
+      "Tuesday": "11:00am - 1:30pm",
+      "Wednesday": "2:45pm - 6:45pm",
+      "Thursday": "2:45pm - 5:00pm",
+      "Friday": "9:45am - 12:00pm"
     }
   },
   {
@@ -542,7 +543,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ilyssa Castillo",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:15am-1:15pm",
+      "Tuesday": "11:15am - 1:15pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -553,7 +554,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Biology II",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -565,7 +566,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Biology II",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -578,9 +579,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -590,9 +591,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -601,10 +602,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Biology II",
     "tutorName": "Samuel Marshall",
     "days": {
-      "Monday": "10:45am-12:45pm",
-      "Tuesday": "9:00am-10:45am",
-      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
-      "Thursday": "9:00am-12:30pm",
+      "Monday": "10:45am - 12:45pm",
+      "Tuesday": "9:00am - 10:45am",
+      "Wednesday": "9:00am - 10:45am & 7:00pm - 8:00pm",
+      "Thursday": "9:00am - 12:30pm",
       "Friday": "OFF"
     }
   },
@@ -613,11 +614,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Biology II",
     "tutorName": "Srinidhi Sompalli",
     "days": {
-      "Monday": "2:45pm-4:45pm",
-      "Tuesday": "11:00am-1:30pm",
-      "Wednesday": "2:45pm-6:45pm",
-      "Thursday": "2:45pm-5:00pm",
-      "Friday": "9:45am-12:00pm"
+      "Monday": "2:45pm - 4:45pm",
+      "Tuesday": "11:00am - 1:30pm",
+      "Wednesday": "2:45pm - 6:45pm",
+      "Thursday": "2:45pm - 5:00pm",
+      "Friday": "9:45am - 12:00pm"
     }
   },
   {
@@ -626,7 +627,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ilyssa Castillo",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:15am-1:15pm",
+      "Tuesday": "11:15am - 1:15pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -637,7 +638,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Anatomy & Physiology I",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -650,9 +651,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -661,10 +662,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Anatomy & Physiology I",
     "tutorName": "Samuel Marshall",
     "days": {
-      "Monday": "10:45am-12:45pm",
-      "Tuesday": "9:00am-10:45am",
-      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
-      "Thursday": "9:00am-12:30pm",
+      "Monday": "10:45am - 12:45pm",
+      "Tuesday": "9:00am - 10:45am",
+      "Wednesday": "9:00am - 10:45am & 7:00pm - 8:00pm",
+      "Thursday": "9:00am - 12:30pm",
       "Friday": "OFF"
     }
   },
@@ -673,11 +674,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Anatomy & Physiology I",
     "tutorName": "Amanda Villa",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-10:30am",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-10:30am",
-      "Friday": "9:00am-12:00pm"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 10:30am",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 10:30am",
+      "Friday": "9:00am - 12:00pm"
     }
   },
   {
@@ -685,11 +686,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Anatomy & Physiology I",
     "tutorName": "Srinidhi Sompalli",
     "days": {
-      "Monday": "2:45pm-4:45pm",
-      "Tuesday": "11:00am-1:30pm",
-      "Wednesday": "2:45pm-6:45pm",
-      "Thursday": "2:45pm-5:00pm",
-      "Friday": "9:45am-12:00pm"
+      "Monday": "2:45pm - 4:45pm",
+      "Tuesday": "11:00am - 1:30pm",
+      "Wednesday": "2:45pm - 6:45pm",
+      "Thursday": "2:45pm - 5:00pm",
+      "Friday": "9:45am - 12:00pm"
     }
   },
   {
@@ -699,7 +700,7 @@ const TUTOR_SCHEDULE_DATA =
     "days": {
       "Monday": "OFF",
       "Tuesday": "OFF",
-      "Wednesday": "10:00am-2:00pm",
+      "Wednesday": "10:00am - 2:00pm",
       "Thursday": "OFF",
       "Friday": "OFF"
     }
@@ -710,7 +711,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ilyssa Castillo",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:15am-1:15pm",
+      "Tuesday": "11:15am - 1:15pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -721,7 +722,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Anatomy & Physiology II",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -734,9 +735,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -745,11 +746,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Anatomy & Physiology II",
     "tutorName": "Amanda Villa",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-10:30am",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-10:30am",
-      "Friday": "9:00am-12:00pm"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 10:30am",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 10:30am",
+      "Friday": "9:00am - 12:00pm"
     }
   },
   {
@@ -757,11 +758,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Anatomy & Physiology II",
     "tutorName": "Srinidhi Sompalli",
     "days": {
-      "Monday": "2:45pm-4:45pm",
-      "Tuesday": "11:00am-1:30pm",
-      "Wednesday": "2:45pm-6:45pm",
-      "Thursday": "2:45pm-5:00pm",
-      "Friday": "9:45am-12:00pm"
+      "Monday": "2:45pm - 4:45pm",
+      "Tuesday": "11:00am - 1:30pm",
+      "Wednesday": "2:45pm - 6:45pm",
+      "Thursday": "2:45pm - 5:00pm",
+      "Friday": "9:45am - 12:00pm"
     }
   },
   {
@@ -770,7 +771,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Jorge Gonzalez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "12:00pm-4:00pm",
+      "Tuesday": "12:00pm - 4:00pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -782,7 +783,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ilyssa Castillo",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:15am-1:15pm",
+      "Tuesday": "11:15am - 1:15pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -793,7 +794,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Biomedical Sci I",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -805,7 +806,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Biomedical Sci I",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -818,9 +819,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -830,9 +831,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -841,10 +842,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Biomedical Sci I",
     "tutorName": "Samuel Marshall",
     "days": {
-      "Monday": "10:45am-12:45pm",
-      "Tuesday": "9:00am-10:45am",
-      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
-      "Thursday": "9:00am-12:30pm",
+      "Monday": "10:45am - 12:45pm",
+      "Tuesday": "9:00am - 10:45am",
+      "Wednesday": "9:00am - 10:45am & 7:00pm - 8:00pm",
+      "Thursday": "9:00am - 12:30pm",
       "Friday": "OFF"
     }
   },
@@ -854,7 +855,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Jorge Gonzalez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "12:00pm-4:00pm",
+      "Tuesday": "12:00pm - 4:00pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -866,7 +867,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ilyssa Castillo",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:15am-1:15pm",
+      "Tuesday": "11:15am - 1:15pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -877,7 +878,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Biomedical Sci II",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -889,7 +890,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Biomedical Sci II",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -902,9 +903,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -914,9 +915,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -925,10 +926,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Biomedical Sci II",
     "tutorName": "Samuel Marshall",
     "days": {
-      "Monday": "10:45am-12:45pm",
-      "Tuesday": "9:00am-10:45am",
-      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
-      "Thursday": "9:00am-12:30pm",
+      "Monday": "10:45am - 12:45pm",
+      "Tuesday": "9:00am - 10:45am",
+      "Wednesday": "9:00am - 10:45am & 7:00pm - 8:00pm",
+      "Thursday": "9:00am - 12:30pm",
       "Friday": "OFF"
     }
   },
@@ -938,7 +939,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ilyssa Castillo",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:15am-1:15pm",
+      "Tuesday": "11:15am - 1:15pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -949,7 +950,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Integrated Body Systems I",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -961,7 +962,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Integrated Body Systems I",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -974,9 +975,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -986,9 +987,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -997,10 +998,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Integrated Body Systems I",
     "tutorName": "Samuel Marshall",
     "days": {
-      "Monday": "10:45am-12:45pm",
-      "Tuesday": "9:00am-10:45am",
-      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
-      "Thursday": "9:00am-12:30pm",
+      "Monday": "10:45am - 12:45pm",
+      "Tuesday": "9:00am - 10:45am",
+      "Wednesday": "9:00am - 10:45am & 7:00pm - 8:00pm",
+      "Thursday": "9:00am - 12:30pm",
       "Friday": "OFF"
     }
   },
@@ -1010,7 +1011,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ilyssa Castillo",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:15am-1:15pm",
+      "Tuesday": "11:15am - 1:15pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -1021,7 +1022,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Integrated Body Systems II",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1033,7 +1034,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Integrated Body Systems II",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1046,9 +1047,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -1058,9 +1059,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -1069,10 +1070,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Integrated Body Systems II",
     "tutorName": "Samuel Marshall",
     "days": {
-      "Monday": "10:45am-12:45pm",
-      "Tuesday": "9:00am-10:45am",
-      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
-      "Thursday": "9:00am-12:30pm",
+      "Monday": "10:45am - 12:45pm",
+      "Tuesday": "9:00am - 10:45am",
+      "Wednesday": "9:00am - 10:45am & 7:00pm - 8:00pm",
+      "Thursday": "9:00am - 12:30pm",
       "Friday": "OFF"
     }
   },
@@ -1082,18 +1083,18 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
   {
     "courseCode": "BMED 4230",
-    "courseName": "Medical Genetics & Genomics",
+    "courseName": "Medical Genetics s& Genomics",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1105,7 +1106,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Advanced Cell Biology",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1117,7 +1118,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Advanced Cell Biology",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1130,9 +1131,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -1141,7 +1142,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Advanced Molecular Biology",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1153,7 +1154,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Advanced Molecular Biology",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1166,9 +1167,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -1177,7 +1178,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Medical Biochemistry",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1189,7 +1190,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Medical Biochemistry",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1202,9 +1203,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -1214,9 +1215,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -1225,7 +1226,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Medical Neuroscience/Neurochemistry",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1237,7 +1238,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Medical Neuroscience/Neurochemistry",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1250,9 +1251,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -1262,9 +1263,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -1273,7 +1274,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Medical Microbiology",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1285,7 +1286,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Medical Microbiology",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1298,9 +1299,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -1310,9 +1311,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Kenneth Davis",
     "days": {
       "Monday": "BROWNSVILLE",
-      "Tuesday": "11:00am-12:15pm",
+      "Tuesday": "11:00am 12:15pm",
       "Wednesday": "BROWNSVILLE",
-      "Thursday": "11:00am-12:15pm",
+      "Thursday": "11:00am 12:15pm",
       "Friday": "BROWNSVILLE"
     }
   },
@@ -1321,11 +1322,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Chemistry I/Lab",
     "tutorName": "Miranda Villasenor",
     "days": {
-      "Monday": "11:30am-12:15pm & 2:30pm-3:15pm",
-      "Tuesday": "9:45am-12:45pm",
-      "Wednesday": "11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm",
-      "Thursday": "10:00am-1:00pm & 3:30pm-4:30pm",
-      "Friday": "10:00am-12:00pm"
+      "Monday": "11:30am - 12:15pm & 2:30pm - 3:15pm",
+      "Tuesday": "9:45am - 12:45pm",
+      "Wednesday": "11:30am - 12:15pm & 2:30pm - 3:15pm & 5:00pm - 6:00pm",
+      "Thursday": "10:00am - 1:00pm & 3:30pm - 4:30pm",
+      "Friday": "10:00am - 12:00pm"
     }
   },
   {
@@ -1334,7 +1335,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Jorge Gonzalez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "12:00pm-4:00pm",
+      "Tuesday": "12:00pm - 4:00pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -1346,7 +1347,7 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Ilyssa Castillo",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:15am-1:15pm",
+      "Tuesday": "11:15am - 1:15pm",
       "Wednesday": "OFF",
       "Thursday": "OFF",
       "Friday": "OFF"
@@ -1357,7 +1358,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Chemistry I/Lab",
     "tutorName": "Brianna Morin",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1370,9 +1371,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -1382,9 +1383,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -1393,10 +1394,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Chemistry I/Lab",
     "tutorName": "Samuel Marshall",
     "days": {
-      "Monday": "10:45am-12:45pm",
-      "Tuesday": "9:00am-10:45am",
-      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
-      "Thursday": "9:00am-12:30pm",
+      "Monday": "10:45am - 12:45pm",
+      "Tuesday": "9:00am - 10:45am",
+      "Wednesday": "9:00am - 10:45am & 7:00pm - 8:00pm",
+      "Thursday": "9:00am - 12:30pm",
       "Friday": "OFF"
     }
   },
@@ -1405,11 +1406,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Chemistry I/Lab",
     "tutorName": "Amanda Villa",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-10:30am",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-10:30am",
-      "Friday": "9:00am-12:00pm"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 10:30am",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 10:30am",
+      "Friday": "9:00am - 12:00pm"
     }
   },
   {
@@ -1417,11 +1418,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Chemistry I/Lab",
     "tutorName": "Srinidhi Sompalli",
     "days": {
-      "Monday": "2:45pm-4:45pm",
-      "Tuesday": "11:00am-1:30pm",
-      "Wednesday": "2:45pm-6:45pm",
-      "Thursday": "2:45pm-5:00pm",
-      "Friday": "9:45am-12:00pm"
+      "Monday": "2:45pm - 4:45pm",
+      "Tuesday": "11:00am - 1:30pm",
+      "Wednesday": "2:45pm - 6:45pm",
+      "Thursday": "2:45pm - 5:00pm",
+      "Friday": "9:45am - 12:00pm"
     }
   },
   {
@@ -1429,11 +1430,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Chemistry II/Lab",
     "tutorName": "Miranda Villasenor",
     "days": {
-      "Monday": "11:30am-12:15pm & 2:30pm-3:15pm",
-      "Tuesday": "9:45am-12:45pm",
-      "Wednesday": "11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm",
-      "Thursday": "10:00am-1:00pm & 3:30pm-4:30pm",
-      "Friday": "10:00am-12:00pm"
+      "Monday": "11:30am - 12:15pm & 2:30pm - 3:15pm",
+      "Tuesday": "9:45am - 12:45pm",
+      "Wednesday": "11:30am - 12:15pm & 2:30pm - 3:15pm & 5:00pm - 6:00pm",
+      "Thursday": "10:00am - 1:00pm & 3:30pm - 4:30pm",
+      "Friday": "10:00am - 12:00pm"
     }
   },
   {
@@ -1442,9 +1443,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -1454,9 +1455,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Alyssa Guerra",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:00am-2:00pm",
+      "Tuesday": "11:00am - 2:00pm",
       "Wednesday": "OFF",
-      "Thursday": "11:00am-2:00pm",
+      "Thursday": "11:00am - 2:00pm",
       "Friday": "OFF"
     }
   },
@@ -1465,10 +1466,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Chemistry II/Lab",
     "tutorName": "Samuel Marshall",
     "days": {
-      "Monday": "10:45am-12:45pm",
-      "Tuesday": "9:00am-10:45am",
-      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
-      "Thursday": "9:00am-12:30pm",
+      "Monday": "10:45am - 12:45pm",
+      "Tuesday": "9:00am - 10:45am",
+      "Wednesday": "9:00am - 10:45am & 7:00pm - 8:00pm",
+      "Thursday": "9:00am - 12:30pm",
       "Friday": "OFF"
     }
   },
@@ -1477,11 +1478,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Chemistry II/Lab",
     "tutorName": "Srinidhi Sompalli",
     "days": {
-      "Monday": "2:45pm-4:45pm",
-      "Tuesday": "11:00am-1:30pm",
-      "Wednesday": "2:45pm-6:45pm",
-      "Thursday": "2:45pm-5:00pm",
-      "Friday": "9:45am-12:00pm"
+      "Monday": "2:45pm - 4:45pm",
+      "Tuesday": "11:00am - 1:30pm",
+      "Wednesday": "2:45pm - 6:45pm",
+      "Thursday": "2:45pm - 5:00pm",
+      "Friday": "9:45am - 12:00pm"
     }
   },
   {
@@ -1489,7 +1490,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Organic Chemistry I/Lab",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1502,9 +1503,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -1513,10 +1514,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Organic Chemistry I/Lab",
     "tutorName": "Samuel Marshall",
     "days": {
-      "Monday": "10:45am-12:45pm",
-      "Tuesday": "9:00am-10:45am",
-      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
-      "Thursday": "9:00am-12:30pm",
+      "Monday": "10:45am - 12:45pm",
+      "Tuesday": "9:00am - 10:45am",
+      "Wednesday": "9:00am - 10:45am & 7:00pm - 8:00pm",
+      "Thursday": "9:00am - 12:30pm",
       "Friday": "OFF"
     }
   },
@@ -1525,11 +1526,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Organic Chemistry I/Lab",
     "tutorName": "Srinidhi Sompalli",
     "days": {
-      "Monday": "2:45pm-4:45pm",
-      "Tuesday": "11:00am-1:30pm",
-      "Wednesday": "2:45pm-6:45pm",
-      "Thursday": "2:45pm-5:00pm",
-      "Friday": "9:45am-12:00pm"
+      "Monday": "2:45pm - 4:45pm",
+      "Tuesday": "11:00am - 1:30pm",
+      "Wednesday": "2:45pm - 6:45pm",
+      "Thursday": "2:45pm - 5:00pm",
+      "Friday": "9:45am - 12:00pm"
     }
   },
   {
@@ -1537,7 +1538,7 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Organic Chemistry II/Lab",
     "tutorName": "Ryanna Quintero",
     "days": {
-      "Monday": "9:30am-11:30am",
+      "Monday": "9:30am - 11:30am",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
       "Thursday": "OFF",
@@ -1550,9 +1551,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -1562,9 +1563,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -1574,21 +1575,21 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
   {
     "courseCode": "CHEM 4320",
-    "courseName": "Nutrition & Exercise Biochemistry",
+    "courseName": "Nutrition & Excercise Biochemistry",
     "tutorName": "Maximiliano Benavidez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
       "Wednesday": "OFF",
-      "Thursday": "9:00am-12:00pm",
+      "Thursday": "9:00am - 12:00pm",
       "Friday": "OFF"
     }
   },
@@ -1597,11 +1598,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Civil Engr",
     "tutorName": "Gerardo Castillo",
     "days": {
-      "Monday": "9:00am-10:45am",
-      "Tuesday": "9:30am-10:45am",
-      "Wednesday": "9:00am-10:45am",
-      "Thursday": "9:30am-10:45am",
-      "Friday": "9:00am-11:00am"
+      "Monday": "9:00am - 10:45am",
+      "Tuesday": "9:30am - 10:45am",
+      "Wednesday": "9:00am - 10:45am",
+      "Thursday": "9:30am - 10:45am",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -1609,11 +1610,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Civil Engr Measurements",
     "tutorName": "Gerardo Castillo",
     "days": {
-      "Monday": "9:00am-10:45am",
-      "Tuesday": "9:30am-10:45am",
-      "Wednesday": "9:00am-10:45am",
-      "Thursday": "9:30am-10:45am",
-      "Friday": "9:00am-11:00am"
+      "Monday": "9:00am - 10:45am",
+      "Tuesday": "9:30am - 10:45am",
+      "Wednesday": "9:00am - 10:45am",
+      "Thursday": "9:30am - 10:45am",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -1621,11 +1622,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Civil Engr Measurements",
     "tutorName": "Karel Kishiko",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -1633,11 +1634,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Numerical Methods",
     "tutorName": "Gerardo Castillo",
     "days": {
-      "Monday": "9:00am-10:45am",
-      "Tuesday": "9:30am-10:45am",
-      "Wednesday": "9:00am-10:45am",
-      "Thursday": "9:30am-10:45am",
-      "Friday": "9:00am-11:00am"
+      "Monday": "9:00am - 10:45am",
+      "Tuesday": "9:30am - 10:45am",
+      "Wednesday": "9:00am - 10:45am",
+      "Thursday": "9:30am - 10:45am",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -1645,11 +1646,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Fluid Mechanics",
     "tutorName": "Gerardo Castillo",
     "days": {
-      "Monday": "9:00am-10:45am",
-      "Tuesday": "9:30am-10:45am",
-      "Wednesday": "9:00am-10:45am",
-      "Thursday": "9:30am-10:45am",
-      "Friday": "9:00am-11:00am"
+      "Monday": "9:00am - 10:45am",
+      "Tuesday": "9:30am - 10:45am",
+      "Wednesday": "9:00am - 10:45am",
+      "Thursday": "9:30am - 10:45am",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -1657,11 +1658,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Mechanics of Materials",
     "tutorName": "Gerardo Castillo",
     "days": {
-      "Monday": "9:00am-10:45am",
-      "Tuesday": "9:30am-10:45am",
-      "Wednesday": "9:00am-10:45am",
-      "Thursday": "9:30am-10:45am",
-      "Friday": "9:00am-11:00am"
+      "Monday": "9:00am - 10:45am",
+      "Tuesday": "9:30am - 10:45am",
+      "Wednesday": "9:00am - 10:45am",
+      "Thursday": "9:30am - 10:45am",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -1669,11 +1670,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "CE Materials",
     "tutorName": "Gerardo Castillo",
     "days": {
-      "Monday": "9:00am-10:45am",
-      "Tuesday": "9:30am-10:45am",
-      "Wednesday": "9:00am-10:45am",
-      "Thursday": "9:30am-10:45am",
-      "Friday": "9:00am-11:00am"
+      "Monday": "9:00am - 10:45am",
+      "Tuesday": "9:30am - 10:45am",
+      "Wednesday": "9:00am - 10:45am",
+      "Thursday": "9:30am - 10:45am",
+      "Friday": "9:00am - 11:00am"
     }
   },
   {
@@ -1681,11 +1682,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Clinic Micro",
     "tutorName": "Amanda Villa",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-10:30am",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-10:30am",
-      "Friday": "9:00am-12:00pm"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 10:30am",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 10:30am",
+      "Friday": "9:00am - 12:00pm"
     }
   },
   {
@@ -1693,10 +1694,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Computer Science",
     "tutorName": "Matthew Chapa",
     "days": {
-      "Monday": "1:00pm-5:00pm",
-      "Tuesday": "1:00pm-5:00pm",
-      "Wednesday": "1:00pm-5:00pm",
-      "Thursday": "1:00pm-5:00pm",
+      "Monday": "1:00pm - 5:00pm",
+      "Tuesday": "1:00pm - 5:00pm",
+      "Wednesday": "1:00pm - 5:00pm",
+      "Thursday": "1:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -1706,9 +1707,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Edgar Bello Gonzalez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
-      "Wednesday": "11:45am-1:45pm",
-      "Thursday": "10:15am-1:15pm",
+      "Tuesday": "10:15am - 1:15pm & 3:30pm - 4:30pm",
+      "Wednesday": "11:45am - 1:45pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
@@ -1717,10 +1718,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Programming Python",
     "tutorName": "Matthew Chapa",
     "days": {
-      "Monday": "1:00pm-5:00pm",
-      "Tuesday": "1:00pm-5:00pm",
-      "Wednesday": "1:00pm-5:00pm",
-      "Thursday": "1:00pm-5:00pm",
+      "Monday": "1:00pm - 5:00pm",
+      "Tuesday": "1:00pm - 5:00pm",
+      "Wednesday": "1:00pm - 5:00pm",
+      "Thursday": "1:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -1729,10 +1730,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Programming Python",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -1741,10 +1742,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Programming C++",
     "tutorName": "Matthew Chapa",
     "days": {
-      "Monday": "1:00pm-5:00pm",
-      "Tuesday": "1:00pm-5:00pm",
-      "Wednesday": "1:00pm-5:00pm",
-      "Thursday": "1:00pm-5:00pm",
+      "Monday": "1:00pm - 5:00pm",
+      "Tuesday": "1:00pm - 5:00pm",
+      "Wednesday": "1:00pm - 5:00pm",
+      "Thursday": "1:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -1753,10 +1754,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Programming C++",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -1765,10 +1766,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Programming II",
     "tutorName": "Matthew Chapa",
     "days": {
-      "Monday": "1:00pm-5:00pm",
-      "Tuesday": "1:00pm-5:00pm",
-      "Wednesday": "1:00pm-5:00pm",
-      "Thursday": "1:00pm-5:00pm",
+      "Monday": "1:00pm - 5:00pm",
+      "Tuesday": "1:00pm - 5:00pm",
+      "Wednesday": "1:00pm - 5:00pm",
+      "Thursday": "1:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -1777,10 +1778,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Programming II",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -1789,10 +1790,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Computer Science I",
     "tutorName": "Matthew Chapa",
     "days": {
-      "Monday": "1:00pm-5:00pm",
-      "Tuesday": "1:00pm-5:00pm",
-      "Wednesday": "1:00pm-5:00pm",
-      "Thursday": "1:00pm-5:00pm",
+      "Monday": "1:00pm - 5:00pm",
+      "Tuesday": "1:00pm - 5:00pm",
+      "Wednesday": "1:00pm - 5:00pm",
+      "Thursday": "1:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -1801,10 +1802,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Computer Science I",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -1814,9 +1815,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Edgar Bello Gonzalez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
-      "Wednesday": "11:45am-1:45pm",
-      "Thursday": "10:15am-1:15pm",
+      "Tuesday": "10:15am - 1:15pm & 3:30pm - 4:30pm",
+      "Wednesday": "11:45am - 1:45pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
@@ -1825,10 +1826,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Computer Science I",
     "tutorName": "Eduardo Bello Gonzalez",
     "days": {
-      "Monday": "11:00am-1:30pm",
-      "Tuesday": "11:00am-1:45pm",
-      "Wednesday": "11:00am-1:30pm",
-      "Thursday": "11:00am-12:15pm",
+      "Monday": "11:00am - 1:30pm",
+      "Tuesday": "11:00am - 1:45pm",
+      "Wednesday": "11:00am - 1:30pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "OFF"
     }
   },
@@ -1837,10 +1838,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Programming in Unix/Linux",
     "tutorName": "Matthew Chapa",
     "days": {
-      "Monday": "1:00pm-5:00pm",
-      "Tuesday": "1:00pm-5:00pm",
-      "Wednesday": "1:00pm-5:00pm",
-      "Thursday": "1:00pm-5:00pm",
+      "Monday": "1:00pm - 5:00pm",
+      "Tuesday": "1:00pm - 5:00pm",
+      "Wednesday": "1:00pm - 5:00pm",
+      "Thursday": "1:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -1849,10 +1850,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Computer Science II",
     "tutorName": "Matthew Chapa",
     "days": {
-      "Monday": "1:00pm-5:00pm",
-      "Tuesday": "1:00pm-5:00pm",
-      "Wednesday": "1:00pm-5:00pm",
-      "Thursday": "1:00pm-5:00pm",
+      "Monday": "1:00pm - 5:00pm",
+      "Tuesday": "1:00pm - 5:00pm",
+      "Wednesday": "1:00pm - 5:00pm",
+      "Thursday": "1:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -1861,10 +1862,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Computer Science II",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -1874,9 +1875,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Edgar Bello Gonzalez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
-      "Wednesday": "11:45am-1:45pm",
-      "Thursday": "10:15am-1:15pm",
+      "Tuesday": "10:15am - 1:15pm & 3:30pm - 4:30pm",
+      "Wednesday": "11:45am - 1:45pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
@@ -1885,10 +1886,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Obj Oriented Prog in Python",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -1897,10 +1898,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Algorithms & Data Structures",
     "tutorName": "Matthew Chapa",
     "days": {
-      "Monday": "1:00pm-5:00pm",
-      "Tuesday": "1:00pm-5:00pm",
-      "Wednesday": "1:00pm-5:00pm",
-      "Thursday": "1:00pm-5:00pm",
+      "Monday": "1:00pm - 5:00pm",
+      "Tuesday": "1:00pm - 5:00pm",
+      "Wednesday": "1:00pm - 5:00pm",
+      "Thursday": "1:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -1909,10 +1910,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Systems in Programming",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -1921,22 +1922,22 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Software Engineering II",
     "tutorName": "Matthew Chapa",
     "days": {
-      "Monday": "1:00pm-5:00pm",
-      "Tuesday": "1:00pm-5:00pm",
-      "Wednesday": "1:00pm-5:00pm",
-      "Thursday": "1:00pm-5:00pm",
+      "Monday": "1:00pm - 5:00pm",
+      "Tuesday": "1:00pm - 5:00pm",
+      "Wednesday": "1:00pm - 5:00pm",
+      "Thursday": "1:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
   {
     "courseCode": "CSCI 4325",
-    "courseName": "Automata, Formal Languages & Computability",
+    "courseName": "Automata, Formal Languages, & Computability",
     "tutorName": "Matthew Chapa",
     "days": {
-      "Monday": "1:00pm-5:00pm",
-      "Tuesday": "1:00pm-5:00pm",
-      "Wednesday": "1:00pm-5:00pm",
-      "Thursday": "1:00pm-5:00pm",
+      "Monday": "1:00pm - 5:00pm",
+      "Tuesday": "1:00pm - 5:00pm",
+      "Wednesday": "1:00pm - 5:00pm",
+      "Thursday": "1:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -1945,10 +1946,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Principles of Macroeconomics",
     "tutorName": "Alexis Aguilar",
     "days": {
-      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
-      "Tuesday": "11:00am-12:15pm",
-      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
-      "Thursday": "11:00am-12:15pm",
+      "Monday": "11:00am - 2:00pm & 2:30pm - 5:00pm",
+      "Tuesday": "11:00am - 12:15pm",
+      "Wednesday": "11:00am - 1:45pm & 3:45pm - 8:00pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "OFF"
     }
   },
@@ -1957,10 +1958,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Principles of Microeconomics",
     "tutorName": "Alexis Aguilar",
     "days": {
-      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
-      "Tuesday": "11:00am-12:15pm",
-      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
-      "Thursday": "11:00am-12:15pm",
+      "Monday": "11:00am - 2:00pm & 2:30pm - 5:00pm",
+      "Tuesday": "11:00am - 12:15pm",
+      "Wednesday": "11:00am - 1:45pm & 3:45pm - 8:00pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "OFF"
     }
   },
@@ -1969,10 +1970,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Elec & Comp Engr",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -1982,57 +1983,57 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Kenneth Davis",
     "days": {
       "Monday": "BROWNSVILLE",
-      "Tuesday": "11:00am-12:15pm",
+      "Tuesday": "11:00am - 12:15pm",
       "Wednesday": "BROWNSVILLE",
-      "Thursday": "11:00am-12:15pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "BROWNSVILLE"
     }
   },
   {
     "courseCode": "EECE 2306/2106",
-    "courseName": "Digital Systems Engr I/Lab",
+    "courseName": "Digital Systems Engineering I/Lab",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
   {
     "courseCode": "EECE 2306/2106",
-    "courseName": "Digital Systems Engr I/Lab",
+    "courseName": "Digital Systems Engineering I/Lab",
     "tutorName": "Angelina Anthony",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Tuesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Wednesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Thursday": "11:45am - 5:00pm & 3:30pm - 4:15pm",
       "Friday": "OFF"
     }
   },
   {
     "courseCode": "EECE 2306/2106",
-    "courseName": "Digital Systems Engr I/Lab",
+    "courseName": "Digital Systems Engineering I/Lab",
     "tutorName": "Edgar Bello Gonzalez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
-      "Wednesday": "11:45am-1:45pm",
-      "Thursday": "10:15am-1:15pm",
+      "Tuesday": "10:15am - 1:15pm & 3:30pm - 4:30pm",
+      "Wednesday": "11:45am - 1:45pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
   {
     "courseCode": "EECE 2306/2106",
-    "courseName": "Digital Systems Engr I/Lab",
+    "courseName": "Digital Systems Engineering I/Lab",
     "tutorName": "Kenneth Davis",
     "days": {
       "Monday": "BROWNSVILLE",
-      "Tuesday": "11:00am-12:15pm",
+      "Tuesday": "11:00am - 12:15pm",
       "Wednesday": "BROWNSVILLE",
-      "Thursday": "11:00am-12:15pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "BROWNSVILLE"
     }
   },
@@ -2041,10 +2042,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Electronic Systems",
     "tutorName": "Juan Castillo",
     "days": {
-      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
-      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
-      "Thursday": "3:30pm-5:00pm",
+      "Monday": "11:00am - 1:00pm & 3:30pm - 4:45pm",
+      "Tuesday": "9:00am - 1:00pm & 3:30pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm & 3:30pm - 8:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2053,10 +2054,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Microcontrol & Embedded Systems",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -2065,10 +2066,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Probability & Stats (Elec & Comp)",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -2077,22 +2078,22 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Microprocessor Systems",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
   {
     "courseCode": "EECE 4303",
-    "courseName": "Digital Systems Engr II",
+    "courseName": "Digital Systems Engineering II",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -2101,10 +2102,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Computer Architecture",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -2113,10 +2114,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Data Modeling Management Tools",
     "tutorName": "Daniela Celaya (Lead Tutor)",
     "days": {
-      "Monday": "11:00am-12:00pm",
+      "Monday": "11:00am - 12:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "10:15am-1:15pm",
-      "Thursday": "10:15am-1:15pm",
+      "Wednesday": "10:15am - 1:15pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
@@ -2125,11 +2126,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "College Algebra",
     "tutorName": "Srinidhi Sompalli",
     "days": {
-      "Monday": "2:45pm-4:45pm",
-      "Tuesday": "11:00am-1:30pm",
-      "Wednesday": "2:45pm-6:45pm",
-      "Thursday": "2:45pm-5:00pm",
-      "Friday": "9:45am-12:00pm"
+      "Monday": "2:45pm - 4:45pm",
+      "Tuesday": "11:00am - 1:30pm",
+      "Wednesday": "2:45pm - 6:45pm",
+      "Thursday": "2:45pm - 5:00pm",
+      "Friday": "9:45am - 12:00pm"
     }
   },
   {
@@ -2138,9 +2139,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Angelina Anthony",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Tuesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Wednesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Thursday": "11:45am - 5:00pm & 3:30pm - 4:15pm",
       "Friday": "OFF"
     }
   },
@@ -2150,9 +2151,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Edgar Bello Gonzalez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
-      "Wednesday": "11:45am-1:45pm",
-      "Thursday": "10:15am-1:15pm",
+      "Tuesday": "10:15am - 1:15pm & 3:30pm - 4:30pm",
+      "Wednesday": "11:45am - 1:45pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
@@ -2161,10 +2162,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "College Algebra",
     "tutorName": "Eduardo Bello Gonzalez",
     "days": {
-      "Monday": "11:00am-1:30pm",
-      "Tuesday": "11:00am-1:45pm",
-      "Wednesday": "11:00am-1:30pm",
-      "Thursday": "11:00am-12:15pm",
+      "Monday": "11:00am - 1:30pm",
+      "Tuesday": "11:00am - 1:45pm",
+      "Wednesday": "11:00am - 1:30pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "OFF"
     }
   },
@@ -2173,11 +2174,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "College Algebra",
     "tutorName": "Karel Kishiko",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -2185,8 +2186,8 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "College Algebra",
     "tutorName": "Paul Diaz (SI Mentor)",
     "days": {
-      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Tuesday": "11:00am-1:45pm & 3:30pm-4:30pm",
+      "Monday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Tuesday": "11:00am - 1:45pm & 3:30pm - 4:30pm",
       "Wednesday": "Mentor Duties",
       "Thursday": "Mentor Duties",
       "Friday": "OFF"
@@ -2198,9 +2199,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Paulina Olvera Leal",
     "days": {
       "Monday": "BROWNSVILLE",
-      "Tuesday": "4:00pm-5:00pm",
+      "Tuesday": "4:00pm - 5:00pm",
       "Wednesday": "BROWNSVILLE",
-      "Thursday": "4:00pm-5:00pm",
+      "Thursday": "4:00pm - 5:00pm",
       "Friday": "BROWNSVILLE"
     }
   },
@@ -2209,11 +2210,23 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Math for Business",
     "tutorName": "Sebastian Sanchez Reyes",
     "days": {
-      "Monday": "11:00am-12:15pm & 2:00pm-3:30pm",
-      "Tuesday": "9:30am-1:00pm & 1:30pm-4:15pm",
-      "Wednesday": "11:00am-12:15pm & 2:00pm-3:30pm",
-      "Thursday": "9:30am-12:45pm",
+      "Monday": "11:00am - 12:15pm",
+      "Tuesday": "9:30am - 1:00pm",
+      "Wednesday": "11:00am - 12:15pm",
+      "Thursday": "9:30am - 12:45pm",
       "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 1324",
+    "courseName": "Math for Business",
+    "tutorName": "Sebastian Sanchez Reyes",
+    "days": {
+      "Monday": "2:00pm - 3:30pm",
+      "Tuesday": "1:30pm - 4:15pm",
+      "Wednesday": "2:00pm - 3:30pm",
+      "Thursday": "-",
+      "Friday": "-"
     }
   },
   {
@@ -2221,11 +2234,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Elementary Statistical Methods",
     "tutorName": "Fernando Casanova",
     "days": {
-      "Monday": "12:00pm-3:45pm",
-      "Tuesday": "1:00pm-3:15pm",
-      "Wednesday": "12:00pm-3:45pm",
-      "Thursday": "1:00pm-3:15pm",
-      "Friday": "9:00am-12:00pm"
+      "Monday": "12:00pm - 3:45pm",
+      "Tuesday": "1:00pm - 3:15pm",
+      "Wednesday": "12:00pm - 3:45pm",
+      "Thursday": "1:00pm - 3:15pm",
+      "Friday": "9:00am - 12:00pm"
     }
   },
   {
@@ -2233,11 +2246,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Elementary Statistical Methods",
     "tutorName": "Amanda Villa",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-10:30am",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-10:30am",
-      "Friday": "9:00am-12:00pm"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 10:30am",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 10:30am",
+      "Friday": "9:00am - 12:00pm"
     }
   },
   {
@@ -2247,7 +2260,7 @@ const TUTOR_SCHEDULE_DATA =
     "days": {
       "Monday": "OFF",
       "Tuesday": "OFF",
-      "Wednesday": "10:00am-2:00pm",
+      "Wednesday": "10:00am - 2:00pm",
       "Thursday": "OFF",
       "Friday": "OFF"
     }
@@ -2257,10 +2270,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Elementary Statistical Methods",
     "tutorName": "Alexis Aguilar",
     "days": {
-      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
-      "Tuesday": "11:00am-12:15pm",
-      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
-      "Thursday": "11:00am-12:15pm",
+      "Monday": "11:00am - 2:00pm & 2:30pm - 5:00pm",
+      "Tuesday": "11:00am - 12:15pm",
+      "Wednesday": "11:00am - 1:45pm & 3:45pm - 8:00pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "OFF"
     }
   },
@@ -2269,10 +2282,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Biostatistics",
     "tutorName": "Alexis Aguilar",
     "days": {
-      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
-      "Tuesday": "11:00am-12:15pm",
-      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
-      "Thursday": "11:00am-12:15pm",
+      "Monday": "11:00am - 2:00pm & 2:30pm - 5:00pm",
+      "Tuesday": "11:00am - 12:15pm",
+      "Wednesday": "11:00am - 1:45pm & 3:45pm - 8:00pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "OFF"
     }
   },
@@ -2281,11 +2294,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Intro to Biostatistics",
     "tutorName": "Amanda Villa",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-10:30am",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-10:30am",
-      "Friday": "9:00am-12:00pm"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 10:30am",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 10:30am",
+      "Friday": "9:00am - 12:00pm"
     }
   },
   {
@@ -2293,11 +2306,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Linear Algebra",
     "tutorName": "Karel Kishiko",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -2305,10 +2318,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Linear Algebra",
     "tutorName": "Juan Espinoza",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2317,10 +2330,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Math for EE & CE",
     "tutorName": "Fernando Quiroz",
     "days": {
-      "Monday": "10:45am-2:30pm",
-      "Tuesday": "10:45am-2:30pm",
-      "Wednesday": "10:45am-2:30pm",
-      "Thursday": "12:15pm-4:00pm",
+      "Monday": "10:45am - 2:30pm",
+      "Tuesday": "10:45am - 2:30pm",
+      "Wednesday": "10:45am - 2:30pm",
+      "Thursday": "12:15pm - 4:00pm",
       "Friday": "OFF"
     }
   },
@@ -2330,9 +2343,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Edgar Bello Gonzalez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
-      "Wednesday": "11:45am-1:45pm",
-      "Thursday": "10:15am-1:15pm",
+      "Tuesday": "10:15am - 1:15pm & 3:30pm - 4:30pm",
+      "Wednesday": "11:45am - 1:45pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
@@ -2341,10 +2354,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Precalculus",
     "tutorName": "Eduardo Bello Gonzalez",
     "days": {
-      "Monday": "11:00am-1:30pm",
-      "Tuesday": "11:00am-1:45pm",
-      "Wednesday": "11:00am-1:30pm",
-      "Thursday": "11:00am-12:15pm",
+      "Monday": "11:00am - 1:30pm",
+      "Tuesday": "11:00am - 1:45pm",
+      "Wednesday": "11:00am - 1:30pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "OFF"
     }
   },
@@ -2354,9 +2367,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Kenneth Davis",
     "days": {
       "Monday": "BROWNSVILLE",
-      "Tuesday": "11:00am-12:15pm",
+      "Tuesday": "11:00am - 12:15pm",
       "Wednesday": "BROWNSVILLE",
-      "Thursday": "11:00am-12:15pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "BROWNSVILLE"
     }
   },
@@ -2366,10 +2379,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Jacob Villarreal",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:45am-12:15pm",
-      "Wednesday": "9:00am-12:30pm",
-      "Thursday": "10:45am-12:15pm",
-      "Friday": "9:00am-10:30am"
+      "Tuesday": "10:45am - 12:15pm",
+      "Wednesday": "9:00am - 12:30pm",
+      "Thursday": "10:45am - 12:15pm",
+      "Friday": "9:00am - 10:30pm"
     }
   },
   {
@@ -2377,11 +2390,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Precalculus",
     "tutorName": "Karel Kishiko",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -2389,10 +2402,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Precalculus",
     "tutorName": "Juan Espinoza",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2402,9 +2415,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Angelina Anthony",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Tuesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Wednesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Thursday": "11:45am - 5:00pm & 3:30pm - 4:15pm",
       "Friday": "OFF"
     }
   },
@@ -2414,9 +2427,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Edgar Bello Gonzalez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
-      "Wednesday": "11:45am-1:45pm",
-      "Thursday": "10:15am-1:15pm",
+      "Tuesday": "10:15am - 1:15pm & 3:30pm - 4:30pm",
+      "Wednesday": "11:45am - 1:45pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
@@ -2425,10 +2438,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus I",
     "tutorName": "Eduardo Bello Gonzalez",
     "days": {
-      "Monday": "11:00am-1:30pm",
-      "Tuesday": "11:00am-1:45pm",
-      "Wednesday": "11:00am-1:30pm",
-      "Thursday": "11:00am-12:15pm",
+      "Monday": "11:00am - 1:30pm",
+      "Tuesday": "11:00am - 1:45pm",
+      "Wednesday": "11:00am - 1:30pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "OFF"
     }
   },
@@ -2438,9 +2451,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Kenneth Davis",
     "days": {
       "Monday": "BROWNSVILLE",
-      "Tuesday": "11:00am-12:15pm",
+      "Tuesday": "11:00am - 12:15pm",
       "Wednesday": "BROWNSVILLE",
-      "Thursday": "11:00am-12:15pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "BROWNSVILLE"
     }
   },
@@ -2449,11 +2462,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus I",
     "tutorName": "Miranda Villasenor",
     "days": {
-      "Monday": "11:30am-12:15pm & 2:30pm-3:15pm",
-      "Tuesday": "9:45am-12:45pm",
-      "Wednesday": "11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm",
-      "Thursday": "10:00am-1:00pm & 3:30pm-4:30pm",
-      "Friday": "10:00am-12:00pm"
+      "Monday": "11:30am - 12:15pm & 2:30pm - 3:15pm",
+      "Tuesday": "9:45am - 12:45pm",
+      "Wednesday": "11:30am - 12:15pm & 2:30pm - 3:15pm & 5:00pm - 6:00pm",
+      "Thursday": "10:00am - 1:00pm & 3:30pm - 4:30pm",
+      "Friday": "10:00am - 12:00pm"
     }
   },
   {
@@ -2463,8 +2476,8 @@ const TUTOR_SCHEDULE_DATA =
     "days": {
       "Monday": "OFF",
       "Tuesday": "OFF",
-      "Wednesday": "5:15pm-8:00pm",
-      "Thursday": "3:45pm-5:00pm",
+      "Wednesday": "5:15pm - 8:00pm",
+      "Thursday": "3:45pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2474,10 +2487,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Jacob Villarreal",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:45am-12:15pm",
-      "Wednesday": "9:00am-12:30pm",
-      "Thursday": "10:45am-12:15pm",
-      "Friday": "9:00am-10:30am"
+      "Tuesday": "10:45am - 12:15pm",
+      "Wednesday": "9:00am - 12:30pm",
+      "Thursday": "10:45am - 12:15pm",
+      "Friday": "9:00am - 10:30pm"
     }
   },
   {
@@ -2485,11 +2498,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus I",
     "tutorName": "Karel Kishiko",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -2497,10 +2510,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus I",
     "tutorName": "Juan Castillo",
     "days": {
-      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
-      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
-      "Thursday": "3:30pm-5:00pm",
+      "Monday": "11:00am - 1:00pm & 3:30pm - 4:45pm",
+      "Tuesday": "9:00am - 1:00pm & 3:30pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm & 3:30pm - 8:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2509,11 +2522,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus I",
     "tutorName": "Ethan De Leon",
     "days": {
-      "Monday": "9:00am-12:15pm",
-      "Tuesday": "1:15pm-4:00pm",
-      "Wednesday": "9:00am-12:15pm",
-      "Thursday": "1:15pm-4:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:15pm",
+      "Tuesday": "1:15pm - 4:00pm",
+      "Wednesday": "9:00am - 12:15pm",
+      "Thursday": "1:15pm - 4:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -2521,8 +2534,8 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus I",
     "tutorName": "Paul Diaz (SI Mentor)",
     "days": {
-      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Tuesday": "11:00am-1:45pm & 3:30pm-4:30pm",
+      "Monday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Tuesday": "11:00am - 1:45pm & 3:30pm - 4:30pm",
       "Wednesday": "Mentor Duties",
       "Thursday": "Mentor Duties",
       "Friday": "OFF"
@@ -2533,10 +2546,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus I",
     "tutorName": "Juan Espinoza",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2546,9 +2559,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Angelina Anthony",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Tuesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Wednesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Thursday": "11:45am - 5:00pm & 3:30pm - 4:15pm",
       "Friday": "OFF"
     }
   },
@@ -2558,9 +2571,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Edgar Bello Gonzalez",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
-      "Wednesday": "11:45am-1:45pm",
-      "Thursday": "10:15am-1:15pm",
+      "Tuesday": "10:15am - 1:15pm & 3:30pm - 4:30pm",
+      "Wednesday": "11:45am - 1:45pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
@@ -2569,10 +2582,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus II",
     "tutorName": "Eduardo Bello Gonzalez",
     "days": {
-      "Monday": "11:00am-1:30pm",
-      "Tuesday": "11:00am-1:45pm",
-      "Wednesday": "11:00am-1:30pm",
-      "Thursday": "11:00am-12:15pm",
+      "Monday": "11:00am - 1:30pm",
+      "Tuesday": "11:00am - 1:45pm",
+      "Wednesday": "11:00am - 1:30pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "OFF"
     }
   },
@@ -2582,9 +2595,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Kenneth Davis",
     "days": {
       "Monday": "BROWNSVILLE",
-      "Tuesday": "11:00am-12:15pm",
+      "Tuesday": "11:00am - 12:15pm",
       "Wednesday": "BROWNSVILLE",
-      "Thursday": "11:00am-12:15pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "BROWNSVILLE"
     }
   },
@@ -2595,8 +2608,8 @@ const TUTOR_SCHEDULE_DATA =
     "days": {
       "Monday": "OFF",
       "Tuesday": "OFF",
-      "Wednesday": "5:15pm-8:00pm",
-      "Thursday": "3:45pm-5:00pm",
+      "Wednesday": "5:15pm - 8:00pm",
+      "Thursday": "3:45pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2605,11 +2618,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus II",
     "tutorName": "Karel Kishiko",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -2617,10 +2630,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus II",
     "tutorName": "Juan Castillo",
     "days": {
-      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
-      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
-      "Thursday": "3:30pm-5:00pm",
+      "Monday": "11:00am - 1:00pm & 3:30pm - 4:45pm",
+      "Tuesday": "9:00am - 1:00pm & 3:30pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm & 3:30pm - 8:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2629,8 +2642,8 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus II",
     "tutorName": "Paul Diaz (SI Mentor)",
     "days": {
-      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Tuesday": "11:00am-1:45pm & 3:30pm-4:30pm",
+      "Monday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Tuesday": "11:00am - 1:45pm & 3:30pm - 4:30pm",
       "Wednesday": "Mentor Duties",
       "Thursday": "Mentor Duties",
       "Friday": "OFF"
@@ -2641,10 +2654,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus II",
     "tutorName": "Juan Espinoza",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2653,10 +2666,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus III",
     "tutorName": "Juan Castillo",
     "days": {
-      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
-      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
-      "Thursday": "3:30pm-5:00pm",
+      "Monday": "11:00am - 1:00pm & 3:30pm - 4:45pm",
+      "Tuesday": "9:00am - 1:00pm & 3:30pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm & 3:30pm - 8:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2665,22 +2678,22 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Calculus III",
     "tutorName": "Juan Espinoza",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
   {
-    "courseCode": "MATH 3341",
+    "courseCode": "MATH-3341",
     "courseName": "Differential Equations",
     "tutorName": "Juan Espinoza",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2690,9 +2703,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Angelina Anthony",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Tuesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Wednesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Thursday": "11:45am - 5:00pm & 3:30pm - 4:15pm",
       "Friday": "OFF"
     }
   },
@@ -2703,8 +2716,8 @@ const TUTOR_SCHEDULE_DATA =
     "days": {
       "Monday": "OFF",
       "Tuesday": "OFF",
-      "Wednesday": "5:15pm-8:00pm",
-      "Thursday": "3:45pm-5:00pm",
+      "Wednesday": "5:15pm - 8:00pm",
+      "Thursday": "3:45pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2714,10 +2727,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Jacob Villarreal",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:45am-12:15pm",
-      "Wednesday": "9:00am-12:30pm",
-      "Thursday": "10:45am-12:15pm",
-      "Friday": "9:00am-10:30am"
+      "Tuesday": "10:45am - 12:15pm",
+      "Wednesday": "9:00am - 12:30pm",
+      "Thursday": "10:45am - 12:15pm",
+      "Friday": "9:00am - 10:30pm"
     }
   },
   {
@@ -2725,11 +2738,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Statics",
     "tutorName": "Karel Kishiko",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -2737,10 +2750,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Statics",
     "tutorName": "Juan Castillo",
     "days": {
-      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
-      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
-      "Thursday": "3:30pm-5:00pm",
+      "Monday": "11:00am - 1:00pm & 3:30pm - 4:45pm",
+      "Tuesday": "9:00am - 1:00pm & 3:30pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm & 3:30pm - 8:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2749,11 +2762,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Statics",
     "tutorName": "Ethan De Leon",
     "days": {
-      "Monday": "9:00am-12:15pm",
-      "Tuesday": "1:15pm-4:00pm",
-      "Wednesday": "9:00am-12:15pm",
-      "Thursday": "1:15pm-4:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:15pm",
+      "Tuesday": "1:15pm - 4:00pm",
+      "Wednesday": "9:00am - 12:15pm",
+      "Thursday": "1:15pm - 4:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -2761,10 +2774,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Dynamics",
     "tutorName": "Juan Castillo",
     "days": {
-      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
-      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
-      "Thursday": "3:30pm-5:00pm",
+      "Monday": "11:00am - 1:00pm & 3:30pm - 4:45pm",
+      "Tuesday": "9:00am - 1:00pm & 3:30pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm & 3:30pm - 8:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2774,9 +2787,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Angelina Anthony",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
-      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Tuesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Wednesday": "11:45am - 1:45pm & 3:30pm - 4:15pm",
+      "Thursday": "11:45am - 5:00pm & 3:30pm - 4:15pm",
       "Friday": "OFF"
     }
   },
@@ -2787,8 +2800,8 @@ const TUTOR_SCHEDULE_DATA =
     "days": {
       "Monday": "OFF",
       "Tuesday": "OFF",
-      "Wednesday": "5:15pm-8:00pm",
-      "Thursday": "3:45pm-5:00pm",
+      "Wednesday": "5:15pm - 8:00pm",
+      "Thursday": "3:45pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2798,10 +2811,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Jacob Villarreal",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "10:45am-12:15pm",
-      "Wednesday": "9:00am-12:30pm",
-      "Thursday": "10:45am-12:15pm",
-      "Friday": "9:00am-10:30am"
+      "Tuesday": "10:45am - 12:15pm",
+      "Wednesday": "9:00am - 12:30pm",
+      "Thursday": "10:45am - 12:15pm",
+      "Friday": "9:00am - 10:30pm"
     }
   },
   {
@@ -2809,10 +2822,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "System Dynamics",
     "tutorName": "Juan Castillo",
     "days": {
-      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
-      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
-      "Thursday": "3:30pm-5:00pm",
+      "Monday": "11:00am - 1:00pm & 3:30pm - 4:45pm",
+      "Tuesday": "9:00am - 1:00pm & 3:30pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm & 3:30pm - 8:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2821,10 +2834,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Thermodynamics I",
     "tutorName": "Juan Castillo",
     "days": {
-      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
-      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
-      "Thursday": "3:30pm-5:00pm",
+      "Monday": "11:00am - 1:00pm & 3:30pm - 4:45pm",
+      "Tuesday": "9:00am - 1:00pm & 3:30pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm & 3:30pm - 8:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2833,10 +2846,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Mechanical Engineering Analysis",
     "tutorName": "Juan Castillo",
     "days": {
-      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
-      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
-      "Thursday": "3:30pm-5:00pm",
+      "Monday": "11:00am - 1:00pm & 3:30pm - 4:45pm",
+      "Tuesday": "9:00am - 1:00pm & 3:30pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm & 3:30pm - 8:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -2846,10 +2859,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Marisol Mejia",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
-      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+      "Tuesday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Wednesday": "6:30pm - 8:00pm EPAC C1.108",
+      "Thursday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Friday": "9:00am - 12:00pm; EPAC C1.108"
     }
   },
   {
@@ -2858,10 +2871,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Marisol Mejia",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
-      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+      "Tuesday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Wednesday": "6:30pm - 8:00pm EPAC C1.108",
+      "Thursday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Friday": "9:00am - 12:00pm; EPAC C1.108"
     }
   },
   {
@@ -2870,10 +2883,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Marisol Mejia",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
-      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+      "Tuesday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Wednesday": "6:30pm - 8:00pm EPAC C1.108",
+      "Thursday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Friday": "9:00am - 12:00pm; EPAC C1.108"
     }
   },
   {
@@ -2882,10 +2895,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Marisol Mejia",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
-      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+      "Tuesday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Wednesday": "6:30pm - 8:00pm EPAC C1.108",
+      "Thursday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Friday": "9:00am - 12:00pm; EPAC C1.108"
     }
   },
   {
@@ -2894,10 +2907,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Marisol Mejia",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
-      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+      "Tuesday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Wednesday": "6:30pm - 8:00pm EPAC C1.108",
+      "Thursday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Friday": "9:00am - 12:00pm; EPAC C1.108"
     }
   },
   {
@@ -2906,10 +2919,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Marisol Mejia",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
-      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+      "Tuesday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Wednesday": "6:30pm - 8:00pm EPAC C1.108",
+      "Thursday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Friday": "9:00am - 12:00pm; EPAC C1.108"
     }
   },
   {
@@ -2918,10 +2931,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Marisol Mejia",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
-      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+      "Tuesday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Wednesday": "6:30pm - 8:00pm EPAC C1.108",
+      "Thursday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Friday": "9:00am - 12:00pm; EPAC C1.108"
     }
   },
   {
@@ -2930,10 +2943,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Marisol Mejia",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
-      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+      "Tuesday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Wednesday": "6:30pm - 8:00pm EPAC C1.108",
+      "Thursday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Friday": "9:00am - 12:00pm; EPAC C1.108"
     }
   },
   {
@@ -2942,10 +2955,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Marisol Mejia",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
-      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+      "Tuesday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Wednesday": "6:30pm - 8:00pm EPAC C1.108",
+      "Thursday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Friday": "9:00am - 12:00pm; EPAC C1.108"
     }
   },
   {
@@ -2954,10 +2967,10 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Marisol Mejia",
     "days": {
       "Monday": "OFF",
-      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
-      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
-      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+      "Tuesday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Wednesday": "6:30pm - 8:00pm EPAC C1.108",
+      "Thursday": "9:00am - 12:00pm; EPAC C1.108 & 2:45pm - 5:00pm; EPAC C1.108",
+      "Friday": "9:00am - 12:00pm; EPAC C1.108"
     }
   },
   {
@@ -2968,7 +2981,7 @@ const TUTOR_SCHEDULE_DATA =
       "Monday": "OFF",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
-      "Thursday": "12:00pm-5:00pm",
+      "Thursday": "12:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -3004,7 +3017,7 @@ const TUTOR_SCHEDULE_DATA =
       "Monday": "OFF",
       "Tuesday": "OFF",
       "Wednesday": "OFF",
-      "Thursday": "12:00pm-5:00pm",
+      "Thursday": "12:00pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -3085,10 +3098,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Physics I",
     "tutorName": "Samuel Marshall",
     "days": {
-      "Monday": "10:45am-12:45pm",
-      "Tuesday": "9:00am-10:45am",
-      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
-      "Thursday": "9:00am-12:30pm",
+      "Monday": "10:45am - 12:45pm",
+      "Tuesday": "9:00am - 10:45am",
+      "Wednesday": "9:00am - 10:45am & 7:00pm - 8:00pm",
+      "Thursday": "9:00am - 12:30pm",
       "Friday": "OFF"
     }
   },
@@ -3097,8 +3110,8 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Physics I",
     "tutorName": "Paul Diaz (SI Mentor)",
     "days": {
-      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Tuesday": "11:00am-1:45pm & 3:30pm-4:30pm",
+      "Monday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Tuesday": "11:00am - 1:45pm & 3:30pm - 4:30pm",
       "Wednesday": "Mentor Duties",
       "Thursday": "Mentor Duties",
       "Friday": "OFF"
@@ -3109,10 +3122,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Physics I",
     "tutorName": "Juan Espinoza",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -3121,10 +3134,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "General Physics II",
     "tutorName": "Juan Espinoza",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -3134,9 +3147,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Kenneth Davis",
     "days": {
       "Monday": "BROWNSVILLE",
-      "Tuesday": "11:00am-12:15pm",
+      "Tuesday": "11:00am - 12:15pm",
       "Wednesday": "BROWNSVILLE",
-      "Thursday": "11:00am-12:15pm",
+      "Thursday": "11:00am - 12:15pm",
       "Friday": "BROWNSVILLE"
     }
   },
@@ -3145,10 +3158,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Physics for Sci & Engr I",
     "tutorName": "Juan Castillo",
     "days": {
-      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
-      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
-      "Thursday": "3:30pm-5:00pm",
+      "Monday": "11:00am - 1:00pm & 3:30pm - 4:45pm",
+      "Tuesday": "9:00am - 1:00pm & 3:30pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm & 3:30pm - 8:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -3157,11 +3170,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Physics for Sci & Engr I",
     "tutorName": "Ethan De Leon",
     "days": {
-      "Monday": "9:00am-12:15pm",
-      "Tuesday": "1:15pm-4:00pm",
-      "Wednesday": "9:00am-12:15pm",
-      "Thursday": "1:15pm-4:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:15pm",
+      "Tuesday": "1:15pm - 4:00pm",
+      "Wednesday": "9:00am - 12:15pm",
+      "Thursday": "1:15pm - 4:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -3169,8 +3182,8 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Physics for Sci & Engr I",
     "tutorName": "Paul Diaz (SI Mentor)",
     "days": {
-      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
-      "Tuesday": "11:00am-1:45pm & 3:30pm-4:30pm",
+      "Monday": "9:00am - 10:45am & 3:30pm - 5:00pm",
+      "Tuesday": "11:00am - 1:45pm & 3:30pm - 4:30pm",
       "Wednesday": "Mentor Duties",
       "Thursday": "Mentor Duties",
       "Friday": "OFF"
@@ -3181,10 +3194,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Physics for Sci & Engr I",
     "tutorName": "Juan Espinoza",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -3193,11 +3206,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Physics for Sci & Engr II",
     "tutorName": "Karel Kishiko",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -3205,10 +3218,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Physics for Sci & Engr II",
     "tutorName": "Juan Castillo",
     "days": {
-      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
-      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
-      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
-      "Thursday": "3:30pm-5:00pm",
+      "Monday": "11:00am - 1:00pm & 3:30pm - 4:45pm",
+      "Tuesday": "9:00am - 1:00pm & 3:30pm - 5:00pm",
+      "Wednesday": "11:00am - 1:00pm & 3:30pm - 8:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -3217,11 +3230,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Physics for Sci & Engr II",
     "tutorName": "Ethan De Leon",
     "days": {
-      "Monday": "9:00am-12:15pm",
-      "Tuesday": "1:15pm-4:00pm",
-      "Wednesday": "9:00am-12:15pm",
-      "Thursday": "1:15pm-4:00pm",
-      "Friday": "9:00am-10:00am"
+      "Monday": "9:00am - 12:15pm",
+      "Tuesday": "1:15pm - 4:00pm",
+      "Wednesday": "9:00am - 12:15pm",
+      "Thursday": "1:15pm - 4:00pm",
+      "Friday": "9:00am - 10:00am"
     }
   },
   {
@@ -3229,22 +3242,22 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Physics for Sci & Engr II",
     "tutorName": "Juan Espinoza",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
   {
-    "courseCode": "PHYS 2327",
+    "courseCode": "PHYS-2327",
     "courseName": "Physics for Sci & Engr III",
     "tutorName": "Juan Espinoza",
     "days": {
-      "Monday": "9:00am-12:00pm",
-      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
-      "Wednesday": "9:00am-12:00pm",
-      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Monday": "9:00am - 12:00pm",
+      "Tuesday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
+      "Wednesday": "9:00am - 12:00pm",
+      "Thursday": "9:00am - 12:00pm & 2:30pm - 5:00pm",
       "Friday": "OFF"
     }
   },
@@ -3253,10 +3266,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Business Statistics I",
     "tutorName": "Cristian Gonzalez (Lead Tutor)",
     "days": {
-      "Monday": "2:30pm-5:00pm",
-      "Tuesday": "3:30pm-5:00pm",
+      "Monday": "2:30pm - 5:00pm",
+      "Tuesday": "3:30pm - 5:00pm",
       "Wednesday": "Brownsville",
-      "Thursday": "3:30pm-5:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "Lead Tutor Duties"
     }
   },
@@ -3265,11 +3278,11 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Business Statistics I",
     "tutorName": "Fernando Casanova",
     "days": {
-      "Monday": "12:00pm-3:45pm",
-      "Tuesday": "1:00pm-3:15pm",
-      "Wednesday": "12:00pm-3:45pm",
-      "Thursday": "1:00pm-3:15pm",
-      "Friday": "9:00am-12:00pm"
+      "Monday": "12:00pm - 3:45pm",
+      "Tuesday": "1:00pm - 3:15pm",
+      "Wednesday": "12:00pm - 3:45pm",
+      "Thursday": "1:00pm - 3:15pm",
+      "Friday": "9:00am - 12:00pm"
     }
   },
   {
@@ -3277,10 +3290,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Business Statistics I",
     "tutorName": "Daniela Celaya (Lead Tutor)",
     "days": {
-      "Monday": "11:00am-12:00pm",
+      "Monday": "11:00pm - 12:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "10:15am-1:15pm",
-      "Thursday": "10:15am-1:15pm",
+      "Wednesday": "10:15am - 1:15pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
@@ -3289,10 +3302,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Decision Analytics",
     "tutorName": "Cristian Gonzalez (Lead Tutor)",
     "days": {
-      "Monday": "2:30pm-5:00pm",
-      "Tuesday": "3:30pm-5:00pm",
+      "Monday": "2:30pm - 5:00pm",
+      "Tuesday": "3:30pm - 5:00pm",
       "Wednesday": "Brownsville",
-      "Thursday": "3:30pm-5:00pm",
+      "Thursday": "3:30pm - 5:00pm",
       "Friday": "Lead Tutor Duties"
     }
   },
@@ -3301,10 +3314,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Decision Analytics",
     "tutorName": "Daniela Celaya (Lead Tutor)",
     "days": {
-      "Monday": "11:00am-12:00pm",
+      "Monday": "11:00pm - 12:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "10:15am-1:15pm",
-      "Thursday": "10:15am-1:15pm",
+      "Wednesday": "10:15am - 1:15pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
@@ -3313,10 +3326,10 @@ const TUTOR_SCHEDULE_DATA =
     "courseName": "Business Statistics II",
     "tutorName": "Daniela Celaya (Lead Tutor)",
     "days": {
-      "Monday": "11:00am-12:00pm",
+      "Monday": "11:00pm - 12:00pm",
       "Tuesday": "OFF",
-      "Wednesday": "10:15am-1:15pm",
-      "Thursday": "10:15am-1:15pm",
+      "Wednesday": "10:15am - 1:15pm",
+      "Thursday": "10:15am - 1:15pm",
       "Friday": "OFF"
     }
   },
@@ -3326,9 +3339,9 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Paulina Olvera Leal",
     "days": {
       "Monday": "BROWNSVILLE",
-      "Tuesday": "4:00pm-5:00pm",
+      "Tuesday": "4:00pm - 5:00pm",
       "Wednesday": "BROWNSVILLE",
-      "Thursday": "4:00pm-5:00pm",
+      "Thursday": "4:00pm - 5:00pm",
       "Friday": "BROWNSVILLE"
     }
   },
@@ -3338,10 +3351,11 @@ const TUTOR_SCHEDULE_DATA =
     "tutorName": "Paulina Olvera Leal",
     "days": {
       "Monday": "BROWNSVILLE",
-      "Tuesday": "4:00pm-5:00pm",
+      "Tuesday": "4:00pm - 5:00pm",
       "Wednesday": "BROWNSVILLE",
-      "Thursday": "4:00pm-5:00pm",
+      "Thursday": "4:00pm - 5:00pm",
       "Friday": "BROWNSVILLE"
     }
   }
 ];
+
