@@ -1,331 +1,4124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tutor Schedule Finder – UTRGV ADA Learning Center</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Patua+One&display=swap" rel="stylesheet">
-<style>
-/* ── UTRGV Official Brand Tokens ── */
-:root {
-  --orange:    #F05023;  /* PMS 1655 C */
-  --gray:      #646469;  /* Cool Gray 10 */
-  --dark-gray: #3a3a3e;
-  --white:     #FFFFFF;
-  --bg:        #F4F4F5;
-  --surface:   #FFFFFF;
-  --border:    #D1D1D4;
-  --text:      #1a1a1a;
-  --muted:     #4a4a4e;
-  --font-head: 'Patua One', Georgia, serif;
-  --font-body: 'Red Hat Display', 'Helvetica Neue', Arial, sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutor Schedule Finder – Readable Version</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&family=Patua+One&display=swap" rel="stylesheet">
+  <style>
+    /*
+      =========================
+      EASY-TO-EDIT STYLE AREA
+      =========================
+      If you want to change colors, fonts, spacing, or sizes,
+      this is the first place to edit.
+    */
 
-/* Skip link – WCAG 2.4.1 */
-.skip{position:absolute;top:-100%;left:0;background:var(--dark-gray);color:var(--white);
-  padding:10px 18px;font-size:.9rem;font-weight:600;z-index:9999;text-decoration:none;
-  border-radius:0 0 6px 0;}
-.skip:focus{top:0;}
+    :root {
+      --orange: #F05023;
+      --gray: #646469;
+      --dark-gray: #3A3A3E;
+      --white: #FFFFFF;
+      --page-bg: #F4F4F5;
+      --card-bg: #FFFFFF;
+      --border: #D1D1D4;
+      --text: #1A1A1A;
+      --muted: #4A4A4E;
+      --heading-font: 'Patua One', Georgia, serif;
+      --body-font: 'Red Hat Display', Arial, sans-serif;
+    }
 
-/* Header – white-on-orange passes WCAG AA */
-header{background:var(--orange);color:var(--white);position:sticky;top:0;z-index:100;
-  box-shadow:0 3px 12px rgba(0,0,0,.22);}
-.hi{max-width:1160px;margin:0 auto;padding:18px 24px 22px;}
-.br{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap;}
-.bb{background:var(--white);color:var(--orange);font-family:var(--font-head);font-size:.95rem;
-  padding:5px 13px;border-radius:4px;white-space:nowrap;flex-shrink:0;}
-.bt{font-family:var(--font-head);font-size:1.4rem;color:var(--white);line-height:1.2;}
-.bs{font-size:.82rem;font-weight:400;color:rgba(255,255,255,.88);margin-top:2px;}
-.page-title{font-family:var(--font-head);font-size:1.4rem;color:var(--white);line-height:1.2;}
-.page-subtitle{font-size:.82rem;font-weight:400;color:rgba(255,255,255,.88);margin-top:2px;}
+    * { box-sizing: border-box; }
 
-/* Search */
-.sr{display:flex;gap:14px;flex-wrap:wrap;}
-.sg{position:relative;flex:1;min-width:220px;}
-.sg label{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;
-  letter-spacing:.1em;color:rgba(255,255,255,.92);margin-bottom:5px;}
-.sg input{width:100%;padding:11px 16px;border-radius:6px;border:2px solid rgba(255,255,255,.35);
-  background:rgba(255,255,255,.15);color:var(--white);font-family:var(--font-body);
-  font-size:.95rem;font-weight:500;outline:none;caret-color:var(--white);}
-.sg input::placeholder{color:rgba(255,255,255,.52);font-weight:400;}
-.sg input:focus{border-color:var(--white);background:rgba(255,255,255,.24);
-  box-shadow:0 0 0 3px rgba(255,255,255,.38);}
+    body {
+      margin: 0;
+      font-family: var(--body-font);
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--page-bg);
+    }
 
-/* Dropdown */
-.dd{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--surface);
-  border:2px solid var(--orange);border-radius:6px;max-height:240px;overflow-y:auto;
-  z-index:300;box-shadow:0 6px 20px rgba(0,0,0,.14);display:none;}
-.dd.open{display:block;}
-.ddi{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;
-  cursor:pointer;font-size:.87rem;color:var(--text);border-bottom:1px solid var(--border);}
-.ddi:last-child{border-bottom:none;}
-.ddi:hover,.ddi:focus{background:#fde9e3;outline:2px solid var(--orange);outline-offset:-2px;}
-.ddc{font-size:.74rem;font-weight:700;color:var(--orange);background:#fde9e3;
-  padding:2px 7px;border-radius:3px;flex-shrink:0;margin-left:8px;}
-.ddn{flex:1;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
 
-/* Main */
-main{max-width:1160px;margin:0 auto;padding:32px 24px 64px;}
+    .skip-link {
+      position: absolute;
+      left: 0;
+      top: -100px;
+      background: var(--dark-gray);
+      color: var(--white);
+      padding: 10px 16px;
+      z-index: 1000;
+      text-decoration: none;
+      border-radius: 0 0 6px 0;
+    }
 
-/* Placeholder */
-.ph{text-align:center;padding:72px 20px;color:var(--muted);}
-.phi{display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;
-  background:#f0e8e5;border-radius:50%;margin-bottom:20px;}
-.ph h2{font-family:var(--font-head);font-size:1.25rem;color:var(--dark-gray);margin-bottom:8px;}
-.ph p{font-size:.92rem;max-width:380px;margin:0 auto;}
+    .skip-link:focus { top: 0; }
 
-/* Results header */
-.rh{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;
-  margin-bottom:24px;padding-bottom:12px;border-bottom:3px solid var(--orange);}
-.rht{font-family:var(--font-head);font-size:1.18rem;color:var(--dark-gray);}
-.rht .q{color:var(--orange);}
-.rhc{font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+    header {
+      background: var(--orange);
+      color: var(--white);
+      box-shadow: 0 3px 12px rgba(0,0,0,.22);
+    }
 
-/* Course section */
-.cs{margin-bottom:30px;}
-.csh{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
-/* white-on-orange = WCAG AA */
-.ccb{background:var(--orange);color:var(--white);font-family:var(--font-head);font-size:.87rem;
-  padding:4px 12px;border-radius:4px;white-space:nowrap;}
-.csn{font-family:var(--font-head);font-size:1rem;color:var(--dark-gray);}
-.csc{margin-left:auto;font-size:.73rem;font-weight:700;color:var(--muted);
-  text-transform:uppercase;letter-spacing:.05em;}
+    .page-shell {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
 
-/* Tutor card */
-.tc{background:var(--surface);border:2px solid var(--border);border-left:5px solid var(--orange);
-  border-radius:8px;margin-bottom:11px;overflow:hidden;animation:up .18s ease both;}
-@keyframes up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
-.tch{display:flex;align-items:center;gap:12px;padding:12px 18px;
-  background:#f5f5f6;border-bottom:1px solid var(--border);}
-/* white-on-dark-gray = WCAG AAA */
-.av{width:37px;height:37px;border-radius:50%;background:var(--dark-gray);color:var(--white);
-  font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.tcn{font-weight:700;font-size:.93rem;color:var(--text);}
-.rb{margin-left:auto;font-size:.68rem;font-weight:700;text-transform:uppercase;
-  letter-spacing:.06em;padding:3px 9px;border-radius:3px;flex-shrink:0;}
-.rb.lead{background:var(--dark-gray);color:var(--white);}  /* white-on-dark-gray WCAG AAA */
-.rb.mentor{background:var(--gray);color:var(--white);}     /* white-on-gray WCAG AA */
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
 
-/* Accessible schedule table */
-.st{width:100%;border-collapse:collapse;table-layout:fixed;}
-.st th,.st td{padding:12px 10px;border-right:1px solid var(--border);vertical-align:top;}
-.st th:last-child,.st td:last-child{border-right:none;}
-.st thead th{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
-  color:var(--gray);background:#fbfbfb;text-align:left;}
-.st td{font-size:.78rem;color:var(--text);line-height:1.6;font-weight:500;}
-.tv{font-size:.78rem;color:var(--text);line-height:1.6;font-weight:500;display:block;}
-.tv.off{color:var(--muted);font-weight:400;}
-.tv.sp{color:var(--dark-gray);font-style:italic;font-size:.75rem;}
-.op{display:inline-block;background:#e8e8ea;color:var(--muted);font-size:.69rem;
-  font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 6px;border-radius:3px;}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+    .brand-badge {
+      background: var(--white);
+      color: var(--orange);
+      padding: 6px 13px;
+      border-radius: 4px;
+      font-family: var(--heading-font);
+      font-size: 1rem;
+    }
 
-/* Tutor profile (tutor search view) – white-on-orange = WCAG AA */
-.tpc{background:var(--orange);border-radius:8px;padding:18px 22px;margin-bottom:18px;
-  display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:up .18s ease both;}
-/* orange-on-white avatar = WCAG AA */
-.tpa{width:50px;height:50px;border-radius:50%;background:var(--white);color:var(--orange);
-  font-family:var(--font-head);font-size:1.05rem;display:flex;align-items:center;
-  justify-content:center;flex-shrink:0;}
-.tpn{font-family:var(--font-head);font-size:1.18rem;color:var(--white);}
-.tpm{font-size:.81rem;color:rgba(255,255,255,.88);margin-top:2px;}
-.tprb{margin-left:auto;font-size:.68rem;font-weight:700;text-transform:uppercase;
-  letter-spacing:.06em;padding:4px 10px;border-radius:3px;background:var(--white);
-  color:var(--orange);flex-shrink:0;}
+    h1 {
+      margin: 0;
+      font-family: var(--heading-font);
+      font-size: 2rem;
+    }
 
-/* Course card (tutor view) */
-.crc{background:var(--surface);border:2px solid var(--border);border-left:5px solid var(--gray);
-  border-radius:8px;margin-bottom:11px;overflow:hidden;animation:up .18s ease both;}
-.crch{display:flex;align-items:center;gap:12px;padding:12px 18px;
-  background:#f5f5f6;border-bottom:1px solid var(--border);flex-wrap:wrap;}
-.crcn{font-size:.91rem;font-weight:600;color:var(--text);}
+    .subtitle {
+      margin: 4px 0 0;
+      color: rgba(255,255,255,.9);
+    }
 
-/* Misc */
-.nr{text-align:center;padding:48px 24px;color:var(--muted);font-size:.91rem;}
-.tdiv{border:none;border-top:2px solid var(--border);margin:30px 0;}
-:focus-visible{outline:3px solid var(--orange);outline-offset:2px;}
+    .search-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-@media(max-width:680px){.page-title,.bt{font-size:1.1rem;}.hi{padding:14px 16px 18px;}main{padding:20px 14px 48px;} .st{display:block;overflow-x:auto;}}
-@media(max-width:420px){.bb{display:none;}}
-</style>
+    .search-group {
+      position: relative;
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .search-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-size: .95rem;
+    }
+
+    .search-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 2px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.16);
+      color: var(--white);
+      font-size: 1.05rem;
+    }
+
+    .search-group input::placeholder { color: rgba(255,255,255,.7); }
+
+    .search-group input:focus,
+    .suggestion-item:focus,
+    button:focus,
+    a:focus,
+    input:focus {
+      outline: 3px solid var(--white);
+      outline-offset: 2px;
+    }
+
+    .suggestions {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      display: none;
+      max-height: 250px;
+      overflow-y: auto;
+      background: var(--white);
+      border: 2px solid var(--orange);
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.14);
+      z-index: 20;
+    }
+
+    .suggestions.open { display: block; }
+
+    .suggestion-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .suggestion-item:last-child { border-bottom: none; }
+
+    .suggestion-item:hover,
+    .suggestion-item[aria-selected="true"] {
+      background: #FDE9E3;
+    }
+
+    main.page-shell {
+      padding-top: 28px;
+      padding-bottom: 60px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 70px 20px;
+      color: var(--muted);
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: baseline;
+      border-bottom: 3px solid var(--orange);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+
+    .results-header h2 {
+      margin: 0;
+      font-family: var(--heading-font);
+      font-size: 1.4rem;
+      color: var(--dark-gray);
+    }
+
+    .results-count {
+      font-size: .95rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-left: 6px solid var(--orange);
+      border-radius: 10px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: #F5F5F6;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .card-subtitle {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table th,
+    .info-table td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .info-table th {
+      width: 180px;
+      background: #FAFAFA;
+      font-size: .95rem;
+    }
+
+    .info-table tr:last-child th,
+    .info-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .muted { color: var(--muted); }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #FDE9E3;
+      color: var(--orange);
+      border-radius: 4px;
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 700px) {
+      body { font-size: 17px; }
+      .page-shell { padding-left: 14px; padding-right: 14px; }
+      h1 { font-size: 1.7rem; }
+      .info-table th,
+      .info-table td { display: block; width: 100%; }
+      .info-table th { border-bottom: none; padding-bottom: 4px; }
+      .info-table td { padding-top: 0; }
+    }
+  </style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to main content</a>
-<header role="banner">
-  <div class="hi">
-    <div class="br">
-      <div class="bb" aria-hidden="true">UTRGV</div>
-      <div>
-        <h1 class="page-title">Tutor Schedule Finder</h1>
-        <p class="page-subtitle">ADA Learning Center &nbsp;&middot;&nbsp; The University of Texas Rio Grande Valley</p>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header>
+    <div class="page-shell">
+      <div class="brand-row">
+        <div class="brand-badge" aria-hidden="true">UTRGV</div>
+        <div>
+          <h1>Tutor Schedule Finder</h1>
+          <p class="subtitle">ADA Learning Center · The University of Texas Rio Grande Valley</p>
+        </div>
+      </div>
+
+      <!--
+        EASY-TO-EDIT SEARCH LABELS
+        Change the visible labels or placeholders here.
+      -->
+      <div class="search-row" role="search">
+        <div class="search-group" id="course-search-group">
+          <label for="course-search">Search by Subject or Course Code</label>
+          <input
+            id="course-search"
+            type="search"
+            placeholder="Example: MATH 2413, Biology, Calculus"
+            autocomplete="off"
+            aria-label="Search by subject or course code"
+            aria-describedby="course-help"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="course-suggestions"
+          >
+          <div id="course-help" class="sr-only">Use arrow keys to move through suggestions and Enter to choose one.</div>
+          <div id="course-suggestions" class="suggestions" role="listbox" aria-label="Course suggestions"></div>
+        </div>
+
+        <div class="search-group" id="day-search-group">
+          <label for="day-search">Search by Day</label>
+          <input
+            id="day-search"
+            type="search"
+            placeholder="Example: Monday, Tuesday, Wednesday"
+            autocomplete="off"
+            aria-label="Search by day"
+            aria-describedby="day-help"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="day-suggestions"
+          >
+          <div id="day-help" class="sr-only">Use arrow keys to move through suggestions and Enter to choose one.</div>
+          <div id="day-suggestions" class="suggestions" role="listbox" aria-label="Day suggestions"></div>
+        </div>
       </div>
     </div>
-    <div class="sr" role="search">
-      <div class="sg" id="sg1">
-        <label for="i1">Search by Subject or Course Code</label>
-        <input type="search" id="i1" placeholder="e.g. MATH 2413, Biology, Calculus&hellip;"
-          autocomplete="off" aria-haspopup="listbox" aria-expanded="false" aria-controls="dd1"
-          aria-autocomplete="list" aria-describedby="i1-help">
-        <span id="i1-help" class="sr-only">Use the down arrow key to review course suggestions, then press Enter to select one.</span>
-        <div id="dd1" class="dd" role="listbox" aria-label="Course suggestions"></div>
-      </div>
-      <div class="sg" id="sg2">
-        <label for="i2">Search by Tutor Name</label>
-        <input type="search" id="i2" placeholder="e.g. Matthew Chapa, Fernando&hellip;"
-          autocomplete="off" aria-haspopup="listbox" aria-expanded="false" aria-controls="dd2"
-          aria-autocomplete="list" aria-describedby="i2-help">
-        <span id="i2-help" class="sr-only">Use the down arrow key to review tutor suggestions, then press Enter to select one.</span>
-        <div id="dd2" class="dd" role="listbox" aria-label="Tutor suggestions"></div>
-      </div>
-    </div>
-  </div>
-</header>
-<main id="main" tabindex="-1">
-  <div id="ph" class="ph" role="status">
-    <div class="phi" aria-hidden="true">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F05023" stroke-width="1.8">
-        <rect x="3" y="4" width="18" height="18" rx="2"/>
-        <line x1="16" y1="2" x2="16" y2="6"/>
-        <line x1="8" y1="2" x2="8" y2="6"/>
-        <line x1="3" y1="10" x2="21" y2="10"/>
-      </svg>
-    </div>
-    <h2>Find a Tutor or Subject</h2>
-    <p>Type a course name, code, or tutor name above to view weekly availability.</p>
-  </div>
-  <div id="res" style="display:none" aria-live="polite" aria-atomic="false"></div>
-</main>
-<script>
-const D=[["ACCT 2301","Intro to Financial Acct","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["ACCT 2301","Intro to Financial Acct","Sebastian Sanchez Reyes","11:00am-12:15pm & 2:00pm-3:45pm","9:30am-1:00pm & 1:30pm-4:15pm","11:00am-12:15pm & 2:00pm-3:30pm","9:30am-12:45pm","OFF"],["ACCT 2301","Intro to Financial Acct","Fernando Casanova","12:00pm-3:45pm","1:00pm-3:15pm","12:00pm-3:45pm","1:00pm-3:15pm","9:00am-12:00pm"],["ACCT 2301","Intro to Financial Acct","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["ACCT 2302","Intro to Managerial Acct","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["ACCT 2302","Intro to Managerial Acct","Sebastian Sanchez Reyes","11:00am-12:15pm & 2:00pm-3:30pm","9:30am-1:00pm & 1:30pm-4:15pm","11:00am-12:15pm & 2:00pm-3:30pm","9:30am-12:45pm","OFF"],["ACCT 2302","Intro to Managerial Acct","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["ACCT 3321","Intermediate Accounting I","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["ACCT 3322","Intermediate Accounting II","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["ACCT 3326","Accounting Info Systems","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["ASLI 1310","ASL I","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 1310","ASL I","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 1310","ASL I","Josue Peralta De Jesus","11:00am-12:30pm & 3:30pm-5:00pm","9:00am-12:00pm & 3:00pm-5:00pm","11:00am-1:00pm","9:00am-12:00pm & 3:00pm-5:00pm","OFF"],["ASLI 1310","ASL I","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 1320","ASL II","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 1320","ASL II","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 1320","ASL II","Josue Peralta De Jesus","11:00am-12:30pm & 3:30pm-5:00pm","9:00am-12:00pm & 3:00pm-5:00pm","11:00am-1:00pm","9:00am-12:00pm & 3:00pm-5:00pm","OFF"],["ASLI 1320","ASL II","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 2310","ASL III","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 2310","ASL III","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 2310","ASL III","Josue Peralta De Jesus","11:00am-12:30pm & 3:30pm-5:00pm","9:00am-12:00pm & 3:00pm-5:00pm","11:00am-1:00pm","9:00am-12:00pm & 3:00pm-5:00pm","OFF"],["ASLI 2310","ASL III","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 3310","ASL IV","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 3310","ASL IV","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 3310","ASL IV","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 3320","ASL V","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 3320","ASL V","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 3320","ASL V","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 3325","Interpreting I","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 3325","Interpreting I","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 3340","Intro to Classifiers","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 3340","Intro to Classifiers","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["ASLI 3340","Intro to Classifiers","Mario Salinas","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","9:00am-10:45am & 3:30pm-5:00pm","9:00am-12:00pm & 2:00pm-5:00pm","OFF"],["ASLI 3345","Interpreting II","Gabrielle Houston","12:30pm-3:00pm & 4:00pm-6:00pm","OFF","4:00pm-6:00pm","12:00pm-3:00pm & 4:00pm-6:00pm","12:30pm-3:00pm"],["ASLI 3345","Interpreting II","Ruby Mendieta","OFF","9:00am-3:00pm","4:00pm-8:00pm","9:00am-3:00pm","9:00am-11:00am"],["BIOL 1406","General Biology I","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BIOL 1406","General Biology I","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 1406","General Biology I","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 1406","General Biology I","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BIOL 1406","General Biology I","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BIOL 1406","General Biology I","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BIOL 1406","General Biology I","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["BIOL 1407","General Biology II","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BIOL 1407","General Biology II","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 1407","General Biology II","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 1407","General Biology II","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BIOL 1407","General Biology II","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BIOL 1407","General Biology II","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BIOL 1407","General Biology II","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["BIOL 2401","Anatomy & Physiology I","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BIOL 2401","Anatomy & Physiology I","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 2401","Anatomy & Physiology I","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BIOL 2401","Anatomy & Physiology I","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BIOL 2401","Anatomy & Physiology I","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["BIOL 2401","Anatomy & Physiology I","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["BIOL 2401","Anatomy & Physiology I","Yaeli Benavidez","OFF","OFF","10:00am-2:00pm","OFF","OFF"],["BIOL 2402","Anatomy & Physiology II","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BIOL 2402","Anatomy & Physiology II","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BIOL 2402","Anatomy & Physiology II","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BIOL 2402","Anatomy & Physiology II","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["BIOL 2402","Anatomy & Physiology II","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["BMED 1301","Intro to Biomedical Sci I","Jorge Gonzalez","OFF","12:00pm-4:00pm","OFF","OFF","OFF"],["BMED 1301","Intro to Biomedical Sci I","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BMED 1301","Intro to Biomedical Sci I","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 1301","Intro to Biomedical Sci I","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 1301","Intro to Biomedical Sci I","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 1301","Intro to Biomedical Sci I","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 1301","Intro to Biomedical Sci I","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BMED 1302","Intro to Biomedical Sci II","Jorge Gonzalez","OFF","12:00pm-4:00pm","OFF","OFF","OFF"],["BMED 1302","Intro to Biomedical Sci II","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BMED 1302","Intro to Biomedical Sci II","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 1302","Intro to Biomedical Sci II","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 1302","Intro to Biomedical Sci II","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 1302","Intro to Biomedical Sci II","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 1302","Intro to Biomedical Sci II","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BMED 2301","Integrated Body Systems I","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BMED 2301","Integrated Body Systems I","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 2301","Integrated Body Systems I","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 2301","Integrated Body Systems I","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 2301","Integrated Body Systems I","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 2301","Integrated Body Systems I","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BMED 2302","Integrated Body Systems II","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["BMED 2302","Integrated Body Systems II","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 2302","Integrated Body Systems II","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 2302","Integrated Body Systems II","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 2302","Integrated Body Systems II","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 2302","Integrated Body Systems II","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["BMED 4220","Medical Bioinformatics","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 4230","Medical Genetics & Genomics","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4250","Advanced Cell Biology","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4250","Advanced Cell Biology","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4250","Advanced Cell Biology","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 4260","Advanced Molecular Biology","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4260","Advanced Molecular Biology","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4260","Advanced Molecular Biology","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 4310","Medical Biochemistry","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4310","Medical Biochemistry","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4310","Medical Biochemistry","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 4310","Medical Biochemistry","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 4380","Medical Neuroscience/Neurochemistry","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4380","Medical Neuroscience/Neurochemistry","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4380","Medical Neuroscience/Neurochemistry","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["BMED 4380","Medical Neuroscience/Neurochemistry","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["BMED 4440","Medical Microbiology","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4440","Medical Microbiology","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["BMED 4440","Medical Microbiology","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["CHEM 1309/1109","Chemistry for Engrs/Lab","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["CHEM 1311/1111","General Chemistry I/Lab","Miranda Villasenor","11:30am-12:15pm & 2:30pm-3:15pm","9:45am-12:45pm","11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm","10:00am-1:00pm & 3:30pm-4:30pm","10:00am-12:00pm"],["CHEM 1311/1111","General Chemistry I/Lab","Jorge Gonzalez","OFF","12:00pm-4:00pm","OFF","OFF","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Ilyssa Castillo","OFF","11:15am-1:15pm","OFF","OFF","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Brianna Morin","9:30am-11:30am","OFF","OFF","OFF","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["CHEM 1311/1111","General Chemistry I/Lab","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["CHEM 1311/1111","General Chemistry I/Lab","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["CHEM 1312/1112","General Chemistry II/Lab","Miranda Villasenor","11:30am-12:15pm & 2:30pm-3:15pm","9:45am-12:45pm","11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm","10:00am-1:00pm & 3:30pm-4:30pm","10:00am-12:00pm"],["CHEM 1312/1112","General Chemistry II/Lab","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 1312/1112","General Chemistry II/Lab","Alyssa Guerra","OFF","11:00am-2:00pm","OFF","11:00am-2:00pm","OFF"],["CHEM 1312/1112","General Chemistry II/Lab","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["CHEM 1312/1112","General Chemistry II/Lab","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["CHEM 2323/2123","Organic Chemistry I/Lab","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["CHEM 2323/2123","Organic Chemistry I/Lab","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 2323/2123","Organic Chemistry I/Lab","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["CHEM 2323/2123","Organic Chemistry I/Lab","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["CHEM 2325/2125","Organic Chemistry II/Lab","Ryanna Quintero","9:30am-11:30am","OFF","OFF","OFF","OFF"],["CHEM 2325/2125","Organic Chemistry II/Lab","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 3303","Biochemistry I","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 4302","Advanced Biochemistry","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CHEM 4320","Nutrition & Exercise Biochemistry","Maximiliano Benavidez","OFF","9:00am-12:00pm","OFF","9:00am-12:00pm","OFF"],["CIVE 1101","Intro to Civil Engr","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CIVE 2220","Civil Engr Measurements","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CIVE 2220","Civil Engr Measurements","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["CIVE 2350","Numerical Methods","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CIVE 3315","Fluid Mechanics","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CIVE 3321","Mechanics of Materials","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CIVE 3440","CE Materials","Gerardo Castillo","9:00am-10:45am","9:30am-10:45am","9:00am-10:45am","9:30am-10:45am","9:00am-11:00am"],["CLSC 2429","Clinic Micro","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["CSCI 1101","Intro to Computer Science","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 1101","Intro to Computer Science","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["CSCI 1380","Intro to Programming Python","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 1380","Intro to Programming Python","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 1381","Intro to Programming C++","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 1381","Intro to Programming C++","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 1390","Intro to Programming II","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 1390","Intro to Programming II","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 1470","Computer Science I","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 1470","Computer Science I","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 1470","Computer Science I","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["CSCI 1470","Computer Science I","Eduardo Bello Gonzalez","11:00am-1:30pm","11:00am-1:45pm","11:00am-1:30pm","11:00am-12:15pm","OFF"],["CSCI 2344","Programming in Unix/Linux","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 2380","Computer Science II","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 2380","Computer Science II","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 2380","Computer Science II","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["CSCI 3329","Obj Oriented Prog in Python","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 3333","Algorithms & Data Structures","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 3334","Systems in Programming","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["CSCI 3341","Software Engineering II","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["CSCI 4325","Automata, Formal Languages & Computability","Matthew Chapa","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","1:00pm-5:00pm","OFF"],["ECON 2301","Principles of Macroeconomics","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["ECON 2302","Principles of Microeconomics","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["EECE 1101","Intro to Elec & Comp Engr","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 2305","Electric Circuits I","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["EECE 2306/2106","Digital Systems Engr I/Lab","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 2306/2106","Digital Systems Engr I/Lab","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["EECE 2306/2106","Digital Systems Engr I/Lab","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["EECE 2306/2106","Digital Systems Engr I/Lab","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["EECE 2317","Electronic Systems","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["EECE 3331","Microcontrol & Embedded Systems","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 3340","Probability & Stats (Elec & Comp)","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 3435","Microprocessor Systems","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 4303","Digital Systems Engr II","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["EECE 4380","Computer Architecture","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["INFS 2300","Data Modeling Management Tools","Daniela Celaya (Lead Tutor)","11:00am-12:00pm","OFF","10:15am-1:15pm","10:15am-1:15pm","OFF"],["MATH 1314, 1414","College Algebra","Srinidhi Sompalli","2:45pm-4:45pm","11:00am-1:30pm","2:45pm-6:45pm","2:45pm-5:00pm","9:45am-12:00pm"],["MATH 1314, 1414","College Algebra","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["MATH 1314, 1414","College Algebra","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["MATH 1314, 1414","College Algebra","Eduardo Bello Gonzalez","11:00am-1:30pm","11:00am-1:45pm","11:00am-1:30pm","11:00am-12:15pm","OFF"],["MATH 1314, 1414","College Algebra","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MATH 1314, 1414","College Algebra","Paul Diaz (SI Mentor)","9:00am-10:45am & 3:30pm-5:00pm","11:00am-1:45pm & 3:30pm-4:30pm","Mentor Duties","Mentor Duties","OFF"],["MATH 1314, 1414","College Algebra","Paulina Olvera Leal","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE"],["MATH 1324","Math for Business","Sebastian Sanchez Reyes","11:00am-12:15pm & 2:00pm-3:30pm","9:30am-1:00pm & 1:30pm-4:15pm","11:00am-12:15pm & 2:00pm-3:30pm","9:30am-12:45pm","OFF"],["MATH 1342","Elementary Statistical Methods","Fernando Casanova","12:00pm-3:45pm","1:00pm-3:15pm","12:00pm-3:45pm","1:00pm-3:15pm","9:00am-12:00pm"],["MATH 1342","Elementary Statistical Methods","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["MATH 1342","Elementary Statistical Methods","Yaeli Benavidez","OFF","OFF","10:00am-2:00pm","OFF","OFF"],["MATH 1342","Elementary Statistical Methods","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["MATH 1343","Intro to Biostatistics","Alexis Aguilar","11:00am-2:00pm & 2:30pm-5:00pm","11:00am-12:15pm","11:00am-1:45pm & 3:45pm-8:00pm","11:00am-12:15pm","OFF"],["MATH 1343","Intro to Biostatistics","Amanda Villa","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm","9:00am-10:30am","9:00am-12:00pm"],["MATH 2318","Linear Algebra","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MATH 2318","Linear Algebra","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MATH 2346","Math for EE & CE","Fernando Quiroz","10:45am-2:30pm","10:45am-2:30pm","10:45am-2:30pm","12:15pm-4:00pm","OFF"],["MATH 2412","Precalculus","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["MATH 2412","Precalculus","Eduardo Bello Gonzalez","11:00am-1:30pm","11:00am-1:45pm","11:00am-1:30pm","11:00am-12:15pm","OFF"],["MATH 2412","Precalculus","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["MATH 2412","Precalculus","Jacob Villarreal","OFF","10:45am-12:15pm","9:00am-12:30pm","10:45am-12:15pm","9:00am-10:30am"],["MATH 2412","Precalculus","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MATH 2412","Precalculus","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MATH 2413","Calculus I","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["MATH 2413","Calculus I","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["MATH 2413","Calculus I","Eduardo Bello Gonzalez","11:00am-1:30pm","11:00am-1:45pm","11:00am-1:30pm","11:00am-12:15pm","OFF"],["MATH 2413","Calculus I","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["MATH 2413","Calculus I","Miranda Villasenor","11:30am-12:15pm & 2:30pm-3:15pm","9:45am-12:45pm","11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm","10:00am-1:00pm & 3:30pm-4:30pm","10:00am-12:00pm"],["MATH 2413","Calculus I","Valeria Ramirez","OFF","OFF","5:15pm-8:00pm","3:45pm-5:00pm","OFF"],["MATH 2413","Calculus I","Jacob Villarreal","OFF","10:45am-12:15pm","9:00am-12:30pm","10:45am-12:15pm","9:00am-10:30am"],["MATH 2413","Calculus I","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MATH 2413","Calculus I","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MATH 2413","Calculus I","Ethan De Leon","9:00am-12:15pm","1:15pm-4:00pm","9:00am-12:15pm","1:15pm-4:00pm","9:00am-10:00am"],["MATH 2413","Calculus I","Paul Diaz (SI Mentor)","9:00am-10:45am & 3:30pm-5:00pm","11:00am-1:45pm & 3:30pm-4:30pm","Mentor Duties","Mentor Duties","OFF"],["MATH 2413","Calculus I","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MATH 2414","Calculus II","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["MATH 2414","Calculus II","Edgar Bello Gonzalez","OFF","10:15am-1:15pm & 3:30pm-4:30pm","11:45am-1:45pm","10:15am-1:15pm","OFF"],["MATH 2414","Calculus II","Eduardo Bello Gonzalez","11:00am-1:30pm","11:00am-1:45pm","11:00am-1:30pm","11:00am-12:15pm","OFF"],["MATH 2414","Calculus II","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["MATH 2414","Calculus II","Valeria Ramirez","OFF","OFF","5:15pm-8:00pm","3:45pm-5:00pm","OFF"],["MATH 2414","Calculus II","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MATH 2414","Calculus II","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MATH 2414","Calculus II","Paul Diaz (SI Mentor)","9:00am-10:45am & 3:30pm-5:00pm","11:00am-1:45pm & 3:30pm-4:30pm","Mentor Duties","Mentor Duties","OFF"],["MATH 2414","Calculus II","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MATH 2415","Calculus III","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MATH 2415","Calculus III","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MATH 3341","Differential Equations","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["MECE 1101","Intro to Mechanical Engineering","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["MECE 2301","Statics","Valeria Ramirez","OFF","OFF","5:15pm-8:00pm","3:45pm-5:00pm","OFF"],["MECE 2301","Statics","Jacob Villarreal","OFF","10:45am-12:15pm","9:00am-12:30pm","10:45am-12:15pm","9:00am-10:30am"],["MECE 2301","Statics","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["MECE 2301","Statics","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MECE 2301","Statics","Ethan De Leon","9:00am-12:15pm","1:15pm-4:00pm","9:00am-12:15pm","1:15pm-4:00pm","9:00am-10:00am"],["MECE 2302","Dynamics","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MECE 2340/2140","Engineering Materials/Lab","Angelina Anthony","OFF","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-1:45pm & 3:30pm-4:15pm","11:45am-5:00pm & 3:30pm-4:15pm","OFF"],["MECE 2340/2140","Engineering Materials/Lab","Valeria Ramirez","OFF","OFF","5:15pm-8:00pm","3:45pm-5:00pm","OFF"],["MECE 2340/2140","Engineering Materials/Lab","Jacob Villarreal","OFF","10:45am-12:15pm","9:00am-12:30pm","10:45am-12:15pm","9:00am-10:30am"],["MECE 3304","System Dynamics","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MECE 3335","Thermodynamics I","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MECE 3440","Mechanical Engineering Analysis","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["MUSI 1116","ET & SS I","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 1117","ET & SS II","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 1211","Music Theory I","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 1212","Music Theory II","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 1301","Fundamentals of Music","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 2116","ET & SS III","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 2117","ET & SS IV","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 2211","Music Theory III","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 2212","Music Theory IV","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["MUSI 3211","Musical Form & Analysis","Marisol Mejia","OFF","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","6:30pm-8:00pm (EPAC C1.108)","9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)","9:00am-12:00pm (EPAC C1.108)"],["Nursing","1st Semester","Francisco Nunez","OFF","OFF","OFF","12:00pm-5:00pm","OFF"],["Nursing","1st Semester","Linda Ceaser","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","1st Semester","Johnmarc Candelaria","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","2nd Semester","Francisco Nunez","OFF","OFF","OFF","12:00pm-5:00pm","OFF"],["Nursing","2nd Semester","Linda Ceaser","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","2nd Semester","Johnmarc Candelaria","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","3rd Semester","Linda Ceaser","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","3rd Semester","Johnmarc Candelaria","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","4th Semester","Linda Ceaser","Calendar","Calendar","Calendar","Calendar","Calendar"],["Nursing","4th Semester","Johnmarc Candelaria","Calendar","Calendar","Calendar","Calendar","Calendar"],["PHYS 1401","General Physics I","Samuel Marshall","10:45am-12:45pm","9:00am-10:45am","9:00am-10:45am & 7:00pm-8:00pm","9:00am-12:30pm","OFF"],["PHYS 1401","General Physics I","Paul Diaz (SI Mentor)","9:00am-10:45am & 3:30pm-5:00pm","11:00am-1:45pm & 3:30pm-4:30pm","Mentor Duties","Mentor Duties","OFF"],["PHYS 1401","General Physics I","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["PHYS 1402","General Physics II","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["PHYS 2425","Physics for Sci & Engr I","Kenneth Davis","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE","11:00am-12:15pm","BROWNSVILLE"],["PHYS 2425","Physics for Sci & Engr I","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["PHYS 2425","Physics for Sci & Engr I","Ethan De Leon","9:00am-12:15pm","1:15pm-4:00pm","9:00am-12:15pm","1:15pm-4:00pm","9:00am-10:00am"],["PHYS 2425","Physics for Sci & Engr I","Paul Diaz (SI Mentor)","9:00am-10:45am & 3:30pm-5:00pm","11:00am-1:45pm & 3:30pm-4:30pm","Mentor Duties","Mentor Duties","OFF"],["PHYS 2425","Physics for Sci & Engr I","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["PHYS 2426","Physics for Sci & Engr II","Karel Kishiko","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-12:00pm","9:00am-10:00am"],["PHYS 2426","Physics for Sci & Engr II","Juan Castillo","11:00am-1:00pm & 3:30pm-4:45pm","9:00am-1:00pm & 3:30pm-5:00pm","11:00am-1:00pm & 3:30pm-8:00pm","3:30pm-5:00pm","OFF"],["PHYS 2426","Physics for Sci & Engr II","Ethan De Leon","9:00am-12:15pm","1:15pm-4:00pm","9:00am-12:15pm","1:15pm-4:00pm","9:00am-10:00am"],["PHYS 2426","Physics for Sci & Engr II","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["PHYS 2327","Physics for Sci & Engr III","Juan Espinoza","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","9:00am-12:00pm","9:00am-12:00pm & 2:30pm-5:00pm","OFF"],["QUMT 2341","Business Statistics I","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["QUMT 2341","Business Statistics I","Fernando Casanova","12:00pm-3:45pm","1:00pm-3:15pm","12:00pm-3:45pm","1:00pm-3:15pm","9:00am-12:00pm"],["QUMT 2341","Business Statistics I","Daniela Celaya (Lead Tutor)","11:00am-12:00pm","OFF","10:15am-1:15pm","10:15am-1:15pm","OFF"],["QUMT 2398","Decision Analytics","Cristian Gonzalez (Lead Tutor)","2:30pm-5:00pm","3:30pm-5:00pm","Brownsville","3:30pm-5:00pm","Lead Tutor Duties"],["QUMT 2398","Decision Analytics","Daniela Celaya (Lead Tutor)","11:00am-12:00pm","OFF","10:15am-1:15pm","10:15am-1:15pm","OFF"],["QUMT 3341","Business Statistics II","Daniela Celaya (Lead Tutor)","11:00am-12:00pm","OFF","10:15am-1:15pm","10:15am-1:15pm","OFF"],["SPAN 3313","Adv Grammar & Comp Heritage I","Paulina Olvera Leal","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE"],["SPAN 3315","Adv Grammar & Comp Heritage II","Paulina Olvera Leal","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE","4:00pm-5:00pm","BROWNSVILLE"]];
+  </header>
 
-const DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday"];
-const cMap={},tMap={},uC=[],uT=[];
-D.forEach(r=>{const[code,name,tutor]=r,ck=code+"||"+name;
-  if(!cMap[ck]){cMap[ck]=[];uC.push({code,name,ck});}cMap[ck].push(r);
-  if(!tMap[tutor]){tMap[tutor]=[];uT.push(tutor);}tMap[tutor].push(r);});
-uC.sort((a,b)=>a.code.localeCompare(b.code));uT.sort();
+  <main id="main-content" class="page-shell" tabindex="-1">
+    <section id="empty-state" class="empty-state" role="status">
+      <h2>Find a tutor, course, or day</h2>
+      <p>Use the search boxes above to look up course schedules or see which tutors are available on a specific day.</p>
+    </section>
 
-const ini=n=>n.replace(/\s*\(.*?\)/,"").trim().split(" ").filter(w=>/^[A-Z]/i.test(w)).slice(0,2).map(w=>w[0].toUpperCase()).join("");
-const cln=n=>n.replace(/\s*\(.*?\)/,"").trim();
-const isOff=t=>!t||/^off$/i.test(t.trim());
-const isSp=t=>/brownsville|calendar|mentor duties|lead tutor duties/i.test(t);
+    <section id="results" aria-live="polite" aria-atomic="false" hidden></section>
+  </main>
 
-function rTime(t,d){
-  if(isOff(t))return`<span class="tv off"><span class="op" aria-label="${d}: not available">OFF</span></span>`;
-  if(isSp(t))return`<span class="tv sp" aria-label="${d}: ${t}">${t}</span>`;
-  return`<span class="tv" aria-label="${d}: ${t}">${t}</span>`;
-}
-function grid(times,lbl){
-  return`<table class="st" aria-label="Schedule for ${lbl}"><thead><tr>${DAYS.map(d=>`<th scope="col">${d}</th>`).join("")}</tr></thead><tbody><tr>${DAYS.map((d,i)=>`<td>${rTime(times[i]||"",d)}</td>`).join("")}</tr></tbody></table>`;
-}
-function rBadge(n){
-  if(/lead tutor/i.test(n))return`<span class="rb lead">Lead Tutor</span>`;
-  if(/si mentor/i.test(n))return`<span class="rb mentor">SI Mentor</span>`;
-  return"";
-}
-function merge(rows){
-  const m={};rows.forEach(r=>{const k=r[2];if(!m[k]){m[k]=[...r];return;}
-    for(let i=3;i<=7;i++){const e=m[k][i],v=r[i];if(!v||isOff(v))return;if(isOff(e)||!e){m[k][i]=v;return;}if(e!==v)m[k][i]=e+" & "+v;}});
-  return Object.values(m);
-}
-function renderCourse(matched,q){
-  if(!matched.length)return`<div class="nr" role="alert">No courses found for "<strong>${q}</strong>".</div>`;
-  return matched.map(({code,name,ck})=>{
-    const rows=merge(cMap[ck]),sid="s"+code.replace(/\W/g,"_");
-    return`<section class="cs" aria-labelledby="${sid}"><div class="csh"><span class="ccb" id="${sid}">${code}</span><span class="csn">${name}</span><span class="csc">${rows.length} Tutor${rows.length!==1?"s":""}</span></div>${rows.map(r=>`<article class="tc" aria-label="Schedule: ${cln(r[2])}"><div class="tch"><div class="av" aria-hidden="true">${ini(r[2])}</div><span class="tcn">${cln(r[2])}</span>${rBadge(r[2])}</div>${grid(r.slice(3),cln(r[2]))}</article>`).join("")}</section>`;
-  }).join("");
-}
-function renderTutor(tName){
-  const rows=tMap[tName],cn=cln(tName),cg={};
-  rows.forEach(r=>{const k=r[0]+"||"+r[1];if(!cg[k])cg[k]=[];cg[k].push(r);});
-  const mg=Object.entries(cg).map(([k,r])=>{const m=merge(r)[0],[code,name]=k.split("||");return{code,name,times:m.slice(3)};});
-  const tid="t"+cn.replace(/\W/g,"_");
-  return`<section aria-labelledby="${tid}"><div class="tpc"><div class="tpa" aria-hidden="true">${ini(tName)}</div><div><div class="tpn" id="${tid}">${cn}</div><div class="tpm">${mg.length} course${mg.length!==1?"s":""} covered</div></div>${/lead|mentor/i.test(tName)?`<span class="tprb">${/lead/i.test(tName)?"Lead Tutor":"SI Mentor"}</span>`:""}</div>${mg.map(({code,name,times})=>`<article class="crc" aria-label="${code}: ${name}"><div class="crch"><span class="ccb">${code}</span><span class="crcn">${name}</span></div>${grid(times,cn+" - "+code)}</article>`).join("")}</section>`;
-}
-function show(html,title,count){
-  document.getElementById("ph").style.display="none";
-  const r=document.getElementById("res");r.style.display="block";
-  r.innerHTML=`<div class="rh"><span class="rht">${title}</span><span class="rhc">${count}</span></div>${html}`;
-}
-function clr(){document.getElementById("ph").style.display="";const r=document.getElementById("res");r.style.display="none";r.innerHTML="";}
-function doC(q){if(!q.trim()){clr();return;}const ql=q.toLowerCase(),m=uC.filter(c=>c.code.toLowerCase().includes(ql)||c.name.toLowerCase().includes(ql));const tot=m.reduce((s,c)=>s+merge(cMap[c.ck]).length,0);show(renderCourse(m,q),`Results for <span class="q">\u201C${q}\u201D</span>`,`${m.length} course${m.length!==1?"s":""} \u00B7 ${tot} tutor${tot!==1?"s":""}`);}
-function doT(q){if(!q.trim()){clr();return;}const ql=q.toLowerCase(),m=uT.filter(t=>cln(t).toLowerCase().includes(ql));if(!m.length){show(`<div class="nr" role="alert">No tutors found for "<strong>${q}</strong>".</div>`,`Results for <span class="q">\u201C${q}\u201D</span>`,"0 tutors");return;}const html=m.map((t,i)=>(i>0?`<hr class="tdiv" aria-hidden="true">`:"")+ renderTutor(t)).join("");show(html,m.length===1?`Schedule for <span class="q">${cln(m[0])}</span>`:`Results for <span class="q">\u201C${q}\u201D</span>`,`${m.length} tutor${m.length!==1?"s":""}`);}
-function closeDD(inp,dd){
-  dd.classList.remove("open");
-  inp.setAttribute("aria-expanded","false");
-  inp.removeAttribute("aria-activedescendant");
-}
-function selectSuggestion(item,isC,dd,inp){
-  if(isC){document.getElementById("i1").value=item.dataset.code;doC(item.dataset.code);}
-  else{document.getElementById("i2").value=cln(item.dataset.tutor);doT(cln(item.dataset.tutor));}
-  closeDD(inp,dd);
-}
-function setActiveOption(inp,dd,index){
-  const items=[...dd.querySelectorAll('.ddi')];
-  items.forEach((item,i)=>item.setAttribute('aria-selected', i===index ? 'true' : 'false'));
-  const active=items[index];
-  if(active){
-    inp.setAttribute('aria-activedescendant', active.id);
-    active.scrollIntoView({block:'nearest'});
-  }else inp.removeAttribute('aria-activedescendant');
-}
-function moveActive(inp,dd,step){
-  const items=[...dd.querySelectorAll('.ddi')];
-  if(!items.length)return;
-  let index=items.findIndex(item=>item.getAttribute('aria-selected')==='true');
-  index=index<0 ? (step>0?0:items.length-1) : (index+step+items.length)%items.length;
-  setActiveOption(inp,dd,index);
-}
-function buildDD(val,isC){
-  const ddId=isC?"dd1":"dd2",inpId=isC?"i1":"i2";
-  const dd=document.getElementById(ddId),inp=document.getElementById(inpId);
-  if(!val.trim()){closeDD(inp,dd);dd.innerHTML='';return;}
-  const ql=val.toLowerCase();
-  const hits=isC?uC.filter(c=>c.code.toLowerCase().includes(ql)||c.name.toLowerCase().includes(ql)).slice(0,8):uT.filter(t=>cln(t).toLowerCase().includes(ql)).slice(0,8);
-  if(!hits.length){closeDD(inp,dd);dd.innerHTML='';return;}
-  dd.innerHTML=isC?hits.map((c,idx)=>`<div class="ddi" id="${ddId}-opt-${idx}" role="option" tabindex="-1" aria-selected="false" data-code="${c.code}"><span class="ddn">${c.name}</span><span class="ddc">${c.code}</span></div>`).join(""):hits.map((t,idx)=>{const role=/lead tutor/i.test(t)?"Lead Tutor":/si mentor/i.test(t)?"SI Mentor":"";return`<div class="ddi" id="${ddId}-opt-${idx}" role="option" tabindex="-1" aria-selected="false" data-tutor="${t}"><span class="ddn">${cln(t)}</span>${role?`<span class="ddc">${role}</span>`:""}</div>`;}).join("");
-  dd.classList.add("open");inp.setAttribute("aria-expanded","true");
-  dd.querySelectorAll(".ddi").forEach((item,idx)=>{
-    const pick=()=>selectSuggestion(item,isC,dd,inp);
-    item.addEventListener("mousedown",e=>{e.preventDefault();pick();});
-    item.addEventListener("mouseenter",()=>setActiveOption(inp,dd,idx));
-    item.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pick();}});
-  });
-}
-function handleInputKeydown(e,isC){
-  const dd=document.getElementById(isC?"dd1":"dd2");
-  const inp=e.currentTarget;
-  const items=[...dd.querySelectorAll('.ddi')];
-  if(e.key==='ArrowDown'){
-    e.preventDefault();
-    if(!dd.classList.contains('open'))buildDD(inp.value,isC);
-    moveActive(inp,dd,1);
-  }else if(e.key==='ArrowUp'){
-    e.preventDefault();
-    if(!dd.classList.contains('open'))buildDD(inp.value,isC);
-    moveActive(inp,dd,-1);
-  }else if(e.key==='Enter' && dd.classList.contains('open')){
-    const active=items.find(item=>item.getAttribute('aria-selected')==='true');
-    if(active){e.preventDefault();selectSuggestion(active,isC,dd,inp);}
-  }else if(e.key==='Escape'){
-    closeDD(inp,dd);
+  <script>
+    /*
+      =========================
+      EASY-TO-EDIT DATA AREA
+      =========================
+      Each object below is one row from the schedule.
+      If the spreadsheet changes later, this is the main area to update.
+    */
+
+    const scheduleData = [
+  {
+    "courseCode": "ACCT 2301",
+    "courseName": "Intro to Financial Acct",
+    "tutorName": "Cristian Gonzalez (Lead Tutor)",
+    "schedule": {
+      "Monday": "2:30pm-5:00pm",
+      "Tuesday": "3:30pm-5:00pm",
+      "Wednesday": "Brownsville",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "Lead Tutor Duties"
+    }
+  },
+  {
+    "courseCode": "ACCT 2301",
+    "courseName": "Intro to Financial Acct",
+    "tutorName": "Sebastian Sanchez Reyes",
+    "schedule": {
+      "Monday": "11:00am-12:15pm & 2:00pm-3:45pm",
+      "Tuesday": "9:30am-1:00pm & 1:30pm-4:15pm",
+      "Wednesday": "11:00am-12:15pm & 2:00pm-3:30pm",
+      "Thursday": "9:30am-12:45pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ACCT 2301",
+    "courseName": "Intro to Financial Acct",
+    "tutorName": "Fernando Casanova",
+    "schedule": {
+      "Monday": "12:00pm-3:45pm",
+      "Tuesday": "1:00pm-3:15pm",
+      "Wednesday": "12:00pm-3:45pm",
+      "Thursday": "1:00pm-3:15pm",
+      "Friday": "9:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "ACCT 2301",
+    "courseName": "Intro to Financial Acct",
+    "tutorName": "Alexis Aguilar",
+    "schedule": {
+      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ACCT 2302",
+    "courseName": "Intro to Managerial Acct",
+    "tutorName": "Cristian Gonzalez (Lead Tutor)",
+    "schedule": {
+      "Monday": "2:30pm-5:00pm",
+      "Tuesday": "3:30pm-5:00pm",
+      "Wednesday": "Brownsville",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "Lead Tutor Duties"
+    }
+  },
+  {
+    "courseCode": "ACCT 2302",
+    "courseName": "Intro to Managerial Acct",
+    "tutorName": "Sebastian Sanchez Reyes",
+    "schedule": {
+      "Monday": "11:00am-12:15pm & 2:00pm-3:30pm",
+      "Tuesday": "9:30am-1:00pm & 1:30pm-4:15pm",
+      "Wednesday": "11:00am-12:15pm & 2:00pm-3:30pm",
+      "Thursday": "9:30am-12:45pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ACCT 2302",
+    "courseName": "Intro to Managerial Acct",
+    "tutorName": "Alexis Aguilar",
+    "schedule": {
+      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ACCT 3321",
+    "courseName": "Intermediate Accounting I",
+    "tutorName": "Cristian Gonzalez (Lead Tutor)",
+    "schedule": {
+      "Monday": "2:30pm-5:00pm",
+      "Tuesday": "3:30pm-5:00pm",
+      "Wednesday": "Brownsville",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "Lead Tutor Duties"
+    }
+  },
+  {
+    "courseCode": "ACCT 3322",
+    "courseName": "Intermediate Accounting II",
+    "tutorName": "Cristian Gonzalez (Lead Tutor)",
+    "schedule": {
+      "Monday": "2:30pm-5:00pm",
+      "Tuesday": "3:30pm-5:00pm",
+      "Wednesday": "Brownsville",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "Lead Tutor Duties"
+    }
+  },
+  {
+    "courseCode": "ACCT 3326",
+    "courseName": "Accounting Info Systems",
+    "tutorName": "Cristian Gonzalez (Lead Tutor)",
+    "schedule": {
+      "Monday": "2:30pm-5:00pm",
+      "Tuesday": "3:30pm-5:00pm",
+      "Wednesday": "Brownsville",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "Lead Tutor Duties"
+    }
+  },
+  {
+    "courseCode": "ASLI 1310",
+    "courseName": "ASL I",
+    "tutorName": "Gabrielle Houston",
+    "schedule": {
+      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "4:00pm-6:00pm",
+      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
+      "Friday": "12:30pm-3:00pm"
+    }
+  },
+  {
+    "courseCode": "ASLI 1310",
+    "courseName": "ASL I",
+    "tutorName": "Ruby Mendieta",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-3:00pm",
+      "Wednesday": "4:00pm-8:00pm",
+      "Thursday": "9:00am-3:00pm",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "ASLI 1310",
+    "courseName": "ASL I",
+    "tutorName": "Josue Peralta De Jesus",
+    "schedule": {
+      "Monday": "11:00am-12:30pm & 3:30pm-5:00pm",
+      "Tuesday": "9:00am-12:00pm & 3:00pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm",
+      "Thursday": "9:00am-12:00pm & 3:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ASLI 1310",
+    "courseName": "ASL I",
+    "tutorName": "Mario Salinas",
+    "schedule": {
+      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ASLI 1320",
+    "courseName": "ASL II",
+    "tutorName": "Gabrielle Houston",
+    "schedule": {
+      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "4:00pm-6:00pm",
+      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
+      "Friday": "12:30pm-3:00pm"
+    }
+  },
+  {
+    "courseCode": "ASLI 1320",
+    "courseName": "ASL II",
+    "tutorName": "Ruby Mendieta",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-3:00pm",
+      "Wednesday": "4:00pm-8:00pm",
+      "Thursday": "9:00am-3:00pm",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "ASLI 1320",
+    "courseName": "ASL II",
+    "tutorName": "Josue Peralta De Jesus",
+    "schedule": {
+      "Monday": "11:00am-12:30pm & 3:30pm-5:00pm",
+      "Tuesday": "9:00am-12:00pm & 3:00pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm",
+      "Thursday": "9:00am-12:00pm & 3:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ASLI 1320",
+    "courseName": "ASL II",
+    "tutorName": "Mario Salinas",
+    "schedule": {
+      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ASLI 2310",
+    "courseName": "ASL III",
+    "tutorName": "Gabrielle Houston",
+    "schedule": {
+      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "4:00pm-6:00pm",
+      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
+      "Friday": "12:30pm-3:00pm"
+    }
+  },
+  {
+    "courseCode": "ASLI 2310",
+    "courseName": "ASL III",
+    "tutorName": "Ruby Mendieta",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-3:00pm",
+      "Wednesday": "4:00pm-8:00pm",
+      "Thursday": "9:00am-3:00pm",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "ASLI 2310",
+    "courseName": "ASL III",
+    "tutorName": "Josue Peralta De Jesus",
+    "schedule": {
+      "Monday": "11:00am-12:30pm & 3:30pm-5:00pm",
+      "Tuesday": "9:00am-12:00pm & 3:00pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm",
+      "Thursday": "9:00am-12:00pm & 3:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ASLI 2310",
+    "courseName": "ASL III",
+    "tutorName": "Mario Salinas",
+    "schedule": {
+      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ASLI 3310",
+    "courseName": "ASL IV",
+    "tutorName": "Gabrielle Houston",
+    "schedule": {
+      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "4:00pm-6:00pm",
+      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
+      "Friday": "12:30pm-3:00pm"
+    }
+  },
+  {
+    "courseCode": "ASLI 3310",
+    "courseName": "ASL IV",
+    "tutorName": "Ruby Mendieta",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-3:00pm",
+      "Wednesday": "4:00pm-8:00pm",
+      "Thursday": "9:00am-3:00pm",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "ASLI 3310",
+    "courseName": "ASL IV",
+    "tutorName": "Mario Salinas",
+    "schedule": {
+      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ASLI 3320",
+    "courseName": "ASL V",
+    "tutorName": "Gabrielle Houston",
+    "schedule": {
+      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "4:00pm-6:00pm",
+      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
+      "Friday": "12:30pm-3:00pm"
+    }
+  },
+  {
+    "courseCode": "ASLI 3320",
+    "courseName": "ASL V",
+    "tutorName": "Ruby Mendieta",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-3:00pm",
+      "Wednesday": "4:00pm-8:00pm",
+      "Thursday": "9:00am-3:00pm",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "ASLI 3320",
+    "courseName": "ASL V",
+    "tutorName": "Mario Salinas",
+    "schedule": {
+      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ASLI 3325",
+    "courseName": "Interpreting I",
+    "tutorName": "Gabrielle Houston",
+    "schedule": {
+      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "4:00pm-6:00pm",
+      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
+      "Friday": "12:30pm-3:00pm"
+    }
+  },
+  {
+    "courseCode": "ASLI 3325",
+    "courseName": "Interpreting I",
+    "tutorName": "Ruby Mendieta",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-3:00pm",
+      "Wednesday": "4:00pm-8:00pm",
+      "Thursday": "9:00am-3:00pm",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "ASLI 3340",
+    "courseName": "Intro to Classifiers",
+    "tutorName": "Gabrielle Houston",
+    "schedule": {
+      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "4:00pm-6:00pm",
+      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
+      "Friday": "12:30pm-3:00pm"
+    }
+  },
+  {
+    "courseCode": "ASLI 3340",
+    "courseName": "Intro to Classifiers",
+    "tutorName": "Ruby Mendieta",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-3:00pm",
+      "Wednesday": "4:00pm-8:00pm",
+      "Thursday": "9:00am-3:00pm",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "ASLI 3340",
+    "courseName": "Intro to Classifiers",
+    "tutorName": "Mario Salinas",
+    "schedule": {
+      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Wednesday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Thursday": "9:00am-12:00pm & 2:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ASLI 3345",
+    "courseName": "Interpreting II",
+    "tutorName": "Gabrielle Houston",
+    "schedule": {
+      "Monday": "12:30pm-3:00pm & 4:00pm-6:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "4:00pm-6:00pm",
+      "Thursday": "12:00pm-3:00pm & 4:00pm-6:00pm",
+      "Friday": "12:30pm-3:00pm"
+    }
+  },
+  {
+    "courseCode": "ASLI 3345",
+    "courseName": "Interpreting II",
+    "tutorName": "Ruby Mendieta",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-3:00pm",
+      "Wednesday": "4:00pm-8:00pm",
+      "Thursday": "9:00am-3:00pm",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "BIOL 1406",
+    "courseName": "General Biology I",
+    "tutorName": "Ilyssa Castillo",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:15am-1:15pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1406",
+    "courseName": "General Biology I",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1406",
+    "courseName": "General Biology I",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1406",
+    "courseName": "General Biology I",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1406",
+    "courseName": "General Biology I",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1406",
+    "courseName": "General Biology I",
+    "tutorName": "Samuel Marshall",
+    "schedule": {
+      "Monday": "10:45am-12:45pm",
+      "Tuesday": "9:00am-10:45am",
+      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
+      "Thursday": "9:00am-12:30pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1406",
+    "courseName": "General Biology I",
+    "tutorName": "Srinidhi Sompalli",
+    "schedule": {
+      "Monday": "2:45pm-4:45pm",
+      "Tuesday": "11:00am-1:30pm",
+      "Wednesday": "2:45pm-6:45pm",
+      "Thursday": "2:45pm-5:00pm",
+      "Friday": "9:45am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "BIOL 1407",
+    "courseName": "General Biology II",
+    "tutorName": "Ilyssa Castillo",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:15am-1:15pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1407",
+    "courseName": "General Biology II",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1407",
+    "courseName": "General Biology II",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1407",
+    "courseName": "General Biology II",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1407",
+    "courseName": "General Biology II",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1407",
+    "courseName": "General Biology II",
+    "tutorName": "Samuel Marshall",
+    "schedule": {
+      "Monday": "10:45am-12:45pm",
+      "Tuesday": "9:00am-10:45am",
+      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
+      "Thursday": "9:00am-12:30pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 1407",
+    "courseName": "General Biology II",
+    "tutorName": "Srinidhi Sompalli",
+    "schedule": {
+      "Monday": "2:45pm-4:45pm",
+      "Tuesday": "11:00am-1:30pm",
+      "Wednesday": "2:45pm-6:45pm",
+      "Thursday": "2:45pm-5:00pm",
+      "Friday": "9:45am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "BIOL 2401",
+    "courseName": "Anatomy & Physiology I",
+    "tutorName": "Ilyssa Castillo",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:15am-1:15pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 2401",
+    "courseName": "Anatomy & Physiology I",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 2401",
+    "courseName": "Anatomy & Physiology I",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 2401",
+    "courseName": "Anatomy & Physiology I",
+    "tutorName": "Samuel Marshall",
+    "schedule": {
+      "Monday": "10:45am-12:45pm",
+      "Tuesday": "9:00am-10:45am",
+      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
+      "Thursday": "9:00am-12:30pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 2401",
+    "courseName": "Anatomy & Physiology I",
+    "tutorName": "Amanda Villa",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-10:30am",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-10:30am",
+      "Friday": "9:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "BIOL 2401",
+    "courseName": "Anatomy & Physiology I",
+    "tutorName": "Srinidhi Sompalli",
+    "schedule": {
+      "Monday": "2:45pm-4:45pm",
+      "Tuesday": "11:00am-1:30pm",
+      "Wednesday": "2:45pm-6:45pm",
+      "Thursday": "2:45pm-5:00pm",
+      "Friday": "9:45am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "BIOL 2401",
+    "courseName": "Anatomy & Physiology I",
+    "tutorName": "Yaeli Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "OFF",
+      "Wednesday": "10:00am-2:00pm",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 2402",
+    "courseName": "Anatomy & Physiology II",
+    "tutorName": "Ilyssa Castillo",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:15am-1:15pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 2402",
+    "courseName": "Anatomy & Physiology II",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 2402",
+    "courseName": "Anatomy & Physiology II",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BIOL 2402",
+    "courseName": "Anatomy & Physiology II",
+    "tutorName": "Amanda Villa",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-10:30am",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-10:30am",
+      "Friday": "9:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "BIOL 2402",
+    "courseName": "Anatomy & Physiology II",
+    "tutorName": "Srinidhi Sompalli",
+    "schedule": {
+      "Monday": "2:45pm-4:45pm",
+      "Tuesday": "11:00am-1:30pm",
+      "Wednesday": "2:45pm-6:45pm",
+      "Thursday": "2:45pm-5:00pm",
+      "Friday": "9:45am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "BMED 1301",
+    "courseName": "Intro to Biomedical Sci I",
+    "tutorName": "Jorge Gonzalez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "12:00pm-4:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1301",
+    "courseName": "Intro to Biomedical Sci I",
+    "tutorName": "Ilyssa Castillo",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:15am-1:15pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1301",
+    "courseName": "Intro to Biomedical Sci I",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1301",
+    "courseName": "Intro to Biomedical Sci I",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1301",
+    "courseName": "Intro to Biomedical Sci I",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1301",
+    "courseName": "Intro to Biomedical Sci I",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1301",
+    "courseName": "Intro to Biomedical Sci I",
+    "tutorName": "Samuel Marshall",
+    "schedule": {
+      "Monday": "10:45am-12:45pm",
+      "Tuesday": "9:00am-10:45am",
+      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
+      "Thursday": "9:00am-12:30pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1302",
+    "courseName": "Intro to Biomedical Sci II",
+    "tutorName": "Jorge Gonzalez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "12:00pm-4:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1302",
+    "courseName": "Intro to Biomedical Sci II",
+    "tutorName": "Ilyssa Castillo",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:15am-1:15pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1302",
+    "courseName": "Intro to Biomedical Sci II",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1302",
+    "courseName": "Intro to Biomedical Sci II",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1302",
+    "courseName": "Intro to Biomedical Sci II",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1302",
+    "courseName": "Intro to Biomedical Sci II",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 1302",
+    "courseName": "Intro to Biomedical Sci II",
+    "tutorName": "Samuel Marshall",
+    "schedule": {
+      "Monday": "10:45am-12:45pm",
+      "Tuesday": "9:00am-10:45am",
+      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
+      "Thursday": "9:00am-12:30pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2301",
+    "courseName": "Integrated Body Systems I",
+    "tutorName": "Ilyssa Castillo",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:15am-1:15pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2301",
+    "courseName": "Integrated Body Systems I",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2301",
+    "courseName": "Integrated Body Systems I",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2301",
+    "courseName": "Integrated Body Systems I",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2301",
+    "courseName": "Integrated Body Systems I",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2301",
+    "courseName": "Integrated Body Systems I",
+    "tutorName": "Samuel Marshall",
+    "schedule": {
+      "Monday": "10:45am-12:45pm",
+      "Tuesday": "9:00am-10:45am",
+      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
+      "Thursday": "9:00am-12:30pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2302",
+    "courseName": "Integrated Body Systems II",
+    "tutorName": "Ilyssa Castillo",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:15am-1:15pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2302",
+    "courseName": "Integrated Body Systems II",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2302",
+    "courseName": "Integrated Body Systems II",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2302",
+    "courseName": "Integrated Body Systems II",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2302",
+    "courseName": "Integrated Body Systems II",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 2302",
+    "courseName": "Integrated Body Systems II",
+    "tutorName": "Samuel Marshall",
+    "schedule": {
+      "Monday": "10:45am-12:45pm",
+      "Tuesday": "9:00am-10:45am",
+      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
+      "Thursday": "9:00am-12:30pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4220",
+    "courseName": "Medical Bioinformatics",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4230",
+    "courseName": "Medical Genetics & Genomics",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4250",
+    "courseName": "Advanced Cell Biology",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4250",
+    "courseName": "Advanced Cell Biology",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4250",
+    "courseName": "Advanced Cell Biology",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4260",
+    "courseName": "Advanced Molecular Biology",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4260",
+    "courseName": "Advanced Molecular Biology",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4260",
+    "courseName": "Advanced Molecular Biology",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4310",
+    "courseName": "Medical Biochemistry",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4310",
+    "courseName": "Medical Biochemistry",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4310",
+    "courseName": "Medical Biochemistry",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4310",
+    "courseName": "Medical Biochemistry",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4380",
+    "courseName": "Medical Neuroscience/Neurochemistry",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4380",
+    "courseName": "Medical Neuroscience/Neurochemistry",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4380",
+    "courseName": "Medical Neuroscience/Neurochemistry",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4380",
+    "courseName": "Medical Neuroscience/Neurochemistry",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4440",
+    "courseName": "Medical Microbiology",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4440",
+    "courseName": "Medical Microbiology",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "BMED 4440",
+    "courseName": "Medical Microbiology",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 1309/1109",
+    "courseName": "Chemistry for Engrs/Lab",
+    "tutorName": "Kenneth Davis",
+    "schedule": {
+      "Monday": "BROWNSVILLE",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "BROWNSVILLE",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "BROWNSVILLE"
+    }
+  },
+  {
+    "courseCode": "CHEM 1311/1111",
+    "courseName": "General Chemistry I/Lab",
+    "tutorName": "Miranda Villasenor",
+    "schedule": {
+      "Monday": "11:30am-12:15pm & 2:30pm-3:15pm",
+      "Tuesday": "9:45am-12:45pm",
+      "Wednesday": "11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm",
+      "Thursday": "10:00am-1:00pm & 3:30pm-4:30pm",
+      "Friday": "10:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "CHEM 1311/1111",
+    "courseName": "General Chemistry I/Lab",
+    "tutorName": "Jorge Gonzalez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "12:00pm-4:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 1311/1111",
+    "courseName": "General Chemistry I/Lab",
+    "tutorName": "Ilyssa Castillo",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:15am-1:15pm",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 1311/1111",
+    "courseName": "General Chemistry I/Lab",
+    "tutorName": "Brianna Morin",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 1311/1111",
+    "courseName": "General Chemistry I/Lab",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 1311/1111",
+    "courseName": "General Chemistry I/Lab",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 1311/1111",
+    "courseName": "General Chemistry I/Lab",
+    "tutorName": "Samuel Marshall",
+    "schedule": {
+      "Monday": "10:45am-12:45pm",
+      "Tuesday": "9:00am-10:45am",
+      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
+      "Thursday": "9:00am-12:30pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 1311/1111",
+    "courseName": "General Chemistry I/Lab",
+    "tutorName": "Amanda Villa",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-10:30am",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-10:30am",
+      "Friday": "9:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "CHEM 1311/1111",
+    "courseName": "General Chemistry I/Lab",
+    "tutorName": "Srinidhi Sompalli",
+    "schedule": {
+      "Monday": "2:45pm-4:45pm",
+      "Tuesday": "11:00am-1:30pm",
+      "Wednesday": "2:45pm-6:45pm",
+      "Thursday": "2:45pm-5:00pm",
+      "Friday": "9:45am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "CHEM 1312/1112",
+    "courseName": "General Chemistry II/Lab",
+    "tutorName": "Miranda Villasenor",
+    "schedule": {
+      "Monday": "11:30am-12:15pm & 2:30pm-3:15pm",
+      "Tuesday": "9:45am-12:45pm",
+      "Wednesday": "11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm",
+      "Thursday": "10:00am-1:00pm & 3:30pm-4:30pm",
+      "Friday": "10:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "CHEM 1312/1112",
+    "courseName": "General Chemistry II/Lab",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 1312/1112",
+    "courseName": "General Chemistry II/Lab",
+    "tutorName": "Alyssa Guerra",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:00am-2:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "11:00am-2:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 1312/1112",
+    "courseName": "General Chemistry II/Lab",
+    "tutorName": "Samuel Marshall",
+    "schedule": {
+      "Monday": "10:45am-12:45pm",
+      "Tuesday": "9:00am-10:45am",
+      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
+      "Thursday": "9:00am-12:30pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 1312/1112",
+    "courseName": "General Chemistry II/Lab",
+    "tutorName": "Srinidhi Sompalli",
+    "schedule": {
+      "Monday": "2:45pm-4:45pm",
+      "Tuesday": "11:00am-1:30pm",
+      "Wednesday": "2:45pm-6:45pm",
+      "Thursday": "2:45pm-5:00pm",
+      "Friday": "9:45am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "CHEM 2323/2123",
+    "courseName": "Organic Chemistry I/Lab",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 2323/2123",
+    "courseName": "Organic Chemistry I/Lab",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 2323/2123",
+    "courseName": "Organic Chemistry I/Lab",
+    "tutorName": "Samuel Marshall",
+    "schedule": {
+      "Monday": "10:45am-12:45pm",
+      "Tuesday": "9:00am-10:45am",
+      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
+      "Thursday": "9:00am-12:30pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 2323/2123",
+    "courseName": "Organic Chemistry I/Lab",
+    "tutorName": "Srinidhi Sompalli",
+    "schedule": {
+      "Monday": "2:45pm-4:45pm",
+      "Tuesday": "11:00am-1:30pm",
+      "Wednesday": "2:45pm-6:45pm",
+      "Thursday": "2:45pm-5:00pm",
+      "Friday": "9:45am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "CHEM 2325/2125",
+    "courseName": "Organic Chemistry II/Lab",
+    "tutorName": "Ryanna Quintero",
+    "schedule": {
+      "Monday": "9:30am-11:30am",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 2325/2125",
+    "courseName": "Organic Chemistry II/Lab",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 3303",
+    "courseName": "Biochemistry I",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 4302",
+    "courseName": "Advanced Biochemistry",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CHEM 4320",
+    "courseName": "Nutrition & Exercise Biochemistry",
+    "tutorName": "Maximiliano Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "OFF",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CIVE 1101",
+    "courseName": "Intro to Civil Engr",
+    "tutorName": "Gerardo Castillo",
+    "schedule": {
+      "Monday": "9:00am-10:45am",
+      "Tuesday": "9:30am-10:45am",
+      "Wednesday": "9:00am-10:45am",
+      "Thursday": "9:30am-10:45am",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "CIVE 2220",
+    "courseName": "Civil Engr Measurements",
+    "tutorName": "Gerardo Castillo",
+    "schedule": {
+      "Monday": "9:00am-10:45am",
+      "Tuesday": "9:30am-10:45am",
+      "Wednesday": "9:00am-10:45am",
+      "Thursday": "9:30am-10:45am",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "CIVE 2220",
+    "courseName": "Civil Engr Measurements",
+    "tutorName": "Karel Kishiko",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "CIVE 2350",
+    "courseName": "Numerical Methods",
+    "tutorName": "Gerardo Castillo",
+    "schedule": {
+      "Monday": "9:00am-10:45am",
+      "Tuesday": "9:30am-10:45am",
+      "Wednesday": "9:00am-10:45am",
+      "Thursday": "9:30am-10:45am",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "CIVE 3315",
+    "courseName": "Fluid Mechanics",
+    "tutorName": "Gerardo Castillo",
+    "schedule": {
+      "Monday": "9:00am-10:45am",
+      "Tuesday": "9:30am-10:45am",
+      "Wednesday": "9:00am-10:45am",
+      "Thursday": "9:30am-10:45am",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "CIVE 3321",
+    "courseName": "Mechanics of Materials",
+    "tutorName": "Gerardo Castillo",
+    "schedule": {
+      "Monday": "9:00am-10:45am",
+      "Tuesday": "9:30am-10:45am",
+      "Wednesday": "9:00am-10:45am",
+      "Thursday": "9:30am-10:45am",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "CIVE 3440",
+    "courseName": "CE Materials",
+    "tutorName": "Gerardo Castillo",
+    "schedule": {
+      "Monday": "9:00am-10:45am",
+      "Tuesday": "9:30am-10:45am",
+      "Wednesday": "9:00am-10:45am",
+      "Thursday": "9:30am-10:45am",
+      "Friday": "9:00am-11:00am"
+    }
+  },
+  {
+    "courseCode": "CLSC 2429",
+    "courseName": "Clinic Micro",
+    "tutorName": "Amanda Villa",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-10:30am",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-10:30am",
+      "Friday": "9:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "CSCI 1101",
+    "courseName": "Intro to Computer Science",
+    "tutorName": "Matthew Chapa",
+    "schedule": {
+      "Monday": "1:00pm-5:00pm",
+      "Tuesday": "1:00pm-5:00pm",
+      "Wednesday": "1:00pm-5:00pm",
+      "Thursday": "1:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 1101",
+    "courseName": "Intro to Computer Science",
+    "tutorName": "Edgar Bello Gonzalez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
+      "Wednesday": "11:45am-1:45pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 1380",
+    "courseName": "Intro to Programming Python",
+    "tutorName": "Matthew Chapa",
+    "schedule": {
+      "Monday": "1:00pm-5:00pm",
+      "Tuesday": "1:00pm-5:00pm",
+      "Wednesday": "1:00pm-5:00pm",
+      "Thursday": "1:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 1380",
+    "courseName": "Intro to Programming Python",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 1381",
+    "courseName": "Intro to Programming C++",
+    "tutorName": "Matthew Chapa",
+    "schedule": {
+      "Monday": "1:00pm-5:00pm",
+      "Tuesday": "1:00pm-5:00pm",
+      "Wednesday": "1:00pm-5:00pm",
+      "Thursday": "1:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 1381",
+    "courseName": "Intro to Programming C++",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 1390",
+    "courseName": "Intro to Programming II",
+    "tutorName": "Matthew Chapa",
+    "schedule": {
+      "Monday": "1:00pm-5:00pm",
+      "Tuesday": "1:00pm-5:00pm",
+      "Wednesday": "1:00pm-5:00pm",
+      "Thursday": "1:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 1390",
+    "courseName": "Intro to Programming II",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 1470",
+    "courseName": "Computer Science I",
+    "tutorName": "Matthew Chapa",
+    "schedule": {
+      "Monday": "1:00pm-5:00pm",
+      "Tuesday": "1:00pm-5:00pm",
+      "Wednesday": "1:00pm-5:00pm",
+      "Thursday": "1:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 1470",
+    "courseName": "Computer Science I",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 1470",
+    "courseName": "Computer Science I",
+    "tutorName": "Edgar Bello Gonzalez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
+      "Wednesday": "11:45am-1:45pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 1470",
+    "courseName": "Computer Science I",
+    "tutorName": "Eduardo Bello Gonzalez",
+    "schedule": {
+      "Monday": "11:00am-1:30pm",
+      "Tuesday": "11:00am-1:45pm",
+      "Wednesday": "11:00am-1:30pm",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 2344",
+    "courseName": "Programming in Unix/Linux",
+    "tutorName": "Matthew Chapa",
+    "schedule": {
+      "Monday": "1:00pm-5:00pm",
+      "Tuesday": "1:00pm-5:00pm",
+      "Wednesday": "1:00pm-5:00pm",
+      "Thursday": "1:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 2380",
+    "courseName": "Computer Science II",
+    "tutorName": "Matthew Chapa",
+    "schedule": {
+      "Monday": "1:00pm-5:00pm",
+      "Tuesday": "1:00pm-5:00pm",
+      "Wednesday": "1:00pm-5:00pm",
+      "Thursday": "1:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 2380",
+    "courseName": "Computer Science II",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 2380",
+    "courseName": "Computer Science II",
+    "tutorName": "Edgar Bello Gonzalez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
+      "Wednesday": "11:45am-1:45pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 3329",
+    "courseName": "Obj Oriented Prog in Python",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 3333",
+    "courseName": "Algorithms & Data Structures",
+    "tutorName": "Matthew Chapa",
+    "schedule": {
+      "Monday": "1:00pm-5:00pm",
+      "Tuesday": "1:00pm-5:00pm",
+      "Wednesday": "1:00pm-5:00pm",
+      "Thursday": "1:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 3334",
+    "courseName": "Systems in Programming",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 3341",
+    "courseName": "Software Engineering II",
+    "tutorName": "Matthew Chapa",
+    "schedule": {
+      "Monday": "1:00pm-5:00pm",
+      "Tuesday": "1:00pm-5:00pm",
+      "Wednesday": "1:00pm-5:00pm",
+      "Thursday": "1:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "CSCI 4325",
+    "courseName": "Automata, Formal Languages & Computability",
+    "tutorName": "Matthew Chapa",
+    "schedule": {
+      "Monday": "1:00pm-5:00pm",
+      "Tuesday": "1:00pm-5:00pm",
+      "Wednesday": "1:00pm-5:00pm",
+      "Thursday": "1:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ECON 2301",
+    "courseName": "Principles of Macroeconomics",
+    "tutorName": "Alexis Aguilar",
+    "schedule": {
+      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "ECON 2302",
+    "courseName": "Principles of Microeconomics",
+    "tutorName": "Alexis Aguilar",
+    "schedule": {
+      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "EECE 1101",
+    "courseName": "Intro to Elec & Comp Engr",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "EECE 2305",
+    "courseName": "Electric Circuits I",
+    "tutorName": "Kenneth Davis",
+    "schedule": {
+      "Monday": "BROWNSVILLE",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "BROWNSVILLE",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "BROWNSVILLE"
+    }
+  },
+  {
+    "courseCode": "EECE 2306/2106",
+    "courseName": "Digital Systems Engr I/Lab",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "EECE 2306/2106",
+    "courseName": "Digital Systems Engr I/Lab",
+    "tutorName": "Angelina Anthony",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "EECE 2306/2106",
+    "courseName": "Digital Systems Engr I/Lab",
+    "tutorName": "Edgar Bello Gonzalez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
+      "Wednesday": "11:45am-1:45pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "EECE 2306/2106",
+    "courseName": "Digital Systems Engr I/Lab",
+    "tutorName": "Kenneth Davis",
+    "schedule": {
+      "Monday": "BROWNSVILLE",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "BROWNSVILLE",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "BROWNSVILLE"
+    }
+  },
+  {
+    "courseCode": "EECE 2317",
+    "courseName": "Electronic Systems",
+    "tutorName": "Juan Castillo",
+    "schedule": {
+      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
+      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "EECE 3331",
+    "courseName": "Microcontrol & Embedded Systems",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "EECE 3340",
+    "courseName": "Probability & Stats (Elec & Comp)",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "EECE 3435",
+    "courseName": "Microprocessor Systems",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "EECE 4303",
+    "courseName": "Digital Systems Engr II",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "EECE 4380",
+    "courseName": "Computer Architecture",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "INFS 2300",
+    "courseName": "Data Modeling Management Tools",
+    "tutorName": "Daniela Celaya (Lead Tutor)",
+    "schedule": {
+      "Monday": "11:00am-12:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "10:15am-1:15pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 1314, 1414",
+    "courseName": "College Algebra",
+    "tutorName": "Srinidhi Sompalli",
+    "schedule": {
+      "Monday": "2:45pm-4:45pm",
+      "Tuesday": "11:00am-1:30pm",
+      "Wednesday": "2:45pm-6:45pm",
+      "Thursday": "2:45pm-5:00pm",
+      "Friday": "9:45am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "MATH 1314, 1414",
+    "courseName": "College Algebra",
+    "tutorName": "Angelina Anthony",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 1314, 1414",
+    "courseName": "College Algebra",
+    "tutorName": "Edgar Bello Gonzalez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
+      "Wednesday": "11:45am-1:45pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 1314, 1414",
+    "courseName": "College Algebra",
+    "tutorName": "Eduardo Bello Gonzalez",
+    "schedule": {
+      "Monday": "11:00am-1:30pm",
+      "Tuesday": "11:00am-1:45pm",
+      "Wednesday": "11:00am-1:30pm",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 1314, 1414",
+    "courseName": "College Algebra",
+    "tutorName": "Karel Kishiko",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "MATH 1314, 1414",
+    "courseName": "College Algebra",
+    "tutorName": "Paul Diaz (SI Mentor)",
+    "schedule": {
+      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Tuesday": "11:00am-1:45pm & 3:30pm-4:30pm",
+      "Wednesday": "Mentor Duties",
+      "Thursday": "Mentor Duties",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 1314, 1414",
+    "courseName": "College Algebra",
+    "tutorName": "Paulina Olvera Leal",
+    "schedule": {
+      "Monday": "BROWNSVILLE",
+      "Tuesday": "4:00pm-5:00pm",
+      "Wednesday": "BROWNSVILLE",
+      "Thursday": "4:00pm-5:00pm",
+      "Friday": "BROWNSVILLE"
+    }
+  },
+  {
+    "courseCode": "MATH 1324",
+    "courseName": "Math for Business",
+    "tutorName": "Sebastian Sanchez Reyes",
+    "schedule": {
+      "Monday": "11:00am-12:15pm & 2:00pm-3:30pm",
+      "Tuesday": "9:30am-1:00pm & 1:30pm-4:15pm",
+      "Wednesday": "11:00am-12:15pm & 2:00pm-3:30pm",
+      "Thursday": "9:30am-12:45pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 1342",
+    "courseName": "Elementary Statistical Methods",
+    "tutorName": "Fernando Casanova",
+    "schedule": {
+      "Monday": "12:00pm-3:45pm",
+      "Tuesday": "1:00pm-3:15pm",
+      "Wednesday": "12:00pm-3:45pm",
+      "Thursday": "1:00pm-3:15pm",
+      "Friday": "9:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "MATH 1342",
+    "courseName": "Elementary Statistical Methods",
+    "tutorName": "Amanda Villa",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-10:30am",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-10:30am",
+      "Friday": "9:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "MATH 1342",
+    "courseName": "Elementary Statistical Methods",
+    "tutorName": "Yaeli Benavidez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "OFF",
+      "Wednesday": "10:00am-2:00pm",
+      "Thursday": "OFF",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 1342",
+    "courseName": "Elementary Statistical Methods",
+    "tutorName": "Alexis Aguilar",
+    "schedule": {
+      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 1343",
+    "courseName": "Intro to Biostatistics",
+    "tutorName": "Alexis Aguilar",
+    "schedule": {
+      "Monday": "11:00am-2:00pm & 2:30pm-5:00pm",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "11:00am-1:45pm & 3:45pm-8:00pm",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 1343",
+    "courseName": "Intro to Biostatistics",
+    "tutorName": "Amanda Villa",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-10:30am",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-10:30am",
+      "Friday": "9:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "MATH 2318",
+    "courseName": "Linear Algebra",
+    "tutorName": "Karel Kishiko",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "MATH 2318",
+    "courseName": "Linear Algebra",
+    "tutorName": "Juan Espinoza",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2346",
+    "courseName": "Math for EE & CE",
+    "tutorName": "Fernando Quiroz",
+    "schedule": {
+      "Monday": "10:45am-2:30pm",
+      "Tuesday": "10:45am-2:30pm",
+      "Wednesday": "10:45am-2:30pm",
+      "Thursday": "12:15pm-4:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2412",
+    "courseName": "Precalculus",
+    "tutorName": "Edgar Bello Gonzalez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
+      "Wednesday": "11:45am-1:45pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2412",
+    "courseName": "Precalculus",
+    "tutorName": "Eduardo Bello Gonzalez",
+    "schedule": {
+      "Monday": "11:00am-1:30pm",
+      "Tuesday": "11:00am-1:45pm",
+      "Wednesday": "11:00am-1:30pm",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2412",
+    "courseName": "Precalculus",
+    "tutorName": "Kenneth Davis",
+    "schedule": {
+      "Monday": "BROWNSVILLE",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "BROWNSVILLE",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "BROWNSVILLE"
+    }
+  },
+  {
+    "courseCode": "MATH 2412",
+    "courseName": "Precalculus",
+    "tutorName": "Jacob Villarreal",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:45am-12:15pm",
+      "Wednesday": "9:00am-12:30pm",
+      "Thursday": "10:45am-12:15pm",
+      "Friday": "9:00am-10:30am"
+    }
+  },
+  {
+    "courseCode": "MATH 2412",
+    "courseName": "Precalculus",
+    "tutorName": "Karel Kishiko",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "MATH 2412",
+    "courseName": "Precalculus",
+    "tutorName": "Juan Espinoza",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Angelina Anthony",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Edgar Bello Gonzalez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
+      "Wednesday": "11:45am-1:45pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Eduardo Bello Gonzalez",
+    "schedule": {
+      "Monday": "11:00am-1:30pm",
+      "Tuesday": "11:00am-1:45pm",
+      "Wednesday": "11:00am-1:30pm",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Kenneth Davis",
+    "schedule": {
+      "Monday": "BROWNSVILLE",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "BROWNSVILLE",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "BROWNSVILLE"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Miranda Villasenor",
+    "schedule": {
+      "Monday": "11:30am-12:15pm & 2:30pm-3:15pm",
+      "Tuesday": "9:45am-12:45pm",
+      "Wednesday": "11:30am-12:15pm & 2:30pm-3:15pm & 5:00pm-6:00pm",
+      "Thursday": "10:00am-1:00pm & 3:30pm-4:30pm",
+      "Friday": "10:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Valeria Ramirez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "OFF",
+      "Wednesday": "5:15pm-8:00pm",
+      "Thursday": "3:45pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Jacob Villarreal",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:45am-12:15pm",
+      "Wednesday": "9:00am-12:30pm",
+      "Thursday": "10:45am-12:15pm",
+      "Friday": "9:00am-10:30am"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Karel Kishiko",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Juan Castillo",
+    "schedule": {
+      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
+      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Ethan De Leon",
+    "schedule": {
+      "Monday": "9:00am-12:15pm",
+      "Tuesday": "1:15pm-4:00pm",
+      "Wednesday": "9:00am-12:15pm",
+      "Thursday": "1:15pm-4:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Paul Diaz (SI Mentor)",
+    "schedule": {
+      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Tuesday": "11:00am-1:45pm & 3:30pm-4:30pm",
+      "Wednesday": "Mentor Duties",
+      "Thursday": "Mentor Duties",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2413",
+    "courseName": "Calculus I",
+    "tutorName": "Juan Espinoza",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2414",
+    "courseName": "Calculus II",
+    "tutorName": "Angelina Anthony",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2414",
+    "courseName": "Calculus II",
+    "tutorName": "Edgar Bello Gonzalez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:15am-1:15pm & 3:30pm-4:30pm",
+      "Wednesday": "11:45am-1:45pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2414",
+    "courseName": "Calculus II",
+    "tutorName": "Eduardo Bello Gonzalez",
+    "schedule": {
+      "Monday": "11:00am-1:30pm",
+      "Tuesday": "11:00am-1:45pm",
+      "Wednesday": "11:00am-1:30pm",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2414",
+    "courseName": "Calculus II",
+    "tutorName": "Kenneth Davis",
+    "schedule": {
+      "Monday": "BROWNSVILLE",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "BROWNSVILLE",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "BROWNSVILLE"
+    }
+  },
+  {
+    "courseCode": "MATH 2414",
+    "courseName": "Calculus II",
+    "tutorName": "Valeria Ramirez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "OFF",
+      "Wednesday": "5:15pm-8:00pm",
+      "Thursday": "3:45pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2414",
+    "courseName": "Calculus II",
+    "tutorName": "Karel Kishiko",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "MATH 2414",
+    "courseName": "Calculus II",
+    "tutorName": "Juan Castillo",
+    "schedule": {
+      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
+      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2414",
+    "courseName": "Calculus II",
+    "tutorName": "Paul Diaz (SI Mentor)",
+    "schedule": {
+      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Tuesday": "11:00am-1:45pm & 3:30pm-4:30pm",
+      "Wednesday": "Mentor Duties",
+      "Thursday": "Mentor Duties",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2414",
+    "courseName": "Calculus II",
+    "tutorName": "Juan Espinoza",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2415",
+    "courseName": "Calculus III",
+    "tutorName": "Juan Castillo",
+    "schedule": {
+      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
+      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 2415",
+    "courseName": "Calculus III",
+    "tutorName": "Juan Espinoza",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MATH 3341",
+    "courseName": "Differential Equations",
+    "tutorName": "Juan Espinoza",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MECE 1101",
+    "courseName": "Intro to Mechanical Engineering",
+    "tutorName": "Angelina Anthony",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MECE 2301",
+    "courseName": "Statics",
+    "tutorName": "Valeria Ramirez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "OFF",
+      "Wednesday": "5:15pm-8:00pm",
+      "Thursday": "3:45pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MECE 2301",
+    "courseName": "Statics",
+    "tutorName": "Jacob Villarreal",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:45am-12:15pm",
+      "Wednesday": "9:00am-12:30pm",
+      "Thursday": "10:45am-12:15pm",
+      "Friday": "9:00am-10:30am"
+    }
+  },
+  {
+    "courseCode": "MECE 2301",
+    "courseName": "Statics",
+    "tutorName": "Karel Kishiko",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "MECE 2301",
+    "courseName": "Statics",
+    "tutorName": "Juan Castillo",
+    "schedule": {
+      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
+      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MECE 2301",
+    "courseName": "Statics",
+    "tutorName": "Ethan De Leon",
+    "schedule": {
+      "Monday": "9:00am-12:15pm",
+      "Tuesday": "1:15pm-4:00pm",
+      "Wednesday": "9:00am-12:15pm",
+      "Thursday": "1:15pm-4:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "MECE 2302",
+    "courseName": "Dynamics",
+    "tutorName": "Juan Castillo",
+    "schedule": {
+      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
+      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MECE 2340/2140",
+    "courseName": "Engineering Materials/Lab",
+    "tutorName": "Angelina Anthony",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Wednesday": "11:45am-1:45pm & 3:30pm-4:15pm",
+      "Thursday": "11:45am-5:00pm & 3:30pm-4:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MECE 2340/2140",
+    "courseName": "Engineering Materials/Lab",
+    "tutorName": "Valeria Ramirez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "OFF",
+      "Wednesday": "5:15pm-8:00pm",
+      "Thursday": "3:45pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MECE 2340/2140",
+    "courseName": "Engineering Materials/Lab",
+    "tutorName": "Jacob Villarreal",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "10:45am-12:15pm",
+      "Wednesday": "9:00am-12:30pm",
+      "Thursday": "10:45am-12:15pm",
+      "Friday": "9:00am-10:30am"
+    }
+  },
+  {
+    "courseCode": "MECE 3304",
+    "courseName": "System Dynamics",
+    "tutorName": "Juan Castillo",
+    "schedule": {
+      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
+      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MECE 3335",
+    "courseName": "Thermodynamics I",
+    "tutorName": "Juan Castillo",
+    "schedule": {
+      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
+      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MECE 3440",
+    "courseName": "Mechanical Engineering Analysis",
+    "tutorName": "Juan Castillo",
+    "schedule": {
+      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
+      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "MUSI 1116",
+    "courseName": "ET & SS I",
+    "tutorName": "Marisol Mejia",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
+      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+    }
+  },
+  {
+    "courseCode": "MUSI 1117",
+    "courseName": "ET & SS II",
+    "tutorName": "Marisol Mejia",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
+      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+    }
+  },
+  {
+    "courseCode": "MUSI 1211",
+    "courseName": "Music Theory I",
+    "tutorName": "Marisol Mejia",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
+      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+    }
+  },
+  {
+    "courseCode": "MUSI 1212",
+    "courseName": "Music Theory II",
+    "tutorName": "Marisol Mejia",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
+      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+    }
+  },
+  {
+    "courseCode": "MUSI 1301",
+    "courseName": "Fundamentals of Music",
+    "tutorName": "Marisol Mejia",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
+      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+    }
+  },
+  {
+    "courseCode": "MUSI 2116",
+    "courseName": "ET & SS III",
+    "tutorName": "Marisol Mejia",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
+      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+    }
+  },
+  {
+    "courseCode": "MUSI 2117",
+    "courseName": "ET & SS IV",
+    "tutorName": "Marisol Mejia",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
+      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+    }
+  },
+  {
+    "courseCode": "MUSI 2211",
+    "courseName": "Music Theory III",
+    "tutorName": "Marisol Mejia",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
+      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+    }
+  },
+  {
+    "courseCode": "MUSI 2212",
+    "courseName": "Music Theory IV",
+    "tutorName": "Marisol Mejia",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
+      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+    }
+  },
+  {
+    "courseCode": "MUSI 3211",
+    "courseName": "Musical Form & Analysis",
+    "tutorName": "Marisol Mejia",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Wednesday": "6:30pm-8:00pm (EPAC C1.108)",
+      "Thursday": "9:00am-12:00pm & 2:45pm-5:00pm (EPAC C1.108)",
+      "Friday": "9:00am-12:00pm (EPAC C1.108)"
+    }
+  },
+  {
+    "courseCode": "Nursing",
+    "courseName": "1st Semester",
+    "tutorName": "Francisco Nunez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "12:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "Nursing",
+    "courseName": "1st Semester",
+    "tutorName": "Linda Ceaser",
+    "schedule": {
+      "Monday": "Calendar",
+      "Tuesday": "Calendar",
+      "Wednesday": "Calendar",
+      "Thursday": "Calendar",
+      "Friday": "Calendar"
+    }
+  },
+  {
+    "courseCode": "Nursing",
+    "courseName": "1st Semester",
+    "tutorName": "Johnmarc Candelaria",
+    "schedule": {
+      "Monday": "Calendar",
+      "Tuesday": "Calendar",
+      "Wednesday": "Calendar",
+      "Thursday": "Calendar",
+      "Friday": "Calendar"
+    }
+  },
+  {
+    "courseCode": "Nursing",
+    "courseName": "2nd Semester",
+    "tutorName": "Francisco Nunez",
+    "schedule": {
+      "Monday": "OFF",
+      "Tuesday": "OFF",
+      "Wednesday": "OFF",
+      "Thursday": "12:00pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "Nursing",
+    "courseName": "2nd Semester",
+    "tutorName": "Linda Ceaser",
+    "schedule": {
+      "Monday": "Calendar",
+      "Tuesday": "Calendar",
+      "Wednesday": "Calendar",
+      "Thursday": "Calendar",
+      "Friday": "Calendar"
+    }
+  },
+  {
+    "courseCode": "Nursing",
+    "courseName": "2nd Semester",
+    "tutorName": "Johnmarc Candelaria",
+    "schedule": {
+      "Monday": "Calendar",
+      "Tuesday": "Calendar",
+      "Wednesday": "Calendar",
+      "Thursday": "Calendar",
+      "Friday": "Calendar"
+    }
+  },
+  {
+    "courseCode": "Nursing",
+    "courseName": "3rd Semester",
+    "tutorName": "Linda Ceaser",
+    "schedule": {
+      "Monday": "Calendar",
+      "Tuesday": "Calendar",
+      "Wednesday": "Calendar",
+      "Thursday": "Calendar",
+      "Friday": "Calendar"
+    }
+  },
+  {
+    "courseCode": "Nursing",
+    "courseName": "3rd Semester",
+    "tutorName": "Johnmarc Candelaria",
+    "schedule": {
+      "Monday": "Calendar",
+      "Tuesday": "Calendar",
+      "Wednesday": "Calendar",
+      "Thursday": "Calendar",
+      "Friday": "Calendar"
+    }
+  },
+  {
+    "courseCode": "Nursing",
+    "courseName": "4th Semester",
+    "tutorName": "Linda Ceaser",
+    "schedule": {
+      "Monday": "Calendar",
+      "Tuesday": "Calendar",
+      "Wednesday": "Calendar",
+      "Thursday": "Calendar",
+      "Friday": "Calendar"
+    }
+  },
+  {
+    "courseCode": "Nursing",
+    "courseName": "4th Semester",
+    "tutorName": "Johnmarc Candelaria",
+    "schedule": {
+      "Monday": "Calendar",
+      "Tuesday": "Calendar",
+      "Wednesday": "Calendar",
+      "Thursday": "Calendar",
+      "Friday": "Calendar"
+    }
+  },
+  {
+    "courseCode": "PHYS 1401",
+    "courseName": "General Physics I",
+    "tutorName": "Samuel Marshall",
+    "schedule": {
+      "Monday": "10:45am-12:45pm",
+      "Tuesday": "9:00am-10:45am",
+      "Wednesday": "9:00am-10:45am & 7:00pm-8:00pm",
+      "Thursday": "9:00am-12:30pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "PHYS 1401",
+    "courseName": "General Physics I",
+    "tutorName": "Paul Diaz (SI Mentor)",
+    "schedule": {
+      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Tuesday": "11:00am-1:45pm & 3:30pm-4:30pm",
+      "Wednesday": "Mentor Duties",
+      "Thursday": "Mentor Duties",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "PHYS 1401",
+    "courseName": "General Physics I",
+    "tutorName": "Juan Espinoza",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "PHYS 1402",
+    "courseName": "General Physics II",
+    "tutorName": "Juan Espinoza",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "PHYS 2425",
+    "courseName": "Physics for Sci & Engr I",
+    "tutorName": "Kenneth Davis",
+    "schedule": {
+      "Monday": "BROWNSVILLE",
+      "Tuesday": "11:00am-12:15pm",
+      "Wednesday": "BROWNSVILLE",
+      "Thursday": "11:00am-12:15pm",
+      "Friday": "BROWNSVILLE"
+    }
+  },
+  {
+    "courseCode": "PHYS 2425",
+    "courseName": "Physics for Sci & Engr I",
+    "tutorName": "Juan Castillo",
+    "schedule": {
+      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
+      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "PHYS 2425",
+    "courseName": "Physics for Sci & Engr I",
+    "tutorName": "Ethan De Leon",
+    "schedule": {
+      "Monday": "9:00am-12:15pm",
+      "Tuesday": "1:15pm-4:00pm",
+      "Wednesday": "9:00am-12:15pm",
+      "Thursday": "1:15pm-4:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "PHYS 2425",
+    "courseName": "Physics for Sci & Engr I",
+    "tutorName": "Paul Diaz (SI Mentor)",
+    "schedule": {
+      "Monday": "9:00am-10:45am & 3:30pm-5:00pm",
+      "Tuesday": "11:00am-1:45pm & 3:30pm-4:30pm",
+      "Wednesday": "Mentor Duties",
+      "Thursday": "Mentor Duties",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "PHYS 2425",
+    "courseName": "Physics for Sci & Engr I",
+    "tutorName": "Juan Espinoza",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "PHYS 2426",
+    "courseName": "Physics for Sci & Engr II",
+    "tutorName": "Karel Kishiko",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "PHYS 2426",
+    "courseName": "Physics for Sci & Engr II",
+    "tutorName": "Juan Castillo",
+    "schedule": {
+      "Monday": "11:00am-1:00pm & 3:30pm-4:45pm",
+      "Tuesday": "9:00am-1:00pm & 3:30pm-5:00pm",
+      "Wednesday": "11:00am-1:00pm & 3:30pm-8:00pm",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "PHYS 2426",
+    "courseName": "Physics for Sci & Engr II",
+    "tutorName": "Ethan De Leon",
+    "schedule": {
+      "Monday": "9:00am-12:15pm",
+      "Tuesday": "1:15pm-4:00pm",
+      "Wednesday": "9:00am-12:15pm",
+      "Thursday": "1:15pm-4:00pm",
+      "Friday": "9:00am-10:00am"
+    }
+  },
+  {
+    "courseCode": "PHYS 2426",
+    "courseName": "Physics for Sci & Engr II",
+    "tutorName": "Juan Espinoza",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "PHYS 2327",
+    "courseName": "Physics for Sci & Engr III",
+    "tutorName": "Juan Espinoza",
+    "schedule": {
+      "Monday": "9:00am-12:00pm",
+      "Tuesday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Wednesday": "9:00am-12:00pm",
+      "Thursday": "9:00am-12:00pm & 2:30pm-5:00pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "QUMT 2341",
+    "courseName": "Business Statistics I",
+    "tutorName": "Cristian Gonzalez (Lead Tutor)",
+    "schedule": {
+      "Monday": "2:30pm-5:00pm",
+      "Tuesday": "3:30pm-5:00pm",
+      "Wednesday": "Brownsville",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "Lead Tutor Duties"
+    }
+  },
+  {
+    "courseCode": "QUMT 2341",
+    "courseName": "Business Statistics I",
+    "tutorName": "Fernando Casanova",
+    "schedule": {
+      "Monday": "12:00pm-3:45pm",
+      "Tuesday": "1:00pm-3:15pm",
+      "Wednesday": "12:00pm-3:45pm",
+      "Thursday": "1:00pm-3:15pm",
+      "Friday": "9:00am-12:00pm"
+    }
+  },
+  {
+    "courseCode": "QUMT 2341",
+    "courseName": "Business Statistics I",
+    "tutorName": "Daniela Celaya (Lead Tutor)",
+    "schedule": {
+      "Monday": "11:00am-12:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "10:15am-1:15pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "QUMT 2398",
+    "courseName": "Decision Analytics",
+    "tutorName": "Cristian Gonzalez (Lead Tutor)",
+    "schedule": {
+      "Monday": "2:30pm-5:00pm",
+      "Tuesday": "3:30pm-5:00pm",
+      "Wednesday": "Brownsville",
+      "Thursday": "3:30pm-5:00pm",
+      "Friday": "Lead Tutor Duties"
+    }
+  },
+  {
+    "courseCode": "QUMT 2398",
+    "courseName": "Decision Analytics",
+    "tutorName": "Daniela Celaya (Lead Tutor)",
+    "schedule": {
+      "Monday": "11:00am-12:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "10:15am-1:15pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "QUMT 3341",
+    "courseName": "Business Statistics II",
+    "tutorName": "Daniela Celaya (Lead Tutor)",
+    "schedule": {
+      "Monday": "11:00am-12:00pm",
+      "Tuesday": "OFF",
+      "Wednesday": "10:15am-1:15pm",
+      "Thursday": "10:15am-1:15pm",
+      "Friday": "OFF"
+    }
+  },
+  {
+    "courseCode": "SPAN 3313",
+    "courseName": "Adv Grammar & Comp Heritage I",
+    "tutorName": "Paulina Olvera Leal",
+    "schedule": {
+      "Monday": "BROWNSVILLE",
+      "Tuesday": "4:00pm-5:00pm",
+      "Wednesday": "BROWNSVILLE",
+      "Thursday": "4:00pm-5:00pm",
+      "Friday": "BROWNSVILLE"
+    }
+  },
+  {
+    "courseCode": "SPAN 3315",
+    "courseName": "Adv Grammar & Comp Heritage II",
+    "tutorName": "Paulina Olvera Leal",
+    "schedule": {
+      "Monday": "BROWNSVILLE",
+      "Tuesday": "4:00pm-5:00pm",
+      "Wednesday": "BROWNSVILLE",
+      "Thursday": "4:00pm-5:00pm",
+      "Friday": "BROWNSVILLE"
+    }
   }
-}
-const i1=document.getElementById("i1"),i2=document.getElementById("i2");
-let t1,t2;
-i1.addEventListener("input",()=>{i2.value="";closeDD(i2,document.getElementById("dd2"));buildDD(i1.value,true);clearTimeout(t1);t1=setTimeout(()=>doC(i1.value),220);});
-i2.addEventListener("input",()=>{i1.value="";closeDD(i1,document.getElementById("dd1"));buildDD(i2.value,false);clearTimeout(t2);t2=setTimeout(()=>doT(i2.value),220);});
-i1.addEventListener("keydown",e=>handleInputKeydown(e,true));
-i2.addEventListener("keydown",e=>handleInputKeydown(e,false));
-i1.addEventListener("blur",()=>setTimeout(()=>closeDD(i1,document.getElementById("dd1")),180));
-i2.addEventListener("blur",()=>setTimeout(()=>closeDD(i2,document.getElementById("dd2")),180));
-document.addEventListener("click",e=>{
-  if(!e.target.closest("#sg1"))closeDD(i1,document.getElementById("dd1"));
-  if(!e.target.closest("#sg2"))closeDD(i2,document.getElementById("dd2"));
-});
-</script>
+];
+
+    /*
+      Helper list of days.
+      If the weekly format changes later, update this list.
+    */
+    const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
+    /*
+      Page parts we use many times.
+    */
+    const courseSearchInput = document.getElementById("course-search");
+    const daySearchInput = document.getElementById("day-search");
+    const courseSuggestionsBox = document.getElementById("course-suggestions");
+    const daySuggestionsBox = document.getElementById("day-suggestions");
+    const resultsSection = document.getElementById("results");
+    const emptyStateSection = document.getElementById("empty-state");
+
+    /*
+      Build a clean course list for the course search box.
+    */
+    const uniqueCourses = buildUniqueCourseList();
+
+    function buildUniqueCourseList() {
+      const seenCourses = new Map();
+
+      scheduleData.forEach(item => {
+        const courseKey = `${item.courseCode}|||${item.courseName}`;
+
+        if (!seenCourses.has(courseKey)) {
+          seenCourses.set(courseKey, {
+            key: courseKey,
+            code: item.courseCode,
+            name: item.courseName
+          });
+        }
+      });
+
+      return Array.from(seenCourses.values()).sort((a, b) => a.code.localeCompare(b.code));
+    }
+
+    function cleanTutorName(tutorName) {
+      return tutorName
+        .replace("(Lead Tutor)", "")
+        .replace("(SI Mentor)", "")
+        .trim();
+    }
+
+    function getTutorRole(tutorName) {
+      if (tutorName.includes("Lead Tutor")) return "Lead Tutor";
+      if (tutorName.includes("SI Mentor")) return "SI Mentor";
+      return "Tutor";
+    }
+
+    function isSpecialNote(text) {
+      return ["Brownsville", "Mentor Duties", "Lead Tutor Duties", "BROWNSVILLE"].includes(text);
+    }
+
+    function formatAvailabilityText(text) {
+      if (text === "OFF") return '<span class="muted">OFF</span>';
+      if (isSpecialNote(text)) return `<span class="tag">${text}</span>`;
+      return text;
+    }
+
+    function showResults(title, countText, html) {
+      emptyStateSection.hidden = true;
+      resultsSection.hidden = false;
+      resultsSection.innerHTML = `
+        <div class="results-header">
+          <h2>${title}</h2>
+          <div class="results-count">${countText}</div>
+        </div>
+        ${html}
+      `;
+    }
+
+    function clearResults() {
+      resultsSection.hidden = true;
+      resultsSection.innerHTML = "";
+      emptyStateSection.hidden = false;
+    }
+
+    function createTutorCard(item, chosenDay = null) {
+      const role = getTutorRole(item.tutorName);
+
+      let scheduleRows = "";
+
+      if (chosenDay) {
+        scheduleRows = `
+          <tr>
+            <th>${chosenDay}</th>
+            <td>${formatAvailabilityText(item.schedule[chosenDay])}</td>
+          </tr>
+        `;
+      } else {
+        scheduleRows = weekDays.map(day => `
+          <tr>
+            <th>${day}</th>
+            <td>${formatAvailabilityText(item.schedule[day])}</td>
+          </tr>
+        `).join("");
+      }
+
+      return `
+        <article class="card">
+          <div class="card-header">
+            <h3>${cleanTutorName(item.tutorName)}</h3>
+            <div class="card-subtitle">
+              ${item.courseCode} · ${item.courseName} · ${role}${chosenDay ? ` · Showing ${chosenDay} only` : ""}
+            </div>
+          </div>
+          <table class="info-table">
+            <tr>
+              <th>Course Code</th>
+              <td>${item.courseCode}</td>
+            </tr>
+            <tr>
+              <th>Course Name</th>
+              <td>${item.courseName}</td>
+            </tr>
+            <tr>
+              <th>Tutor Name</th>
+              <td>${cleanTutorName(item.tutorName)}</td>
+            </tr>
+            <tr>
+              <th>Role</th>
+              <td>${role}</td>
+            </tr>
+            ${scheduleRows}
+          </table>
+        </article>
+      `;
+    }
+
+    function searchByCourse(searchText) {
+      const trimmedText = searchText.trim();
+
+      if (!trimmedText) {
+        clearResults();
+        return;
+      }
+
+      const lowerSearchText = trimmedText.toLowerCase();
+      const matchingCourses = uniqueCourses.filter(course =>
+        course.code.toLowerCase().includes(lowerSearchText) ||
+        course.name.toLowerCase().includes(lowerSearchText)
+      );
+
+      if (!matchingCourses.length) {
+        showResults(
+          `Results for “${trimmedText}”`,
+          "0 courses",
+          `<p class="muted">No courses matched your search.</p>`
+        );
+        return;
+      }
+
+      const html = matchingCourses.map(course => {
+        const relatedTutorEntries = scheduleData.filter(item =>
+          item.courseCode === course.code && item.courseName === course.name
+        );
+
+        return `
+          <section>
+            <div class="results-header" style="margin-top:20px;">
+              <h2>${course.code} · ${course.name}</h2>
+              <div class="results-count">${relatedTutorEntries.length} tutor entries</div>
+            </div>
+            ${relatedTutorEntries.map(item => createTutorCard(item)).join("")}
+          </section>
+        `;
+      }).join("");
+
+      const totalTutorEntries = matchingCourses.reduce((total, course) => {
+        return total + scheduleData.filter(item =>
+          item.courseCode === course.code && item.courseName === course.name
+        ).length;
+      }, 0);
+
+      showResults(
+        `Results for “${trimmedText}”`,
+        `${matchingCourses.length} courses · ${totalTutorEntries} tutor entries`,
+        html
+      );
+    }
+
+    function searchByDay(searchText) {
+      const trimmedText = searchText.trim();
+
+      if (!trimmedText) {
+        clearResults();
+        return;
+      }
+
+      const matchingDays = weekDays.filter(day =>
+        day.toLowerCase().includes(trimmedText.toLowerCase())
+      );
+
+      if (!matchingDays.length) {
+        showResults(
+          `Results for “${trimmedText}”`,
+          "0 days",
+          `<p class="muted">No day matched your search. Try Monday, Tuesday, Wednesday, Thursday, or Friday.</p>`
+        );
+        return;
+      }
+
+      const html = matchingDays.map(day => {
+        const dayEntries = scheduleData.filter(item =>
+          item.schedule[day] && item.schedule[day] !== "OFF"
+        );
+
+        return `
+          <section>
+            <div class="results-header" style="margin-top:20px;">
+              <h2>${day}</h2>
+              <div class="results-count">${dayEntries.length} tutor entries</div>
+            </div>
+            ${dayEntries.length
+              ? dayEntries.map(item => createTutorCard(item, day)).join("")
+              : '<p class="muted">No tutors are listed for this day.</p>'}
+          </section>
+        `;
+      }).join("");
+
+      const totalEntries = matchingDays.reduce((total, day) => {
+        return total + scheduleData.filter(item =>
+          item.schedule[day] && item.schedule[day] !== "OFF"
+        ).length;
+      }, 0);
+
+      showResults(
+        `Results for “${trimmedText}”`,
+        `${matchingDays.length} day matches · ${totalEntries} tutor entries`,
+        html
+      );
+    }
+
+    function closeSuggestionBox(inputElement, suggestionBox) {
+      suggestionBox.classList.remove("open");
+      inputElement.setAttribute("aria-expanded", "false");
+      inputElement.removeAttribute("aria-activedescendant");
+    }
+
+    function setActiveSuggestion(inputElement, suggestionBox, index) {
+      const suggestionItems = Array.from(suggestionBox.querySelectorAll(".suggestion-item"));
+
+      suggestionItems.forEach((item, itemIndex) => {
+        item.setAttribute("aria-selected", itemIndex === index ? "true" : "false");
+      });
+
+      const activeItem = suggestionItems[index];
+
+      if (activeItem) {
+        inputElement.setAttribute("aria-activedescendant", activeItem.id);
+        activeItem.scrollIntoView({ block: "nearest" });
+      } else {
+        inputElement.removeAttribute("aria-activedescendant");
+      }
+    }
+
+    function moveActiveSuggestion(inputElement, suggestionBox, step) {
+      const suggestionItems = Array.from(suggestionBox.querySelectorAll(".suggestion-item"));
+
+      if (!suggestionItems.length) return;
+
+      let currentIndex = suggestionItems.findIndex(item =>
+        item.getAttribute("aria-selected") === "true"
+      );
+
+      if (currentIndex < 0) {
+        currentIndex = step > 0 ? 0 : suggestionItems.length - 1;
+      } else {
+        currentIndex = (currentIndex + step + suggestionItems.length) % suggestionItems.length;
+      }
+
+      setActiveSuggestion(inputElement, suggestionBox, currentIndex);
+    }
+
+    function chooseSuggestion(itemElement, suggestionType, suggestionBox, inputElement) {
+      if (suggestionType === "course") {
+        courseSearchInput.value = itemElement.dataset.code;
+        searchByCourse(itemElement.dataset.code);
+      } else {
+        daySearchInput.value = itemElement.dataset.day;
+        searchByDay(itemElement.dataset.day);
+      }
+
+      closeSuggestionBox(inputElement, suggestionBox);
+    }
+
+    function buildSuggestions(searchText, suggestionType) {
+      const isCourseSearch = suggestionType === "course";
+      const inputElement = isCourseSearch ? courseSearchInput : daySearchInput;
+      const suggestionBox = isCourseSearch ? courseSuggestionsBox : daySuggestionsBox;
+
+      if (!searchText.trim()) {
+        suggestionBox.innerHTML = "";
+        closeSuggestionBox(inputElement, suggestionBox);
+        return;
+      }
+
+      const lowerSearchText = searchText.toLowerCase();
+
+      const matches = isCourseSearch
+        ? uniqueCourses
+            .filter(course =>
+              course.code.toLowerCase().includes(lowerSearchText) ||
+              course.name.toLowerCase().includes(lowerSearchText)
+            )
+            .slice(0, 8)
+        : weekDays
+            .filter(day => day.toLowerCase().includes(lowerSearchText))
+            .slice(0, 8);
+
+      if (!matches.length) {
+        suggestionBox.innerHTML = "";
+        closeSuggestionBox(inputElement, suggestionBox);
+        return;
+      }
+
+      if (isCourseSearch) {
+        suggestionBox.innerHTML = matches.map((course, index) => `
+          <div
+            class="suggestion-item"
+            id="course-option-${index}"
+            role="option"
+            tabindex="-1"
+            aria-selected="false"
+            data-code="${course.code}"
+          >
+            <span>${course.name}</span>
+            <strong>${course.code}</strong>
+          </div>
+        `).join("");
+      } else {
+        suggestionBox.innerHTML = matches.map((day, index) => `
+          <div
+            class="suggestion-item"
+            id="day-option-${index}"
+            role="option"
+            tabindex="-1"
+            aria-selected="false"
+            data-day="${day}"
+          >
+            <span>${day}</span>
+            <strong>Day</strong>
+          </div>
+        `).join("");
+      }
+
+      suggestionBox.classList.add("open");
+      inputElement.setAttribute("aria-expanded", "true");
+
+      suggestionBox.querySelectorAll(".suggestion-item").forEach((item, index) => {
+        item.addEventListener("mousedown", event => {
+          event.preventDefault();
+          chooseSuggestion(item, suggestionType, suggestionBox, inputElement);
+        });
+
+        item.addEventListener("mouseenter", () => {
+          setActiveSuggestion(inputElement, suggestionBox, index);
+        });
+      });
+    }
+
+    function handleSuggestionKeyboard(event, suggestionType) {
+      const isCourseSearch = suggestionType === "course";
+      const inputElement = event.currentTarget;
+      const suggestionBox = isCourseSearch ? courseSuggestionsBox : daySuggestionsBox;
+      const suggestionItems = Array.from(suggestionBox.querySelectorAll(".suggestion-item"));
+
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+
+        if (!suggestionBox.classList.contains("open")) {
+          buildSuggestions(inputElement.value, suggestionType);
+        }
+
+        moveActiveSuggestion(inputElement, suggestionBox, 1);
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+
+        if (!suggestionBox.classList.contains("open")) {
+          buildSuggestions(inputElement.value, suggestionType);
+        }
+
+        moveActiveSuggestion(inputElement, suggestionBox, -1);
+      } else if (event.key === "Enter" && suggestionBox.classList.contains("open")) {
+        const activeItem = suggestionItems.find(item =>
+          item.getAttribute("aria-selected") === "true"
+        );
+
+        if (activeItem) {
+          event.preventDefault();
+          chooseSuggestion(activeItem, suggestionType, suggestionBox, inputElement);
+        }
+      } else if (event.key === "Escape") {
+        closeSuggestionBox(inputElement, suggestionBox);
+      }
+    }
+
+    /*
+      Input behavior:
+      If the user types in one search box, the other one is cleared.
+    */
+    let courseTimer;
+    let dayTimer;
+
+    courseSearchInput.addEventListener("input", () => {
+      daySearchInput.value = "";
+      closeSuggestionBox(daySearchInput, daySuggestionsBox);
+      buildSuggestions(courseSearchInput.value, "course");
+      clearTimeout(courseTimer);
+      courseTimer = setTimeout(() => searchByCourse(courseSearchInput.value), 220);
+    });
+
+    daySearchInput.addEventListener("input", () => {
+      courseSearchInput.value = "";
+      closeSuggestionBox(courseSearchInput, courseSuggestionsBox);
+      buildSuggestions(daySearchInput.value, "day");
+      clearTimeout(dayTimer);
+      dayTimer = setTimeout(() => searchByDay(daySearchInput.value), 220);
+    });
+
+    courseSearchInput.addEventListener("keydown", event => handleSuggestionKeyboard(event, "course"));
+    daySearchInput.addEventListener("keydown", event => handleSuggestionKeyboard(event, "day"));
+
+    courseSearchInput.addEventListener("blur", () => {
+      setTimeout(() => closeSuggestionBox(courseSearchInput, courseSuggestionsBox), 180);
+    });
+
+    daySearchInput.addEventListener("blur", () => {
+      setTimeout(() => closeSuggestionBox(daySearchInput, daySuggestionsBox), 180);
+    });
+
+    document.addEventListener("click", event => {
+      if (!event.target.closest("#course-search-group")) {
+        closeSuggestionBox(courseSearchInput, courseSuggestionsBox);
+      }
+
+      if (!event.target.closest("#day-search-group")) {
+        closeSuggestionBox(daySearchInput, daySuggestionsBox);
+      }
+    });
+  </script>
 </body>
 </html>
