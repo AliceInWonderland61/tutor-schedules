@@ -15,7 +15,11 @@
   TIP:
   - If you want the website to match the spreadsheet exactly,
     update the Excel sheet first, then update this file from it.
+
+    This is a random comment
 */
+
+
 
 const AVAILABLE_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
